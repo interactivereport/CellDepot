@@ -11,5 +11,5 @@ CellDepot serves as an integrated web application to assist users in exploring t
   <img src="https://github.com/interactivereport/CellDepot/blob/main/Figures/Comparison.png" />
 </p>
 
-### Demo Link
+### Web Portal
 http://celldepot.bxgenomics.com/
