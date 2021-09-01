@@ -1,0 +1,3 @@
+accession,name,Species,description,DOI,Project_link,Notes,PMCID,PMID,Year,Titles,file
+SCP1,Single nucleus RNA-seq of cell diversity in the adult mouse hippocampus (sNuc-Seq),mouse,Project Description,10.1126/science.aad7038,https://singlecell.broadinstitute.org/single_cell/study/SCP1,,PMC5480621,27471252,2016,Div-Seq: Single-nucleus RNA-Seq reveals dynamics of rare adult newborn neurons.,SCP1.h5ad
+SCP10,Glioblastoma intra-tumor heterogeneity,human,,10.1126/science.1254257,https://singlecell.broadinstitute.org/single_cell/study/SCP10,,PMC4123637,24925914,2014,Single-cell RNA-seq highlights intratumoral heterogeneity in primary glioblastoma.,SCP10.h5ad
