@@ -1,0 +1,29 @@
+body  {
+	font-family: Arial,Helvetica,sans-serif;	
+}
+
+.list-group-item li{
+	margin:8px 0px 0px 5px;	
+}
+
+.bg-faded {
+	background-color: #f7f7f7;
+}
+
+
+/*Boostrap 4 fix */
+.pull-left {
+	float: left !important;
+}
+
+.pull-right {
+	float: right !important;
+}
+
+.card-block {
+	-webkit-box-flex:1;
+	-webkit-flex:1 1 auto;
+	-ms-flex:1 1 auto;
+	flex:1 1 auto;
+	padding:1.25rem
+}
