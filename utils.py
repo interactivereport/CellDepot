@@ -6,7 +6,6 @@ import numpy as np
 import seaborn as sns
 
 # %%
-
 def qc(fdir, countfile, metafile, geneLB=200, cellLB=6, filtercellLB=3):
 
     if countfile.endswith("h5"):
