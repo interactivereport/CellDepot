@@ -1,0 +1,32 @@
+
+@charset "UTF-8";
+
+@font-face {
+  font-family: 'Raleway';
+  src: url('../library/font/Raleway/Raleway-Regular.ttf')  format('truetype');
+}
+@font-face {
+  font-family: 'Orbitron';
+  src: url('../library/font/Orbitron/Orbitron-Regular.ttf')  format('truetype');
+}
+@font-face {
+  font-family: 'Quicksand';
+  src: url('../library/font/Quicksand/Quicksand-Regular.ttf')  format('truetype');
+}
+
+
+html, body {
+	height: 100%;
+    font-family: 'Raleway', sans-serif;
+	/*font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;*/
+	font-size:14px;
+}
+
+body {
+    min-height: 25rem;
+    /*word-break: break-all;*/
+}
+
+.hidden{
+    display: none;
+}
