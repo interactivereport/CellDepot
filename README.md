@@ -13,3 +13,6 @@ CellDepot serves as an integrated web application to assist users in exploring t
 
 ### Web Portal
 https://celldepot.bxgenomics.com/
+
+### Installation Guide
+https://celldepot.bxgenomics.com/celldepot_manual/
