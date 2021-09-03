@@ -1,0 +1,12 @@
+#!/usr/bin/env bash
+if [[ -n "$1" ]] && [[ -n "$2" ]]; then
+  . "/raid/data/anaconda3/etc/profile.d/conda.sh"
+  conda activate cellxgeneVIP
+  python -W ignore -u $(dirname "${0}")/src/toCSCh5ad.py "$@"
+else
+  echo "==============="
+  echo "toCSCh5ad path/to/h5ad path/to/out/folder"
+  echo ""
+  echo "Format the input h5ad into Compressed Sparse Column (CSC) matrix if it is not CSC, and save it into out folder"
+  echo "==============="
+fi

@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+. "/raid/data/anaconda3/etc/profile.d/conda.sh"
+conda activate cellxgeneVIP
+
+myPath=$(dirname "${0}")
+python -W ignore -u $myPath/src/getH5adInfo.py "$@"

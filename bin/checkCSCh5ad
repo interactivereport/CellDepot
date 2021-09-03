@@ -1,0 +1,12 @@
+#!/usr/bin/env bash
+if [[ -n "$1" ]]; then
+  . "/raid/data/anaconda3/etc/profile.d/conda.sh"
+  conda activate cellxgeneVIP
+  python -W ignore -u $(dirname "${0}")/src/checkCSCh5ad.py "$@"
+else
+  echo "==============="
+  echo "checkCSCh5ad path/to/h5ad"
+  echo ""
+  echo "Check if the format of the input h5ad is Compressed Sparse Column (CSC) matrix"
+  echo "==============="
+fi
