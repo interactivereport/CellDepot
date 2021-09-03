@@ -12,4 +12,4 @@ CellDepot serves as an integrated web application to assist users in exploring t
 </p>
 
 ### Web Portal
-http://celldepot.bxgenomics.com/
+https://celldepot.bxgenomics.com/
