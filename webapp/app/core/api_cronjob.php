@@ -27,7 +27,8 @@ foreach($IDs as $tempKey => $ID){
 	$filesize_h5ad_file = filesize("{$currentProject['File_Directory']}/{$currentProject['File_Name']}");
 	$filesize_csc_db	= $currentProject['File_CSCh5ad_filesize'];
 	$filesize_csc_file	= filesize("{$currentProject['File_Directory']}/{$currentProject['File_Name']}");
-	$csc_status			= $currentProject['File_h5ad_filesize'];
+	$csc_status			= $currentProject['File_CSCh5ad_status'];
+	$h5ad_status		= $currentProject['File_h5ad_status'];
 	
 	$needToBuildCSC 	= 0;
 	$needToGetH5ADInfo 	= 0;
@@ -38,7 +39,32 @@ foreach($IDs as $tempKey => $ID){
 		//File has not been changed after project creation
 		echo printMsg("[{$ID}]File has not been changed after project creation");
 		
-		if ($csc_status){
+		
+		if ($h5ad_status == 0){
+			//Need to run getH5ad
+			$get_h5ad_info = get_h5ad_info("{$currentProject['File_Directory']}/{$currentProject['File_Name']}");
+			echo printMsg("[{$ID}]Running get_h5ad_info().");
+			if ($get_h5ad_info['cellN'] > 0){
+				echo printMsg("[{$ID}]Saving h5ad info.");
+				$dataArray['File_h5ad_status'] 		= 1;
+				$dataArray['Cell_Count'] 			= $get_h5ad_info['cellN'];
+				$dataArray['Gene_Count'] 			= $get_h5ad_info['geneN'];
+				$dataArray['File_h5ad_info'] 		= json_encode($get_h5ad_info);
+				$dataArray['File_Size'] 			= $dataArray['File_h5ad_filesize'] = $filesize_h5ad_file;
+				$dataArray['File_CSCh5ad_status'] 	= 0;
+				$dataArray['File_CSCh5ad_filesize'] = 0;
+				$dataArray['File_Directory_CSCh5ad'] = '';
+				$SQL = getUpdateSQLQuery($APP_CONFIG['TABLES']['PROJECT'], $dataArray, $ID);
+				executeSQL($SQL);
+				addAuditTrail($APP_CONFIG['TABLES']['PROJECT'], $ID, $currentProject, $dataArray);
+				
+				
+				$SQL = "DELETE FROM `{$APP_CONFIG['TABLES']['PROJECT_GENE_PLOT']} WHERE `Project_ID` = '{$ID}'";
+				executeSQL($SQL);
+				clearCache();
+			}
+			continue;
+		} elseif ($csc_status){
 			//CSC file is already created
 			//Do nothing
 			echo printMsg("[{$ID}]CSC file is already created");

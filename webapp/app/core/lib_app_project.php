@@ -56,15 +56,16 @@ function createProject($inputArray = array()){
 		return false;	
 	}
 	
+	/*
+	//GetH5ad has been moved to cronjob
 	$get_h5ad_info = get_h5ad_info("{$dataArray['File_Directory']}/{$dataArray['File_Name']}");
-	
 	if ($get_h5ad_info['cellN'] > 0){
 		$dataArray['File_h5ad_status'] 	= 1;
 		$dataArray['Cell_Count'] 		= $get_h5ad_info['cellN'];
 		$dataArray['Gene_Count'] 		= $get_h5ad_info['geneN'];
 		$dataArray['File_h5ad_info'] 	= json_encode($get_h5ad_info);
 	}
-	
+	*/
 	
 
 	$SQL = getInsertSQLQuery($APP_CONFIG['TABLES']['PROJECT'], $dataArray);
