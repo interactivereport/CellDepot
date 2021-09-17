@@ -49,7 +49,7 @@ function getGenePlot($projectID = 0, $h5ad_file = '', $genes = array(), $plotTyp
 		$cmd[] = "-n {$n}";
 	}
 	
-	$g = abs(intval($g));
+	$g = abs(floatval($g));
 	if ($g > 0){
 		$cmd[] = "-g {$g}";
 	}
@@ -107,7 +107,7 @@ function getGenePlot($projectID = 0, $h5ad_file = '', $genes = array(), $plotTyp
 		executeSQL($SQL);
 	}
 	
-	//echo printMsg($cmd);
+	
 
 
 	
