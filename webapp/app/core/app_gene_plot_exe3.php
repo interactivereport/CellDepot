@@ -74,6 +74,14 @@ echo "<div class='row'>";
 				echo "&nbsp;<span class='badge badge-pill badge-secdonary'><a href='{$URL}' target='_blank'>Share</a></span>";
 				
 			echo "</p>";
+			
+		if ($_POST['Debug']){
+			echo "<div>";
+				echo "<strong>Command Executed</strong>: <pre>{$plotContent['command']}</pre>";
+			echo "</div>";			
+			
+		}
+			
 	
 		echo "<div class='overflow-auto' style='padding:10px;'>";
 			echo $plotContent['plot'];

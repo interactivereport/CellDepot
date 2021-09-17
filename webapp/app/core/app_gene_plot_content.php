@@ -35,7 +35,7 @@ echo "<form id='form_application' action='javascript:void(0);' method='post' rol
 				echo "&nbsp;";
 			echo "</td>";
 			
-			
+			/*
 			echo "<td>";
 				echo "<label  for='Cell_Count'><strong>{$BXAF_CONFIG['MESSAGE'][$APP_CONFIG['TABLES']['PROJECT']]['Column']['n']['Title']}:</strong></label>";
 			echo "</td>";
@@ -43,6 +43,7 @@ echo "<form id='form_application' action='javascript:void(0);' method='post' rol
 			echo "<td>";
 				echo "&nbsp;";
 			echo "</td>";
+			*/
 			
 			echo "<td>";
 				echo "<label  for='Cell_Count'><strong>{$BXAF_CONFIG['MESSAGE'][$APP_CONFIG['TABLES']['PROJECT']]['Column']['g']['Title']}:</strong></label>";
@@ -63,7 +64,7 @@ echo "<form id='form_application' action='javascript:void(0);' method='post' rol
 				echo "&nbsp;";
 			echo "</td>";
 			
-			
+			/*
 			echo "<td>";
 				echo "<input type='text' class='form-control' id='n' name='n'/>";
 			echo "</td>";
@@ -71,6 +72,7 @@ echo "<form id='form_application' action='javascript:void(0);' method='post' rol
 			echo "<td>";
 				echo "&nbsp;";
 			echo "</td>";
+			*/
 			
 			echo "<td>";
 				echo "<input type='text' class='form-control' id='g' name='g' />";
@@ -95,7 +97,7 @@ echo "<form id='form_application' action='javascript:void(0);' method='post' rol
 				echo "&nbsp;";
 			echo "</td>";
 			
-			
+			/*
 			echo "<td class='text-muted small'>";
 				echo "It can range from 0-100";
 			echo "</td>";
@@ -103,6 +105,8 @@ echo "<form id='form_application' action='javascript:void(0);' method='post' rol
 			echo "<td>";
 				echo "&nbsp;";
 			echo "</td>";
+			*/
+			
 			
 			echo "<td class='text-muted small'>";
 				echo "Enter 0.1 to remove cells <br/>with 0 expression.";
@@ -129,6 +133,11 @@ echo "<form id='form_application' action='javascript:void(0);' method='post' rol
 	echo "<div class='row'>";
 		echo "<div class='col-12'>";
 			echo "<input type='checkbox' class='xform-control' id='Hide_Empty' name='Hide_Empty' value='1'/> Hide projects with no results";
+			
+			if (isManagerUser()){
+				echo "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;";
+				echo "<input type='checkbox' class='xform-control' id='Debug' name='Debug' value='1'/> Display Technical Information";
+			}
 			echo "<input type='hidden' name='preselected' value='{$_GET['preselected']}'/>";
 			echo "<input type='hidden' id='key' name='key' value=''/>";
 			echo "<input type='hidden' id='currentPage' value='1'/>";
