@@ -11,6 +11,7 @@ if (true){
 		
 		$results = array();
 		
+		$results[] = "<a href='{$URL}' target='_blank'>View in Fullscreen</a>";
 		$results[] = "<a href='app_project_review.php?ID={$ID}'>View Project Details</a>";
 		
 		foreach ($items as $tempKey => $currentColumn){
