@@ -5,11 +5,28 @@ def main():
     if len(sys.argv)<2:
         print("ERROR: path to a h5ad file is required!")
         exit()
-    D = ad.read_h5ad(sys.argv[1],backed='r')#
+    D = ad.read_h5ad(sys.argv[1])#,backed='r'
+        ## check CSC
+    CSC=False
+    try:
+        if D.X.format=="csc": #format_str when backed="r"
+            CSC=True
+    except AttributeError:
+        pass
+
+    ## genes max expression
+    if hasattr(D.X,'toarray'):
+        genes=dict(zip(D.var_names,np.round(D.X.max(0).toarray()[0].astype('float64'),2)))
+    else:
+        genes=dict(zip(D.var_names,np.round(D.X.max(0),2)))
+
+    # check the expressed genes
     info = {'cellN':D.shape[0],'geneN':D.shape[1],
-            'maxExp':str(D.X.value.max()),
+            'maxExp':np.round(D.X.max().astype('float64'),2),
             'layout':[x.replace("X_","") for x in D.obsm.keys()],
-            'annotation':{}}
+            'csc':CSC,
+            'annotation':{},
+            'genes':genes}
 
     obs=D.obs.select_dtypes('category')
 
