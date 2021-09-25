@@ -59,7 +59,16 @@ if (true){
 	}
 	
 	if (true){
-		$appObj['Buttons'][] = "<a href='app_gene_plot.php?preselected={$appObj['Cache_Key']}' class='btn btn-warning' data-toggle='tooltip' data-placement='top' title='{$BXAF_CONFIG['MESSAGE'][$currentTable]['General']['Gene_Plot_Tooltip']}'>" . printFontAwesomeIcon('fas fa-dna') . "&nbsp;{$BXAF_CONFIG['MESSAGE'][$currentTable]['General']['Gene_Plot']}</a>";
+		//$appObj['Buttons'][] = "<a href='app_gene_plot.php?preselected={$appObj['Cache_Key']}' class='btn btn-warning' data-toggle='tooltip' data-placement='top' title='{$BXAF_CONFIG['MESSAGE'][$currentTable]['General']['Gene_Plot_Tooltip']}'>" . printFontAwesomeIcon('fas fa-dna') . "&nbsp;{$BXAF_CONFIG['MESSAGE'][$currentTable]['General']['Gene_Plot']}</a>";
+		$appObj['Buttons'][] = "<a href='javascript:void(0);' class='searchGeneTrigger btn btn-warning' title='{$BXAF_CONFIG['MESSAGE'][$currentTable]['General']['Gene_Plot_Tooltip']}'>" . printFontAwesomeIcon('fas fa-dna') . "&nbsp;{$BXAF_CONFIG['MESSAGE'][$currentTable]['General']['Gene_Plot']}</a>";
+		
+		
+		
+		echo "<form style='display: none;' action='app_gene_plot_handler.php?preselected={$appObj['Cache_Key']}' method='POST' id='searchGeneForm'>";
+			echo "<input type='hidden' id='searchGeneIDs' name='searchGeneIDs' value=''/>";
+		echo "</form>";
+
+		
 	}
 	
 	
@@ -112,6 +121,29 @@ $(document).ready(function(){
 		}
 	});
 	<?php } ?>
+	
+	
+	$(document).on('click', '.searchGeneTrigger', function(){
+		
+		var data = '';
+		var count = 0;
+
+		$('.recordCheckbox:checked').each(function(){
+			count++;
+			data += ',' + $(this).val();
+		});
+		
+		if (count > 0){
+			
+			$('#searchGeneIDs').val(data);
+			$('#searchGeneForm').submit();
+
+		} else {
+			window.location = '<?php echo "app_gene_plot.php?preselected={$appObj['Cache_Key']}"; ?>';
+		}
+	});
+	
+	
 	
 	
 });
