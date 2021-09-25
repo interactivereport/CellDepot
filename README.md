@@ -10,7 +10,7 @@ CellDepot serves as an integrated web application to assist users in exploring t
 |Web application repository	|CellDepot	|Corpora Data Portal |	gEAR	|CHARTS	SCANNER |	Single Cell Portal |	ReproGenomics|	PanglaoDB |	Expression Atlas |scRNAseqDB |	conquer	|JingleBells |	Human Cell ATLAS |	Sfaira |
 | ------------- | ------------- | ------------- | ------------- | ------------- | ------------- | ------------- | ------------- | ------------- | ------------- | ------------- | ------------- |------------- | ------------- |
 |Year|2021|	2021	|2021	|2020	|2020	|2020	|2019|	2019|	2019 |	2019|	2018|	2017	| 2017|	2020|
-| **Main Function** |  |  |  |  |  |  |  |  |  |  |   |  |
+| **Main Function** | |
 
 <!-- 
 <p align="center">
