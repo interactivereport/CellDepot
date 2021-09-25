@@ -55,7 +55,7 @@ $(document).ready(function(){
 	<?php foreach($currentProjectIDs as $tempKey => $currentProjectID){ ?>
 	$.ajax({
 		type: 'GET',
-		url: 'app_gene_plot_exe3.php?key=<?php echo $key; ?>&ID=<?php echo $currentProjectID; ?>',
+		url: 'app_gene_plot_exe3.php?default=1&key=<?php echo $key; ?>&ID=<?php echo $currentProjectID; ?>',
 		success: function(responseText){
 			$('#plotSection_<?php echo $currentProjectID; ?>').html(responseText);
 			$('#busySection_<?php echo $currentProjectID; ?>').hide();

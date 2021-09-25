@@ -26,6 +26,15 @@ if ($annotationGroup == '' || $annotationGroup == 'Undefined'){
 $_GET['Subsampling'] = intval($_GET['Subsampling']);
 
 
+if ($_GET['default'] == 1){
+	if ($_GET['Subsampling'] == 0){
+		if ($currentProject['Cell_Count'] > 10000){
+			$_GET['Subsampling'] = 10000;
+		}
+	}
+}
+
+
 if ($_GET['Plot_Type'] == ''){
 	if (array_size($_POST['Genes']) <= 1){
 		$_GET['Plot_Type'] = 'violin';	
