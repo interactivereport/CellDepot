@@ -6,6 +6,10 @@ CellDepot serves as an integrated web application to assist users in exploring t
 
 ### CellDepot portal overview
 ![alt text](https://github.com/interactivereport/CellDepot/blob/main/Figures/Figure1.svg)
+
+### Exploration of Cellxgene VIP in CellDepot
+![alt text](https://github.com/interactivereport/CellDepot/blob/main/Figures/Figure2.svg)
+
 ### Comparison among other web-based scRNAseq datasets exploration tools
 |Web application repository	|CellDepot	|Corpora Data Portal |	gEAR	|CHARTS	SCANNER |	Single Cell Portal |	ReproGenomics|	PanglaoDB |	Expression Atlas |scRNAseqDB |	conquer	|JingleBells |	Human Cell ATLAS |	Sfaira |
 | ------------- | ------------- | ------------- | ------------- | ------------- | ------------- | ------------- | ------------- | ------------- | ------------- | ------------- | ------------- |------------- | ------------- |
