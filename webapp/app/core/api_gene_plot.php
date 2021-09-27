@@ -163,7 +163,7 @@ if (!$_GET['json']){
 				echo "</p>";
 			
 				echo "<div class='overflow-auto' style='padding:10px;'>";
-					echo $plotContent['plot'];
+					echo processGenePlot($plotContent['plot'], 'fullsize');
 				echo "</div>";
 				
 			echo "</div>";

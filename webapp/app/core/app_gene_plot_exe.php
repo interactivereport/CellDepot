@@ -9,6 +9,7 @@ $_POST['Genes'] = array_iunique($_POST['Genes'], 1);
 $_POST['Genes'] = array_map('strtoupper', $_POST['Genes']);
 
 
+
 if ($_POST['preselected'] != ''){
 	$_POST['preselected'] = getRedisCache($_POST['preselected']);
 }
@@ -37,6 +38,8 @@ if (true){
 	$projectCount = array_size($allProjects);
 	$projectCountDisplay = number_format($projectCount);
 	$_POST['ProjectIDs'] = array_keys($allProjects);
+	
+	
 	
 	if ($projectCount <= 0){
 		$message = "<p>" . printFontAwesomeIcon('fas fa-exclamation-triangle text-danger') . " Error. There are no projects available. Please modify the input and try again.</p>";

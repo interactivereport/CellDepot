@@ -80,7 +80,7 @@ echo "<div class='row'>";
 				
 				$URL = getGenePlotAPIURL($currentProjectID, $_POST['Genes'], $_GET['Plot_Type'], $_GET['Subsampling'], $_POST['n'], $_POST['g'], $annotationGroup);
 				
-				echo "&nbsp;<span class='badge badge-pill badge-secdonary'><a href='{$URL}' target='_blank'>Share</a></span>";
+				echo "&nbsp;<span class='badge badge-pill badge-secdonary'><a href='{$URL}' target='_blank'>View Plot in Full Screen</a></span>";
 				
 			echo "</p>";
 			
@@ -93,7 +93,7 @@ echo "<div class='row'>";
 			
 	
 		echo "<div class='overflow-auto' style='padding:10px;'>";
-			echo $plotContent['plot'];
+			echo processGenePlot($plotContent['plot'], 'compact');
 		echo "</div>";
 	echo "</div>";
 	

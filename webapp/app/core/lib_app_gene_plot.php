@@ -167,6 +167,8 @@ function getProjectsForGenePlot($inputArray = NULL){
 	
 	$preSelectedIDs = id_sanitizer($inputArray['preselected'], 0, 1, 0, 2);
 	
+	
+	
 	$SQL = "SELECT `ID`, `Name`, `Accession` FROM {$SQL_TABLE} WHERE (`File_CSCh5ad_status` = 1)";
 	
 	
@@ -177,6 +179,8 @@ function getProjectsForGenePlot($inputArray = NULL){
 	if ($badProjectIDs != ''){
 		$SQL = "{$SQL} AND (`ID` NOT IN ({$badProjectIDs}))";	
 	}
+	
+	
 	
 	$results = getSQL_Data($SQL, 'GetAssoc');
 
@@ -194,5 +198,108 @@ function getGenePlotAPIURL($ID = 0, $Genes = NULL, $Plot_Type = '', $Subsampling
 	
 }
 
+
+function processGenePlot($string = '', $type = 'compact'){
+	
+	if ($type != 'compact'){
+		$type = 'fullsize';	
+	}
+	
+	
+	if (strpos($string, '"type": "violin"') !== FALSE){
+		$plot_type = 'violin';
+	} elseif (strpos($string, '"type": "scatter"') !== FALSE){
+		$plot_type = 'scatter';
+	} else {
+		return $string;	
+	}
+	
+	
+	if (true){
+		preg_match("/height:(.*?)px;/", $string, $matches);
+		$height = intval($matches[1]);
+		
+		preg_match("/width:(.*?)px;/", $string, $matches);
+		$width = intval($matches[1]);	
+		
+		if (($height <= 0) || ($width <= 0)){
+			return $string;
+		}
+	}
+
+	if (true){
+		
+		$svg_height = 1000;
+		$svg_width	= ceil($svg_height*($width/$height));
+		
+		$string = str_replace('{"responsive": true}', 'config', $string);
+		
+		$string = str_replace(
+						'Plotly.newPlot(', 
+						
+						"var config = {
+						  toImageButtonOptions: {
+							format: 'svg', // one of png, svg, jpeg, webp
+							filename: 'gene_search',
+							height: {$svg_height},
+							width: {$svg_width},
+							'responsive': true,
+							scale: 1 // Multiply title/legend/axis/canvas sizes by this factor
+						  },
+						  
+						  responsive: true
+						};
+						
+						Plotly.newPlot(
+						",
+
+						$string);
+	}
+	
+	if ($type == 'fullsize'){
+		
+		if ($plot_type == 'violin'){
+			
+			$plot_height 	= 800;
+			$plot_width		= ceil($plot_height*($width/$height));
+		
+			$string = str_replace("height:{$height}px;", '', $string);
+			$string = str_replace("width:{$width}px;", '', $string);
+			
+			/*
+			$string = str_replace("\"height\": {$height},", "\"height\": {$plot_height},", $string);
+			$string = str_replace("\"width\": {$width},", "\"width\": {$plot_width},", $string);
+			*/
+			
+			$string = str_replace("\"height\": {$height},", '', $string);
+			$string = str_replace("\"width\": {$width},", '', $string);
+		}
+		
+		if ($plot_type == 'scatter'){
+			
+			$plot_height 	= 800;
+			$plot_width		= ceil($plot_height*($width/$height));
+		
+			$string = str_replace("height:{$height}px;", "height:{$plot_height}px;", $string);
+			$string = str_replace("width:{$width}px;", "width:{$plot_width}px;", $string);
+			
+			
+			$string = str_replace("\"height\": {$height},", "\"height\": {$plot_height},", $string);
+			$string = str_replace("\"width\": {$width},", "\"width\": {$plot_width},", $string);
+			
+			/*
+			$string = str_replace("\"height\": {$height},", '', $string);
+			$string = str_replace("\"width\": {$width},", '', $string);
+			*/
+		}
+
+	}
+	
+	
+	
+	
+	return $string;
+	
+}
 
 ?>
