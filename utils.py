@@ -6,7 +6,7 @@ import numpy as np
 import seaborn as sns
 
 # %%
-def qc(fdir, countfile, metafile, geneLB=200, cellLB=6, filtercellLB=3):
+def qc(fdir, countfile, metafile, MTcount = 10, geneLB=200, cellLB=6, filtercellLB=3):
 
     if countfile.endswith("h5"):
         adata = sc.read_10x_h5(fdir + countfile).T
@@ -19,7 +19,7 @@ def qc(fdir, countfile, metafile, geneLB=200, cellLB=6, filtercellLB=3):
     adata.obs['percent_mito'] = np.sum(adata[:, mito_genes].X, axis=1) / np.sum(adata.X, axis=1) * 100
 
 
-    adata = adata[adata.obs.percent_mito <= 10, :]
+    adata = adata[adata.obs.percent_mito <= MTcount, :]
 
     adata = adata[:, np.invert(mito_genes)]
 
