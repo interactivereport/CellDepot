@@ -10,6 +10,8 @@ $_POST['Genes'] = array_map('strtoupper', $_POST['Genes']);
 
 
 
+
+
 if ($_POST['preselected'] != ''){
 	$_POST['preselected'] = getRedisCache($_POST['preselected']);
 }
@@ -32,6 +34,8 @@ if (array_size($_POST['Genes']) <= 0){
 	echo '</script>';
 	exit();
 }
+
+
 
 if (true){
 	$allProjects = getProjectsForGenePlot($_POST);

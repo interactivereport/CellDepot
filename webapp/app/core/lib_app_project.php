@@ -553,9 +553,9 @@ function canUpdateProject(){
 	
 }
 
-function get_h5ad_info($file = ''){
+function get_h5ad_info($file = '', $enableConsole = 0, $useCache = 1){
 	
-	global $BXAF_CONFIG;
+	global $BXAF_CONFIG, $APP_CONFIG;
 	
 	
 	if (!file_exists($file)){
@@ -564,7 +564,32 @@ function get_h5ad_info($file = ''){
 	
 	$cmd = "{$BXAF_CONFIG['CELLXGENE_getH5adInfo']} {$file}";
 	
-	$results = shell_exec($cmd);
+	
+	
+	$results = NULL;
+	
+	if ($useCache){
+		
+		$cacheFile = "{$file}.getH5adInfo.{$APP_CONFIG['CELLXGENE_getH5adInfo_version']}.txt";
+		
+		if (file_exists($cacheFile)){
+			$results = trim(file_get_contents($cacheFile));
+			
+			if ($enableConsole){
+				echo printMsg("Reading from cache file: {$cacheFile}");	
+			}
+			
+		}
+	}
+	
+	if ($results == ''){
+		
+		if ($enableConsole){
+			echo printMsg($cmd);	
+		}
+		
+		$results = shell_exec($cmd);
+	}
 	
 	if ($results == ''){
 		$results = array('Command' => $cmd);

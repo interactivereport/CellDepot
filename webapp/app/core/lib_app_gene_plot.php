@@ -154,27 +154,60 @@ function getProjectsForGenePlot($inputArray = NULL){
 	
 	global $APP_CONFIG;
 
-	
 	$SQL_TABLE = $APP_CONFIG['TABLES']['PROJECT'];
-	$parameterChecksum = getGenePlotParameterChecksum($inputArray['Genes'], '', 1, 0, $inputArray['n'], $inputArray['g']);
 	
-	if ($inputArray['Hide_Empty']){
-		$SQL = "SELECT `Project_ID` FROM `{$APP_CONFIG['TABLES']['PROJECT_GENE_PLOT']}` WHERE
-			(`Parameters_Checksum` = '{$parameterChecksum}') AND (`Result_Status` = 0)";
-		$badProjectIDs = getSQL_Data($SQL, 'GetCol');	
-		$badProjectIDs = id_sanitizer($badProjectIDs, 0, 1, 0, 2);
+	$geneIndexes = getNameIndexes($APP_CONFIG['TABLES']['GENE_INDEX'], $inputArray['Genes']);
+	$geneIndexes = id_sanitizer($geneIndexes, 0, 1, 0, 2);
+	
+	
+	
+	if ($geneIndexes == ''){
+		if ($inputArray['Hide_Empty']){
+			
+			$parameterChecksum = getGenePlotParameterChecksum($inputArray['Genes'], '', 1, 0, $inputArray['n'], $inputArray['g']);
+			
+			$SQL = "SELECT `Project_ID` FROM `{$APP_CONFIG['TABLES']['PROJECT_GENE_PLOT']}` WHERE
+				(`Parameters_Checksum` = '{$parameterChecksum}') AND (`Result_Status` = 0)";
+			$badProjectIDs = getSQL_Data($SQL, 'GetCol');	
+			$badProjectIDs = id_sanitizer($badProjectIDs, 0, 1, 0, 2);
+		}
+	} else {
+		//We know which gene has result.
+		
+		$projectWithResultIDs = '';
+		
+		$inputArray['g'] = floatval($inputArray['g']);
+		
+		if ($inputArray['g'] <= 0){
+			$SQL = "SELECT `Project_ID` FROM `{$APP_CONFIG['TABLES']['PROJECT_GENE_INDEX']}` WHERE (`Gene_Index` IN ({$geneIndexes}))";
+		} else {
+			$SQL = "SELECT `Project_ID` FROM `{$APP_CONFIG['TABLES']['PROJECT_GENE_INDEX']}` WHERE (`Gene_Index` IN ({$geneIndexes})) AND (`Gene_Expression` >= {$inputArray['g']})";
+		}
+		
+		$projectWithResultIDs = getSQL_Data($SQL, 'GetCol');	
+		$projectWithResultIDs = id_sanitizer($projectWithResultIDs, 0, 1, 0, 2);
+		
+		
+		
 	}
-	
-	$preSelectedIDs = id_sanitizer($inputArray['preselected'], 0, 1, 0, 2);
-	
+
 	
 	
+
 	$SQL = "SELECT `ID`, `Name`, `Accession` FROM {$SQL_TABLE} WHERE (`File_CSCh5ad_status` = 1)";
 	
-	
+	$preSelectedIDs = id_sanitizer($inputArray['preselected'], 0, 1, 0, 2);
 	if ($preSelectedIDs != ''){
 		$SQL = "{$SQL} AND (`ID` IN ({$preSelectedIDs}))";	
 	}
+	
+	
+	if ($projectWithResultIDs != ''){
+		$SQL = "{$SQL} AND (`ID` IN ({$projectWithResultIDs}))";	
+	}
+	
+	
+	
 	
 	if ($badProjectIDs != ''){
 		$SQL = "{$SQL} AND (`ID` NOT IN ({$badProjectIDs}))";	
