@@ -22,8 +22,6 @@ $_POST['g'] = abs(floatval($_POST['g']));
 
 $uniqueID = getUniqueID();
 
-
-
 if (array_size($_POST['Genes']) <= 0){
 	$message = "<p>" . printFontAwesomeIcon('fas fa-exclamation-triangle text-danger') . " Error. Please enter at least a gene.</p>";
 	echo getAlerts($message, 'danger');
@@ -34,6 +32,22 @@ if (array_size($_POST['Genes']) <= 0){
 	echo '</script>';
 	exit();
 }
+
+
+$_POST['Gene_Indexes'] = getNameIndexes($APP_CONFIG['TABLES']['GENE_INDEX'], $_POST['Genes']);
+
+
+if (array_size($_POST['Gene_Indexes']) <= 0){
+	$message = "<p>" . printFontAwesomeIcon('fas fa-exclamation-triangle text-danger') . " Error. None of the dataset contains the genes entered.</p>";
+	echo getAlerts($message, 'danger');
+	echo '<script type="text/javascript">';
+		echo '$(document).ready(function(){';
+			echo '$("#Genes").addClass("is-invalid");';
+		echo '});';
+	echo '</script>';
+	exit();
+}
+
 
 
 

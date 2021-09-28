@@ -161,7 +161,8 @@ function getProjectsForGenePlot($inputArray = NULL){
 	
 	
 	
-	if ($geneIndexes == ''){
+	//if ($geneIndexes == ''){
+	if (0){
 		if ($inputArray['Hide_Empty']){
 			
 			$parameterChecksum = getGenePlotParameterChecksum($inputArray['Genes'], '', 1, 0, $inputArray['n'], $inputArray['g']);
@@ -172,8 +173,6 @@ function getProjectsForGenePlot($inputArray = NULL){
 			$badProjectIDs = id_sanitizer($badProjectIDs, 0, 1, 0, 2);
 		}
 	} else {
-		//We know which gene has result.
-		
 		$projectWithResultIDs = '';
 		
 		$inputArray['g'] = floatval($inputArray['g']);
@@ -186,9 +185,7 @@ function getProjectsForGenePlot($inputArray = NULL){
 		
 		$projectWithResultIDs = getSQL_Data($SQL, 'GetCol');	
 		$projectWithResultIDs = id_sanitizer($projectWithResultIDs, 0, 1, 0, 2);
-		
-		
-		
+
 	}
 
 	

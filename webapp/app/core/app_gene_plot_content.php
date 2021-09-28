@@ -132,12 +132,21 @@ echo "<form id='form_application' action='javascript:void(0);' method='post' rol
 	
 	echo "<div class='row'>";
 		echo "<div class='col-12'>";
-			echo "<input type='checkbox' class='xform-control' id='Hide_Empty' name='Hide_Empty' value='1'/> Hide projects with no results";
+		
+			$actions = array();
+		
+			if (0){
+				$actions[] = "<input type='checkbox' class='xform-control' id='Hide_Empty' name='Hide_Empty' value='1'/> Hide projects with no results";
+			}
 			
 			if (isManagerUser()){
-				echo "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;";
-				echo "<input type='checkbox' class='xform-control' id='Debug' name='Debug' value='1'/> Display Technical Information";
+				$actions[] = "<input type='checkbox' class='xform-control' id='Debug' name='Debug' value='1'/> Display Technical Information";
 			}
+			
+			if (array_size($actions) > 0){
+				echo implode("&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;", $actions);
+			}
+			
 			echo "<input type='hidden' name='preselected' value='{$_GET['preselected']}'/>";
 			echo "<input type='hidden' id='key' name='key' value=''/>";
 			echo "<input type='hidden' id='currentPage' value='1'/>";
