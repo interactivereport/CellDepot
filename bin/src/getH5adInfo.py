@@ -1,12 +1,13 @@
 import sys, json
 import anndata as ad
+import numpy as np
 
 def main():
     if len(sys.argv)<2:
         print("ERROR: path to a h5ad file is required!")
         exit()
-    D = ad.read_h5ad(sys.argv[1])#,backed='r'
-        ## check CSC
+    D = ad.read_h5ad(sys.argv[1]) #,backed='r'
+    ## check CSC
     CSC=False
     try:
         if D.X.format=="csc": #format_str when backed="r"
@@ -16,13 +17,13 @@ def main():
 
     ## genes max expression
     if hasattr(D.X,'toarray'):
-        genes=dict(zip(D.var_names,np.round(D.X.max(0).toarray()[0].astype('float64'),2)))
+        genes=dict(zip(D.var_names,np.round(np.nanmax(D.X.toarray(),0).astype('float64'),2)))
     else:
-        genes=dict(zip(D.var_names,np.round(D.X.max(0),2)))
+        genes=dict(zip(D.var_names,np.round(np.nanmax(D.X,0).astype('float64'),2)))
 
     # check the expressed genes
-    info = {'cellN':D.shape[0],'geneN':D.shape[1],
-            'maxExp':np.round(D.X.max().astype('float64'),2),
+    info = {'version':"2021-09-27",
+            'cellN':D.shape[0],'geneN':D.shape[1],
             'layout':[x.replace("X_","") for x in D.obsm.keys()],
             'csc':CSC,
             'annotation':{},

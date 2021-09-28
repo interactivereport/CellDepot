@@ -57,7 +57,7 @@ def violin(strH5ad,genes,grp,cN=None,gCut=None):
                                 name=one,
                                 box={"visible":True,"width":0.1,"fillcolor":'#ffffff',"line":{"color":'#000000'}},
                                 meanline_visible=True,points=False))
-    annoMaxL=max([len(i) for i in X[grp].cat.categories])
+    annoMaxL=max([len(str(i)) for i in X[grp].cat.categories])
     xlabH=annoMaxL*8
     xlabW=annoMaxL*7
     h=50+30*cG+xlabH
@@ -123,7 +123,7 @@ def dot(strH5ad,genes,grp,cN=None,gCut=None):
                     tmp.shape[0]]]
     DOT=pd.DataFrame(df,columns=['grp','gene','median','mean','percent','cellN'])
     dotL,maxDotSize=dotLegend(DOT['percent'].max())
-    annoMaxL=max([len(i) for i in X[grp].cat.categories])
+    annoMaxL=max([len(str(i)) for i in X[grp].cat.categories])
     xlabH=35+annoMaxL*4
     xlabW=annoMaxL*7
     h=50+30*len(selG)+xlabH
