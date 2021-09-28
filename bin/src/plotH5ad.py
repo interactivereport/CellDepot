@@ -123,7 +123,7 @@ def dot(strH5ad,genes,grp,cN=None,gCut=None):
                     tmp.shape[0]]]
     DOT=pd.DataFrame(df,columns=['grp','gene','median','mean','percent','cellN'])
     dotL,maxDotSize=dotLegend(DOT['percent'].max())
-    annoMaxL=max([len(i) for i in X[grp].cat.categories])
+    annoMaxL=max([len(str(i)) for i in X[grp].cat.categories])
     xlabH=35+annoMaxL*4
     xlabW=annoMaxL*7
     h=50+30*len(selG)+xlabH
