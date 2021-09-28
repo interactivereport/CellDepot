@@ -51,11 +51,11 @@ def preprocessing(adata, maxV=10):
 
     return adata
 
-def clustering(fname, adata, desc, nb=15, np=50):
+def clustering(adata, desc, nb=15, np=50):
     sc.pp.neighbors(adata, n_neighbors = nb, n_pcs = np)
     sc.tl.umap(adata)
     sc.tl.tsne(adata)
     adata.obs['>Description'] = [desc]*adata.n_obs 
 
-    adata.write_h5ad(fname + ".h5ad")
+    return adata
     
