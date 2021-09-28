@@ -2,16 +2,22 @@
 
 //Tables
 if (true){
-	$APP_CONFIG['TABLES']['PROJECT'] 			= 'App_Project';
-	$APP_CONFIG['TABLES']['PROJECT_ACCESS_LOG']	= 'App_Project_Access_Log';
-	$APP_CONFIG['TABLES']['PROJECT_GENE_PLOT']	= 'App_Project_Gene_Plot_Results';
-	
+	$APP_CONFIG['TABLES']['PROJECT'] 						= 'App_Project';
+	$APP_CONFIG['TABLES']['PROJECT_ACCESS_LOG']				= 'App_Project_Access_Log';
+	$APP_CONFIG['TABLES']['PROJECT_GENE_PLOT']				= 'App_Project_Gene_Plot_Results';
+	$APP_CONFIG['TABLES']['PROJECT_GENE_INDEX']				= 'App_Project_Gene_Index';
+	$APP_CONFIG['TABLES']['GENE_INDEX']						= 'App_Gene_Index';
 }
 
 //Constant
 if (true){
 	$APP_CONFIG['CONSTANTS']['TABLES']['Project']			= 1;
-	$APP_CONFIG['CONSTANTS']['COLUMNS']['Project::Species']				= 101;
+	$APP_CONFIG['CONSTANTS']['COLUMNS']['Project::Species']	= 101;
+}
+
+//Version
+if (true){
+	$APP_CONFIG['CELLXGENE_getH5adInfo_version']			= '2021-09-27';
 }
 
 
