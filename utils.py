@@ -18,8 +18,6 @@ def qc(fdir, countfile, metafile, geneLB=200, cellLB=6, filtercellLB=3):
     mito_genes = adata.var_names.str.startswith('mt-')
     adata.obs['percent_mito'] = np.sum(adata[:, mito_genes].X, axis=1) / np.sum(adata.X, axis=1) * 100
 
-    # sc.pl.scatter(adata, x='total_counts', y='n_genes_by_counts')
-    # sc.pl.violin(adata, keys = ['n_genes_by_counts', 'percent_mito', 'log1p_total_counts'] , multi_panel = True)
 
     adata = adata[adata.obs.percent_mito <= 10, :]
 
@@ -42,14 +40,14 @@ def preprocessing(adata, maxV=10):
     sc.pp.normalize_total(adata, target_sum=1e4)
     sc.pp.log1p(adata)
     sc.pp.highly_variable_genes(adata)
-    sc.pl.highly_variable_genes(adata)
+    # sc.pl.highly_variable_genes(adata)
 
     
     adata = adata[:, adata.var.highly_variable]
     sc.pp.scale(adata, max_value = maxV)
 
     sc.tl.pca(adata)
-    sc.pl.pca_variance_ratio(adata, log=True)
+    # sc.pl.pca_variance_ratio(adata, log=True)
 
     return adata
 
@@ -60,3 +58,4 @@ def clustering(fname, adata, desc, nb=15, np=50):
     adata.obs['>Description'] = [desc]*adata.n_obs 
 
     adata.write_h5ad(fname + ".h5ad")
+    
