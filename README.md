@@ -2,12 +2,12 @@
 <p align="right">
   <img align="right" src="https://github.com/interactivereport/CellDepot/blob/main/Figures/celldepotLogo.svg" width="200">
 </p>
-CellDepot serves as an integrated web application to assist users in exploring the single-cell RNAseq datasets and comparing the datasets among various studies through a user-friendly interface with advanced visualization and analysis tools. It also provides an efficient data management system that users can upload single cell data and query the database by multiple attributes such as species, cell types. Embedding cellxgene VIP tool into each dataset facilitates the interactive visualization and analysis of large-scale scRNAseq data. Moreover, the advanced query function, incorporated with MySQL and its conditional filtering, allows the users to quickly query and compare the expression of the target gene or gene sets across the datasets of interest. Finally, CellDepot enables further exploration of a dataset to gain more refined insights such as cell composition, gene expression changes, differentially expressed genes between cell types. This web portal for sharing data and supporting decision-making allows scientists to contribute to the single-cell community in a tractable and collaborative manner. 
+CellDepot serves as an integrated web application to assist users in exploring single-cell RNA-seq (scRNA-seq) datasets and comparing the datasets among various studies through a user-friendly interface with advanced visualization and analytical tools. To begin with, it provides an efficient data management system that users can upload single cell datasets and query the database by multiple attributes such as species and cell types. In addition, the advanced query function incorporated in MySQL database system and its conditional filtering, allows users to quickly query and compare the expression of gene(s) across the datasets of interest. Moreover, by embedding the cellxgene VIP tool, CellDepot enables fast exploration of individual dataset in the manner of interactivity and scalability to gain more refined insights such as cell composition, gene expression profiles, and differentially expressed genes among cell types. In summary, the web portal allows large scale single cell data sharing, analysis and visualization for supporting decision-making, and encouraging scientists to contribute to the single-cell community in a tractable and collaborative way. Finally, CellDepot is released as open-source software to motivate crowd contribution, broad adoption, and local deployment for private data. 
 
 ### CellDepot portal overview
 ![alt text](https://github.com/interactivereport/CellDepot/blob/main/Figures/Figure1.svg)
 
-### Exploration of Cellxgene VIP in CellDepot
+### Data visualization and analysis by cellxgene VIP [Tutorial](https://interactivereport.github.io/cellxgene_VIP/tutorial/docs/) in CellDepot
 ![alt text](https://github.com/interactivereport/CellDepot/blob/main/Figures/Figure2.svg)
 
 ### Comparison among other web-based scRNAseq datasets exploration tools
@@ -34,7 +34,10 @@ Data Analysis Explorer|	Advanced	|Advanced	|Advanced|	Intermediate|	Intermediate
 </p>
  -->
 ### Web Portal
-https://celldepot.bxgenomics.com/
+https://celldepot.bxgenomics.com
 
 ### Installation Guide
-https://celldepot.bxgenomics.com/celldepot_manual/
+https://celldepot.bxgenomics.com/celldepot_manual
+
+### cellxgene VIP Tutorial
+https://interactivereport.github.io/cellxgene_VIP/tutorial/docs
