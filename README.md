@@ -33,7 +33,7 @@ Data Analysis Explorer|	Advanced	|Advanced	|Advanced|	Intermediate|	Intermediate
   <img src="https://github.com/interactivereport/CellDepot/blob/main/Figures/Comparison.png" />
 </p>
  -->
-### Web Portal
+### Public Web Portal
 https://celldepot.bxgenomics.com
 
 ### Installation Guide
