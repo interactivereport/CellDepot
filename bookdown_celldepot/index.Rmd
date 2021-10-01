@@ -1,0 +1,55 @@
+--- 
+title: "CellDepot: A unified repository for scRNAseq data and visual exploration "
+description: "Supplementary Materials"
+author:
+  - name: Dongdong Lin
+    email: dongdong.lin@biogen.com
+    affiliation: Biogen
+  - name: Yirui Chen
+    email: yirui.chen@biogen.com
+    affiliation: Biogen
+  - name: Soumya Negi
+    email: soumya.negi@biogen.com
+    affiliation: Biogen
+  - name: Derrick Cheng
+    email: derrick@bioinforx.com
+    affiliation: BioInfoRx
+  - name: Zhengyu Ouyang
+    email: oyoung@bioinforx.com
+    affiliation: BioInfoRx
+  - name: David Sexton
+    email: david.sexton@biogen.com
+    affiliation: Biogen
+  - name: Kejie Li
+    email: kejie.li@biogen.com
+    affiliation: Biogen
+  - name: Baohong Zhang
+    email: baohong.zhang@biogen.com
+    affiliation: Biogen
+    footnote: Corresponding Author
+
+address:
+  - code: Biogen, Inc
+    address: 225 Binney St, Cambridge, MA 02142, USA
+  - code: BioInfoRx, Inc
+    address: 510 Charmany Dr, Suite 275A, Madison, WI 53719, USA
+date: "`r Sys.Date()`"
+site: bookdown::bookdown_site
+documentclass: book
+bibliography: [book.bib, packages.bib]
+biblio-style: apalike
+link-citations: yes
+github-repo: https://github.com/interactivereport/CellDepot
+output: radix::radix_article
+---
+# Preface
+
+This is a CellDepot Supplementary book written in **Markdown**.
+
+
+```{r include=FALSE}
+# automatically create a bib database for R packages
+knitr::write_bib(c(
+  .packages(), 'bookdown', 'knitr', 'rmarkdown'
+), 'packages.bib')
+```

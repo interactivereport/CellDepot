@@ -1,0 +1,19 @@
+,General Category,Expected Variable Type,Description
+Project Browser/Search,,,
+,Annotation Groups,String,categorical  features from h5ad file
+,Cell Count,Integer,numbers of cell in study
+,Actions,Link,three options: 1) Study summary information; 2) Data visualization and analysis; 3) Update project information
+,Custom Accession,String,Customized accession name for individual project
+,Description,String,Additional information
+,DOI,Link,Digtial Object Identifier
+,File Name,String,h5ad file name
+,File Size,Integer,size of h5ad file
+,Gene Count,Integer,numbers of gene in study
+,Name,Link,project name
+,Notes,String,study notes
+,PMC ID,Link,
+,Publication Title,,
+,PubMed ID,Link,
+,Speices,String,
+,URL,Link,
+,Year,String,
