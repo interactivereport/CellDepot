@@ -36,6 +36,9 @@ Data Analysis Explorer|	Advanced	|Advanced	|Advanced|	Intermediate|	Intermediate
 ### Public Web Portal
 https://celldepot.bxgenomics.com
 
+### Pre-print
+https://www.biorxiv.org/content/10.1101/2021.09.30.462602v1
+
 ### Installation Guide
 https://celldepot.bxgenomics.com/celldepot_manual
 
