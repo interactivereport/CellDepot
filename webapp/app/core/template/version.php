@@ -1,5 +1,0 @@
-<?php
-
-$APP_CONFIG['VERSION']['TEMPLATE'] 	= '2021-09-01';
-
-?>
