@@ -2,7 +2,7 @@
 
 
 ## Sources of annotation and metadata
-The original metadata information of each single cell RNA-seq dataset is retrieved from h5ad file, which is a preferred way of sharing and storing an on-disk representation of anndata object. When importing the dataset to the system, user inputs additional metadata information as shown in Figure S5. Both metadata are collected and stored in a MySQL database table that is presented at http://celldepot.bxgenomics.com.
+The original metadata information of each single cell RNA-seq dataset is retrieved from h5ad file, which is a preferred way of sharing and storing an on-disk representation of anndata object. When importing the dataset to the system, user inputs additional metadata information as shown in (\@ref(upload)). Both metadata are collected and stored in a MySQL database table that is presented at http://celldepot.bxgenomics.com.
 
 ## Data format, availability and preparation 
 
