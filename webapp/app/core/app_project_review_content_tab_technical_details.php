@@ -5,10 +5,14 @@ $dataArray['File_h5ad_info'] = "<pre>" . printrExpress($dataArray['File_h5ad_inf
 
 echo "<div class='row'>";
 	echo "<div class='col-12'>";
-		$message = "<div>" . printFontAwesomeIcon('fas fa-info-circle text-info') . " This tab is visible to admin users only.</div>";
+		$message = "<div>" . printFontAwesomeIcon('fas fa-info-circle text-info') . " This tab is visible to admin users only. Please click <a href='admin_cellxgene_docs.php' target='_blank'>here</a> for the launching command.</div>";
 		echo getAlerts($message, 'info');
 	echo "</div>";
 echo "</div>";
+
+
+
+
 echo "<br/>";
 
 if (true){

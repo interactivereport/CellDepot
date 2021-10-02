@@ -45,7 +45,7 @@ foreach($IDs as $tempKey => $ID){
 	
 	
 	if ($filesize_h5ad_db == $filesize_h5ad_file){
-		echo printMsg("[{$ID}]File has not been since project was created");
+		echo printMsg("[{$ID}]File has not been modified since project was created");
 		
 		if ($h5ad_status == 0){
 			
@@ -88,7 +88,7 @@ foreach($IDs as $tempKey => $ID){
 			}
 		}
 	} else {
-		echo printMsg("[{$ID}]File has been changed since project was created");
+		echo printMsg("[{$ID}]File has been modified since project was created");
 		
 		$needToGetH5ADInfo 	= 1;
 		

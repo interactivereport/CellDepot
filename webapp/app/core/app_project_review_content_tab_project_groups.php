@@ -5,6 +5,8 @@ echo "<br/>";
 $defaultKey = getDefaultProjectGroup($dataArray);
 
 if (array_size($dataArray['File_h5ad_info']['annotation']) > 1){
+	natksort($dataArray['File_h5ad_info']['annotation']);
+	
 	echo "<p>";
 		echo "<strong>Filter:</strong>&nbsp;";
 		echo "<select id='project_group_switcher'>";
@@ -31,6 +33,7 @@ if (array_size($dataArray['File_h5ad_info']['annotation']) > 1){
 echo "<br/>";
 
 
+
 foreach($dataArray['File_h5ad_info']['annotation'] as $groupName => $groupArray){
 	
 	$groupID = "Group_" . md5($groupName);
@@ -43,21 +46,29 @@ foreach($dataArray['File_h5ad_info']['annotation'] as $groupName => $groupArray)
 		$displayClass = 'startHidden';	
 	}
 	
+	//echo "<div id='{$groupID}' class='group_section {$displayClass}' style='margin-bottom:20px;'>";
 	echo "<div id='{$groupID}' class='group_section {$displayClass}' style='margin-bottom:20px;'>";
+	
+	
+	
 		echo "<h3>{$groupNameDisplay}</h3>";
 		
 		$tableContent = array();
 		$tableContent['Header']['Category'] 	= 'Category';
 		$tableContent['Header']['Cell_Count'] 	= $BXAF_CONFIG['MESSAGE'][$currentTable]['Column']['Cell_Count']['Title'];
 		
-		$otherOption = array('Table_Class' => 'dataTable');
+		$otherOption = array('Table_Class' => 'project_group_table');
 		
 		foreach($groupArray as $tempKeyX => $tempValueX){
 			$tableContent['Body'][$tempKeyX]['Value']['Category'] = $tempKeyX;
 			$tableContent['Body'][$tempKeyX]['Value']['Cell_Count'] = $tempValueX;
 		}
 		
-		echo printTableHTML($tableContent, 1, 1, 0, 'col-lg-2 col-md-5 col-sm-12', 0, $otherOption);
+		//echo printTableHTML($tableContent, 1, 1, 0, 'col-lg-2 col-md-5 col-sm-12', 0, $otherOption);
+		
+		echo "<div class=' d-flex p-4'>";
+		echo printTableHTML($tableContent, 1, 1, 1, '', 0, $otherOption);
+		echo "</div>";
 		
 	
 	
@@ -77,7 +88,7 @@ foreach($dataArray['File_h5ad_info']['annotation'] as $groupName => $groupArray)
 $(document).ready(function(){
 
 	
-	$('.dataTable').DataTable({
+	$('.project_group_table').DataTable({
 		"dom": '<<l><f><t><i><p>>',
 		"processing": 	true,
 		"pageLength":   50,

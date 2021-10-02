@@ -88,7 +88,7 @@ if (true){
 //***************************
 if (true){
 	$BXAF_CONFIG_CUSTOM['MESSAGE'][$currentTable]['Column']['Date']['Title'] 			
-		= 'Date';
+		= 'Uploaded On';
 		
 	$BXAF_CONFIG_CUSTOM['MESSAGE'][$currentTable]['Column']['Date_Time']['Title'] 			
 		= 'Date/Time';
@@ -97,7 +97,7 @@ if (true){
 		= 'User ID';
 		
 	$BXAF_CONFIG_CUSTOM['MESSAGE'][$currentTable]['Column']['User_Name']['Title'] 			
-		= 'User Name';
+		= 'Uploaded By';
 
 	$BXAF_CONFIG_CUSTOM['MESSAGE'][$currentTable]['Column']['Accession']['Title']		= 'Custom Accession';
 	$BXAF_CONFIG_CUSTOM['MESSAGE'][$currentTable]['Column']['Accession']['Required'] 	= true;
@@ -119,6 +119,8 @@ if (true){
 	$BXAF_CONFIG_CUSTOM['MESSAGE'][$currentTable]['Column']['Gene_Count']['Title']		= 'Gene Count';
 	
 	$BXAF_CONFIG_CUSTOM['MESSAGE'][$currentTable]['Column']['Project_Groups']['Title']	= 'Annotation Groups';
+	
+	$BXAF_CONFIG_CUSTOM['MESSAGE'][$currentTable]['Column']['Genes']['Title']			= 'Genes';
 	
 	$BXAF_CONFIG_CUSTOM['MESSAGE'][$currentTable]['Column']['Subsampling']['Title']		= 'Subsampling';
 	

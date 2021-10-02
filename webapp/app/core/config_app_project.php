@@ -13,11 +13,7 @@ if (true){
 	$APP_CONFIG['DICTIONARY'][$currentTable][$currentColumn]['Browse']					= false;
 
 
-	$currentColumn = 'Date';
-	$APP_CONFIG['DICTIONARY'][$currentTable][$currentColumn]['Title'] 					= $BXAF_CONFIG['MESSAGE'][$currentTable]['Column'][$currentColumn]['Title'];
-	$APP_CONFIG['DICTIONARY'][$currentTable][$currentColumn]['Search']					= false;
-	$APP_CONFIG['DICTIONARY'][$currentTable][$currentColumn]['Browse']					= false;
-	$APP_CONFIG['DICTIONARY'][$currentTable][$currentColumn]['Type']					= 'Date';
+	
 
 
 	$currentColumn = 'Date_Time';
@@ -35,11 +31,13 @@ if (true){
 	$APP_CONFIG['DICTIONARY'][$currentTable][$currentColumn]['AuditTrail_Disable']		= true;
 	
 
-	$currentColumn = 'User_Name';
+	
+	$currentColumn = 'Actions';
 	$APP_CONFIG['DICTIONARY'][$currentTable][$currentColumn]['Title'] 					= $BXAF_CONFIG['MESSAGE'][$currentTable]['Column'][$currentColumn]['Title'];
+	$APP_CONFIG['DICTIONARY'][$currentTable][$currentColumn]['printForm']['New']		= 'printReadOnly_Text';
 	$APP_CONFIG['DICTIONARY'][$currentTable][$currentColumn]['Search']					= false;
-	$APP_CONFIG['DICTIONARY'][$currentTable][$currentColumn]['Browse']					= false;
-	$APP_CONFIG['DICTIONARY'][$currentTable][$currentColumn]['Type']					= 'text';
+	$APP_CONFIG['DICTIONARY'][$currentTable][$currentColumn]['Browse']					= true;
+	$APP_CONFIG['DICTIONARY'][$currentTable][$currentColumn]['Export_Disable']			= true;
 	
 	
 	
@@ -56,12 +54,7 @@ if (true){
 	$APP_CONFIG['DICTIONARY'][$currentTable][$currentColumn]['Type']					= 'text';
 	
 	
-	$currentColumn = 'Actions';
-	$APP_CONFIG['DICTIONARY'][$currentTable][$currentColumn]['Title'] 					= $BXAF_CONFIG['MESSAGE'][$currentTable]['Column'][$currentColumn]['Title'];
-	$APP_CONFIG['DICTIONARY'][$currentTable][$currentColumn]['printForm']['New']		= 'printReadOnly_Text';
-	$APP_CONFIG['DICTIONARY'][$currentTable][$currentColumn]['Search']					= false;
-	$APP_CONFIG['DICTIONARY'][$currentTable][$currentColumn]['Browse']					= true;
-	$APP_CONFIG['DICTIONARY'][$currentTable][$currentColumn]['Export_Disable']			= true;
+	
 	
 	
 	$currentColumn = 'Name';
@@ -309,6 +302,43 @@ if (true){
 	$APP_CONFIG['DICTIONARY'][$currentTable][$currentColumn]['Search']					= false;
 	$APP_CONFIG['DICTIONARY'][$currentTable][$currentColumn]['Browse']					= false;
 	$APP_CONFIG['DICTIONARY'][$currentTable][$currentColumn]['Type']					= 'array_key_value';
+	
+	$currentColumn = 'File_h5ad_info_version';
+	$APP_CONFIG['DICTIONARY'][$currentTable][$currentColumn]['AuditTrail_Disable']		= true;
+	$APP_CONFIG['DICTIONARY'][$currentTable][$currentColumn]['Search']					= false;
+	$APP_CONFIG['DICTIONARY'][$currentTable][$currentColumn]['Browse']					= false;
+	
+	$currentColumn = 'Gene_Max_Expression';
+	$APP_CONFIG['DICTIONARY'][$currentTable][$currentColumn]['AuditTrail_Disable']		= true;
+	$APP_CONFIG['DICTIONARY'][$currentTable][$currentColumn]['Search']					= false;
+	$APP_CONFIG['DICTIONARY'][$currentTable][$currentColumn]['Browse']					= false;
+	
+	$currentColumn = 'File_CSCh5ad_filesize';
+	$APP_CONFIG['DICTIONARY'][$currentTable][$currentColumn]['AuditTrail_Disable']		= true;
+	$APP_CONFIG['DICTIONARY'][$currentTable][$currentColumn]['Search']					= false;
+	$APP_CONFIG['DICTIONARY'][$currentTable][$currentColumn]['Browse']					= false;
+	
+	$currentColumn = 'User_Name';
+	$APP_CONFIG['DICTIONARY'][$currentTable][$currentColumn]['Title'] 					= $BXAF_CONFIG['MESSAGE'][$currentTable]['Column'][$currentColumn]['Title'];
+	/*
+	$APP_CONFIG['DICTIONARY'][$currentTable][$currentColumn]['Search']					= true;
+	$APP_CONFIG['DICTIONARY'][$currentTable][$currentColumn]['Browse']					= true;
+	$APP_CONFIG['DICTIONARY'][$currentTable][$currentColumn]['Type']					= 'text';
+	*/
+	$APP_CONFIG['DICTIONARY'][$currentTable][$currentColumn]['printForm']['New']		= 'printDropDown_From_DB';
+	$APP_CONFIG['DICTIONARY'][$currentTable][$currentColumn]['Value']					= $BXAF_CONFIG['MESSAGE'][$currentTable]['Column'][$currentColumn]['Value'];
+	$APP_CONFIG['DICTIONARY'][$currentTable][$currentColumn]['PlaceHolder'] 			= $BXAF_CONFIG['MESSAGE'][$currentTable]['Column'][$currentColumn]['PlaceHolder'];
+	$APP_CONFIG['DICTIONARY'][$currentTable][$currentColumn]['Label_Class']				= 'col-12';
+	$APP_CONFIG['DICTIONARY'][$currentTable][$currentColumn]['Value_Class']				= 'col-xl-4 col-lg-6 col-md-10 col-sm-12 col-xs-12';
+	$APP_CONFIG['DICTIONARY'][$currentTable][$currentColumn]['Search']					= true;
+	$APP_CONFIG['DICTIONARY'][$currentTable][$currentColumn]['Browse']					= true;
+	$APP_CONFIG['DICTIONARY'][$currentTable][$currentColumn]['Type']					= 'array_value';
+	
+	$currentColumn = 'Date';
+	$APP_CONFIG['DICTIONARY'][$currentTable][$currentColumn]['Title'] 					= $BXAF_CONFIG['MESSAGE'][$currentTable]['Column'][$currentColumn]['Title'];
+	$APP_CONFIG['DICTIONARY'][$currentTable][$currentColumn]['Search']					= false;
+	$APP_CONFIG['DICTIONARY'][$currentTable][$currentColumn]['Browse']					= true;
+	$APP_CONFIG['DICTIONARY'][$currentTable][$currentColumn]['Type']					= 'Date';
 	
 
 }

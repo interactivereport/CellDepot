@@ -41,6 +41,9 @@ if (true){
 		
 	$BXAF_CONFIG_CUSTOM['Project_Layout']['Review']['Columns']
 		= array(
+		
+		'User_Name', 'Date',
+		
 		'Accession', 'Name', 'Species',  'Description', 
 		
 		 'URL', 'Cell_Count', 'Gene_Count', 'Project_Groups', 'Notes',  
@@ -52,6 +55,8 @@ if (true){
 		 
 	$BXAF_CONFIG_CUSTOM['Project_Layout']['Review_Technical_Details']['Columns']
 		= array(
+		'User_Name', 
+		'Date',
 		'Launch_Method',
 		'File_Name',
 		'File_Size',
