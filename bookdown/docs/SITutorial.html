@@ -155,10 +155,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="4" data-path="SITutorial.html"><a href="SITutorial.html"><i class="fa fa-check"></i><b>4</b> Supplementary Tutorial</a>
 <ul>
-<li class="chapter" data-level="4.1" data-path="SITutorial.html"><a href="SITutorial.html#upload-projects"><i class="fa fa-check"></i><b>4.1</b> Upload Projects</a></li>
+<li class="chapter" data-level="4.1" data-path="SITutorial.html"><a href="SITutorial.html#upload"><i class="fa fa-check"></i><b>4.1</b> Upload Projects</a></li>
 <li class="chapter" data-level="4.2" data-path="SITutorial.html"><a href="SITutorial.html#browse-projects"><i class="fa fa-check"></i><b>4.2</b> Browse Projects</a>
 <ul>
-<li class="chapter" data-level="4.2.1" data-path="SITutorial.html"><a href="SITutorial.html#search-projects"><i class="fa fa-check"></i><b>4.2.1</b> Search Projects</a></li>
+<li class="chapter" data-level="4.2.1" data-path="SITutorial.html"><a href="SITutorial.html#search"><i class="fa fa-check"></i><b>4.2.1</b> Search Projects</a></li>
 <li class="chapter" data-level="4.2.2" data-path="SITutorial.html"><a href="SITutorial.html#project-filters"><i class="fa fa-check"></i><b>4.2.2</b> Project Filters</a></li>
 </ul></li>
 <li class="chapter" data-level="4.3" data-path="SITutorial.html"><a href="SITutorial.html#visaulize-datasets"><i class="fa fa-check"></i><b>4.3</b> Visaulize Datasets</a>
@@ -198,7 +198,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p class="caption">Figure S1. CellDepot website</p>
 </div>
 <p>The interface contains multiple tabs, corresponding to import and/or select objects in CellDepot scRNA-seq database, that can be accessed on top panel of the webpage. Users can upload their own dataset or explore the existing datasets for visualization and analysis.</p>
-<div id="upload-projects" class="section level2" number="4.1">
+<div id="upload" class="section level2" number="4.1">
 <h2><span class="header-section-number">4.1</span> Upload Projects</h2>
 <p>To upload new projects in CellDepot database, two files are required: 1) .h5ad files and 2) project information in csv format. Detailed formatting guidance can be found by ‘Download Example File’ hyperlink on webpage. In addition, two cellxgene VIP launch methods are provided: standard and preload in memory. Standard mode is for the first-time imported datasets, while preload in memory should be chosen when users update the meta information of datasets.
 After the projects are submitted, CellDepot will automatically analyze the datasets. To explore the detail of uploaded datasets, users can navigate to ‘browse projects’ page and then search the imported datasets by the customized accession number.</p>
@@ -209,7 +209,7 @@ After the projects are submitted, CellDepot will automatically analyze the datas
 </div>
 <div id="browse-projects" class="section level2" number="4.2">
 <h2><span class="header-section-number">4.2</span> Browse Projects</h2>
-<div id="search-projects" class="section level3" number="4.2.1">
+<div id="search" class="section level3" number="4.2.1">
 <h3><span class="header-section-number">4.2.1</span> Search Projects</h3>
 <p>This function allows the user to search any targeted interests, which also can be accessed through search projects on the top panel of the webpage. Users is allowed to select the projects by 17 attributes: annotation groups, cell count, cellxgene VIP launch method, Custom accession, description, DOI, file name, file size, gene count, name, notes, PMC ID, Publication Title, PubMed ID, Species, URL, Year. These 17 fields can also be (partially) displayed on the webpage through ‘column setting’ on the webpage. Users can also search projects by the keywords via the search function on the right of the webpage. In addition, by ‘column setting,’ users can set up the customized layout of targeted projects; thereby exporting to csv format.</p>
 <div class="figure">
@@ -236,7 +236,7 @@ After the projects are submitted, CellDepot will automatically analyze the datas
 </div>
 <div id="project-filters" class="section level3" number="4.2.2">
 <h3><span class="header-section-number">4.2.2</span> Project Filters</h3>
-<p>This page provides the matched datasets by simply clicking the categories. It is a first-time user-friendly functionality as users may not be familiar with the content of the database. The advance search function is the same as that on the ‘Browse Projects’ page (Details see Figure S4).</p>
+<p>This page provides the matched datasets by simply clicking the categories. It is a first-time user-friendly functionality as users may not be familiar with the content of the database. The advance search function is the same as that on the ‘Browse Projects’ page (<a href="SITutorial.html#search">4.2.1</a>).</p>
 <div class="figure">
 <img src="figures/S8.png" alt="" />
 <p class="caption">Figure S6. The layout of ‘Project Filters’ page.</p>
@@ -270,7 +270,8 @@ After the projects are submitted, CellDepot will automatically analyze the datas
 </div>
 <div id="case-study-1-1" class="section level4" number="4.3.3.1">
 <h4><span class="header-section-number">4.3.3.1</span> Case study 1</h4>
-<p>Exploration and visualization of the expression of gene(s) across the cluster of cells under various conditions.As shown in Figure S2a, two cell groups from Astrocytes (1036 cells) and Oligodendrocytes (4417 cells) are selected. By running differential analysis with one of the built-in statistical methods such as Welch’s t-test, we detected 1578 differential expressed genes (DEGs), including 715 up-regulated and 853 down-regulated genes in astrocytes compared to oligodendrocytes (Figure S10a). The expression of the top four DEGs among the cell types indicates that gene MBP, ST18 and RNF220 are expressed explicitly in oligodendrocytes, while gene PITPNC3 is expressed mainly in astrocytes and endothelial cells (Figure S10b). In the future, we plan to add other multi-omics data modalities, which can be incorporated and integrated with scRNA-seq, such as spatial transcriptomics and scATAC-seq data.</p>
+<p>Exploration and visualization of the expression of gene(s) across the cluster of cells under various conditions.</p>
+<p>As shown in Figure S10a, two cell groups from Astrocytes (1036 cells) and Oligodendrocytes (4417 cells) are selected. By running differential analysis with one of the built-in statistical methods such as Welch’s t-test, we detected 1578 differential expressed genes (DEGs), including 715 up-regulated and 853 down-regulated genes in astrocytes compared to oligodendrocytes (Figure S10a). The expression of the top four DEGs among the cell types indicates that gene MBP, ST18 and RNF220 are expressed explicitly in oligodendrocytes, while gene PITPNC3 is expressed mainly in astrocytes and endothelial cells (Figure S10b). In the future, we plan to add other multi-omics data modalities, which can be incorporated and integrated with scRNA-seq, such as spatial transcriptomics and scATAC-seq data.</p>
 <div class="figure">
 <img src="figures/S2.jpg" alt="" />
 <p class="caption">Figure S10. Exploration of differential expressed genes in dataset GSE140231 through cellxgene VIP. (a) Differential expressed genes in astrocytes and oligodendrocytes. (b) The expression of top four genes in different cell types.</p>

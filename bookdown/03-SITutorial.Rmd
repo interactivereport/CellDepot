@@ -15,7 +15,7 @@ After the projects are submitted, CellDepot will automatically analyze the datas
 ![Figure S2. Workflow of how to import personal datasets.](figures/S5.png)
 
 ## 	Browse Projects
-### Search Projects
+### Search Projects {#search}
 This function allows the user to search any targeted interests, which also can be accessed through search projects on the top panel of the webpage. Users is allowed to select the projects by 17 attributes: annotation groups, cell count, cellxgene VIP launch method, Custom accession, description, DOI, file name, file size, gene count, name, notes, PMC ID, Publication Title, PubMed ID, Species, URL, Year. These 17 fields can also be (partially) displayed on the webpage through ‘column setting’ on the webpage. Users can also search projects by the keywords via the search function on the right of the webpage. In addition, by ‘column setting’, users can set up the customized layout of targeted projects; thereby exporting to csv format.
 
 ![Figure S3. Workflow of how to search query on ‘Browse Projects’ page.](figures/S6.png)
@@ -37,7 +37,7 @@ For each project, users can view the datasets information, visualize data analys
 
 ### Project Filters
 
-This page provides the matched datasets by simply clicking the categories. It is a first-time user-friendly functionality as users may not be familiar with the content of the database. The advance search function is the same as that on the ‘Browse Projects’ page (Details see Figure S4).
+This page provides the matched datasets by simply clicking the categories. It is a first-time user-friendly functionality as users may not be familiar with the content of the database. The advance search function is the same as that on the ‘Browse Projects’ page (\@ref(search)).
 
 ![Figure S6. The layout of ‘Project Filters’ page.](figures/S8.png)
 
@@ -61,7 +61,9 @@ CellDepot is not only a database management system, but also a web portal to vis
 
 #### Case study 1
 
-Exploration and visualization of the expression of gene(s) across the cluster of cells under various conditions.As shown in Figure S2a, two cell groups from Astrocytes (1036 cells) and Oligodendrocytes (4417 cells) are selected. By running differential analysis with one of the built-in statistical methods such as Welch’s t-test, we detected 1578 differential expressed genes (DEGs), including 715 up-regulated and 853 down-regulated genes in astrocytes compared to oligodendrocytes (Figure S10a). The expression of the top four DEGs among the cell types indicates that gene MBP, ST18 and RNF220 are expressed explicitly in oligodendrocytes, while gene PITPNC3 is expressed mainly in astrocytes and endothelial cells (Figure S10b). In the future, we plan to add other multi-omics data modalities, which can be incorporated and integrated with scRNA-seq, such as spatial transcriptomics and scATAC-seq data. 
+Exploration and visualization of the expression of gene(s) across the cluster of cells under various conditions.
+
+As shown in Figure S10a, two cell groups from Astrocytes (1036 cells) and Oligodendrocytes (4417 cells) are selected. By running differential analysis with one of the built-in statistical methods such as Welch’s t-test, we detected 1578 differential expressed genes (DEGs), including 715 up-regulated and 853 down-regulated genes in astrocytes compared to oligodendrocytes (Figure S10a). The expression of the top four DEGs among the cell types indicates that gene MBP, ST18 and RNF220 are expressed explicitly in oligodendrocytes, while gene PITPNC3 is expressed mainly in astrocytes and endothelial cells (Figure S10b). In the future, we plan to add other multi-omics data modalities, which can be incorporated and integrated with scRNA-seq, such as spatial transcriptomics and scATAC-seq data. 
 
 ![Figure S10. Exploration of differential expressed genes in dataset GSE140231 through cellxgene VIP. (a) Differential expressed genes in astrocytes and oligodendrocytes. (b) The expression of top four genes in different cell types.](figures/S2.jpg)
 

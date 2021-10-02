@@ -30,3 +30,5 @@ search-genes
 cron
 case-study-1-1
 upload
+search-projects-search
+search
