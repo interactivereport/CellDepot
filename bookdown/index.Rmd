@@ -1,6 +1,5 @@
 --- 
-title: "CellDepot: A unified repository for scRNAseq data and visual exploration "
-description: "Supplementary Materials"
+title: "Supplementary Materials - CellDepot: A unified repository for scRNAseq data and visual exploration "
 author:
   - name: Dongdong Lin
     email: dongdong.lin@biogen.com
@@ -27,7 +26,6 @@ author:
     email: baohong.zhang@biogen.com
     affiliation: Biogen
     footnote: Corresponding Author
-
 address:
   - code: Biogen, Inc
     address: 225 Binney St, Cambridge, MA 02142, USA

@@ -17,8 +17,6 @@ bookdown::pdf_book:
   latex_engine: xelatex
   citation_package: natbib
   keep_tex: yes
-  pandoc_args:
-      - '--lua-filter=scholarly-metadata.lua'
-      - '--lua-filter=author-info-blocks.lua'
+  output: rticles::jss_article
 bookdown::epub_book: default
 bookdown::bs4_book: default

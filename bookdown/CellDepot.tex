@@ -36,7 +36,7 @@
 \IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
 \IfFileExists{bookmark.sty}{\usepackage{bookmark}}{\usepackage{hyperref}}
 \hypersetup{
-  pdftitle={CellDepot: A unified repository for scRNAseq data and visual exploration},
+  pdftitle={Supplementary Materials - CellDepot: A unified repository for scRNAseq data and visual exploration},
   hidelinks,
   pdfcreator={LaTeX via pandoc}}
 \urlstyle{same} % disable monospaced font for URLs
@@ -135,7 +135,7 @@
 \usepackage[]{natbib}
 \bibliographystyle{apalike}
 
-\title{CellDepot: A unified repository for scRNAseq data and visual exploration}
+\title{Supplementary Materials - CellDepot: A unified repository for scRNAseq data and visual exploration}
 \author{true \and true \and true \and true \and true \and true \and true \and true}
 \date{2021-10-01}
 
@@ -150,6 +150,45 @@
 \chapter{Preface}\label{preface}}
 
 This is a CellDepot Supplementary book written in \textbf{Markdown}.
+
+\hypertarget{getting-start-with-celldepot}{%
+\chapter{Getting start with CellDepot}\label{getting-start-with-celldepot}}
+
+\hypertarget{sources-of-annotation-and-metadata}{%
+\section{Sources of annotation and metadata}\label{sources-of-annotation-and-metadata}}
+
+The original metadata information of each single cell RNA-seq dataset is retrieved from h5ad file, which is a preferred way of sharing and storing an on-disk representation of anndata object. When importing the dataset to the system, user inputs additional metadata information as shown in Figure S5. Both metadata are collected and stored in a MySQL database table that is presented at \url{http://celldepot.bxgenomics.com}.
+
+\hypertarget{data-format-availability-and-preparation}{%
+\section{Data format, availability and preparation}\label{data-format-availability-and-preparation}}
+
+CellDepot requires scRNA-seq data in h5ad file where the expression matrix is stored in CSC (compressed sparse column) instead of CSR (compressed sparse row) format to improve the speed of data retrieving. For example, designating genes as columns in the h5ad file creates the interactive plot five times faster than as rows. Just in case, we provide sample scripts to help users generate h5ad files. Having gene expression matrix, metadata, and layout files, users can easily combine and convert their data to h5ad file by following this R script on \url{https://github.com/interactivereport/CellDepot/blob/main/toH5ad.R}. In the case of lacking layout file, users can also create h5ad file by following the Jupyter notebook \url{https://github.com/interactivereport/CellDepot/blob/main/raw2h5ad.ipynb} with custom python script tailored to their own data. Categorical features extracted from a h5ad file are shown in the `annotation groups' column of the table on CellDepot home page, while the numerical features are shown as the distributions in the rightmost panel on cellxgene VIP
+
+\begin{figure}
+\centering
+\includegraphics{figures/S3.jpg}
+\caption{Figure S3. The exploration of observation features of dataset GSE140231. Red-marked categorical features are shown on CellDepot Project page (highlighted by red framed box), the numerical features marked in green color can be visualized as distribution plots on the rightmost panel in cellxgene VIP tool, which is highlighted by green box.}
+\end{figure}
+
+\hypertarget{celldepot-platform-and-installation}{%
+\section{CellDepot platform and installation}\label{celldepot-platform-and-installation}}
+
+The public version of CellDepot web portal is hosted at the web site, \url{http://celldepot.bxgenomics.com} and is implemented with MySQL database, an advanced search engine, and powerful interactive visualizing tools that allow users to explore attributes of datasets as well as scRNA-seq analysis results. Also, users can intentionally select single-cell RNA-seq datasets on the web interface by simply browsing the online dataset table or applying advanced search to perform the cross-dataset comparison. Moreover, CellDepot also provides comprehensive data analysis tools via an embedded interactive visualization plugin. To host private datasets, local instance of CellDepot on Unix server can be installed by following the guide here, \url{https://celldepot.bxgenomics.com/celldepot_manual/install_environment.php}.
+
+\hypertarget{data-import-on-users-server}{%
+\section{Data import on user's server}\label{data-import-on-users-server}}
+
+The prepared h5ad files are required to copy to a folder defined in the configuration file, e.g., /data/celldepot/all\_h5ad\_files/. Afterwards, users can navigate to the CellDepot home page, click `Import Project' at the top menu, then `Download Example File' to fill in meta information of datasets into the downloaded template for submission. After the metadata file is uploaded, CellDepot will automatically convert the dataset to CSC format if needed through a cron job (Supplementary Tutorial Section 5). To explore the detail of imported datasets, users can enter `Browse Projects' page and then search these datasets by user assigned accessions in the metadata file.
+
+\hypertarget{celldepot-api-application-programming-interface}{%
+\section{CellDepot API (Application Programming Interface)}\label{celldepot-api-application-programming-interface}}
+
+The CellDepot API web service provides a direct way to generate figures for users to share or embed in web page. For example, the following URL will generate a gene expression violin plot across cell clusters for IRAK4 gene for the data set with ID equaling one, \url{https://celldepot.bxgenomics.com/celldepot/app/core/api_gene_plot.php?ID=1\&Genes=IRAK4\&Plot_Type=violin\&Subsampling=0\&n=0\&g=0\&Project_Group=CLUSTER}. The complete format of the URL and explanation of parameters are detailed in the web page, \url{https://celldepot.bxgenomics.com/celldepot_manual/api_gene_plot.php}.
+
+\hypertarget{code-availability}{%
+\section{Code availability}\label{code-availability}}
+
+The source code, local installation guide and complete tutorial of visualization and analysis tool are provided at \url{https://github.com/interactivereport/CellDepot}. With broad adoption and contribution in mind, CellDepot is released under the MIT License.
 
 \hypertarget{SITable}{%
 \chapter{Supplementary Tables}\label{SITable}}
@@ -286,27 +325,6 @@ Project Browser/Search &  &  & \\
 \end{tabular}
 \end{table}
 
-\hypertarget{SIFigures}{%
-\chapter{Supplementary Figures}\label{SIFigures}}
-
-\begin{figure}
-\centering
-\includegraphics{figures/S1.jpg}
-\caption{Figure S1. Data Filtering. Query search of `Species is Human' and `Annotation Groups contains Neuron' brings about nine datasets of interest.}
-\end{figure}
-
-\begin{figure}
-\centering
-\includegraphics{figures/S2.jpg}
-\caption{Figure S2.Exploration of differential expressed genes in dataset GSE140231 through cellxgene VIP. (a) Differential expressed genes in astrocytes and oligodendrocytes. (b) The expression of top four genes in different cell types.}
-\end{figure}
-
-\begin{figure}
-\centering
-\includegraphics{figures/S3.jpg}
-\caption{Figure S3. The exploration of observation features of dataset GSE140231. Red-marked categorical features are shown on CellDepot Project page (highlighted by red framed box), the numerical features marked in green color can be visualized as distribution plots on the rightmost panel in cellxgene VIP tool, which is highlighted by green box.}
-\end{figure}
-
 \hypertarget{SITutorial}{%
 \chapter{Supplementary Tutorial}\label{SITutorial}}
 
@@ -315,7 +333,7 @@ CellDepot is database management system integrated with management system, query
 \begin{figure}
 \centering
 \includegraphics{figures/S4.png}
-\caption{Figure S4. CellDepot website}
+\caption{Figure S1. CellDepot website}
 \end{figure}
 
 The interface contains multiple tabs, corresponding to import and/or select objects in CellDepot scRNA-seq database, that can be accessed on top panel of the webpage. Users can upload their own dataset or explore the existing datasets for visualization and analysis.
@@ -340,14 +358,19 @@ After the projects are submitted, CellDepot will automatically analyze the datas
 
 This function allows the user to search any targeted interests, which also can be accessed through search projects on the top panel of the webpage. Users is allowed to select the projects by 17 attributes: annotation groups, cell count, cellxgene VIP launch method, Custom accession, description, DOI, file name, file size, gene count, name, notes, PMC ID, Publication Title, PubMed ID, Species, URL, Year. These 17 fields can also be (partially) displayed on the webpage through `column setting' on the webpage. Users can also search projects by the keywords via the search function on the right of the webpage. In addition, by `column setting', users can set up the customized layout of targeted projects; thereby exporting to csv format.
 
+\includegraphics{figures/S6.png}
+\#\#\#\# Case study 1
+
+Six datasets are filtered when searching by `Species is Human' and `Annotation Group contains Neuron'.
+
 \begin{figure}
 \centering
-\includegraphics{figures/S6.png}
-\caption{Figure S6. Workflow of how to search query on `Browse Projects' page.}
+\includegraphics{figures/S1.jpg}
+\caption{Figure S1. Data Filtering. Query search of `Species is Human' and `Annotation Groups contains Neuron' brings about nine datasets of interest.}
 \end{figure}
 
-\hypertarget{case-study-1}{%
-\subsubsection{Case Study 1}\label{case-study-1}}
+\hypertarget{case-study-2}{%
+\subsubsection{Case Study 2}\label{case-study-2}}
 
 Cross-project comparison of skeletal muscle marker genes PAX3, PAX7, PITX2, MYF5, MYF6, MYOD1, MYOG, NEB, and MYH3 among the datasets whose species is human and cell type is myogenic.
 
@@ -398,13 +421,12 @@ Project summary information can be updated on `Browse Project' page with `Preloa
 \hypertarget{data-visualization-and-analysis}{%
 \subsection{Data Visualization and Analysis}\label{data-visualization-and-analysis}}
 
-CellDepot is not only a database management system, but also a web portal to visualize the scRNA-seq dataset. Here, we embed cellxgene and cellxgene VIP in CellDepot. By clicking `Cellxgene VIP', data analysis results can be visualized. Detailed guides of cellxgene and cellxgene VIP, please go to \url{https://github.com/chanzuckerberg/cellxgene} (cellxgene) and \url{https://github.com/interactivereport/cellxgene_VIP} (cellxgene\_VIP).
+CellDepot is not only a database management system, but also a web portal to visualize the scRNA-seq dataset. Here, we embed cellxgene and cellxgene VIP in CellDepot. By clicking `Cellxgene VIP', data analysis results can be visualized. Detailed guides of cellxgene and cellxgene VIP, please go to \url{https://interactivereport.github.io/cellxgene_VIP/tutorial/docs/}.
 
-\begin{figure}
-\centering
 \includegraphics{figures/S11.png}
-\caption{Figure S11. See visualization of selected datasets.}
-\end{figure}
+\#\#\#\# Case study 1
+Exploration and visualization of the expression of gene(s) across the cluster of cells under various conditions.As shown in Figure S2a, two cell groups from Astrocytes (1036 cells) and Oligodendrocytes (4417 cells) are selected. By running differential analysis with one of the built-in statistical methods such as Welch's t-test, we detected 1578 differential expressed genes (DEGs), including 715 up-regulated and 853 down-regulated genes in astrocytes compared to oligodendrocytes (Figure S2a). The expression of the top four DEGs among the cell types indicates that gene MBP, ST18 and RNF220 are expressed explicitly in oligodendrocytes, while gene PITPNC3 is expressed mainly in astrocytes and endothelial cells (Figure S2b). In the future, we plan to add other multi-omics data modalities, which can be incorporated and integrated with scRNA-seq, such as spatial transcriptomics and scATAC-seq data.
+\includegraphics{figures/S2.jpg}
 
 \hypertarget{search-genes}{%
 \section{Search Genes}\label{search-genes}}

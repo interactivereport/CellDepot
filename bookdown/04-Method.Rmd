@@ -1,0 +1,27 @@
+# Getting start with CellDepot
+
+
+## Sources of annotation and metadata
+The original metadata information of each single cell RNA-seq dataset is retrieved from h5ad file, which is a preferred way of sharing and storing an on-disk representation of anndata object. When importing the dataset to the system, user inputs additional metadata information as shown in Figure S5. Both metadata are collected and stored in a MySQL database table that is presented at http://celldepot.bxgenomics.com.
+
+## Data format, availability and preparation 
+
+CellDepot requires scRNA-seq data in h5ad file where the expression matrix is stored in CSC (compressed sparse column) instead of CSR (compressed sparse row) format to improve the speed of data retrieving. For example, designating genes as columns in the h5ad file creates the interactive plot five times faster than as rows. Just in case, we provide sample scripts to help users generate h5ad files. Having gene expression matrix, metadata, and layout files, users can easily combine and convert their data to h5ad file by following this R script on https://github.com/interactivereport/CellDepot/blob/main/toH5ad.R. In the case of lacking layout file, users can also create h5ad file by following the Jupyter notebook https://github.com/interactivereport/CellDepot/blob/main/raw2h5ad.ipynb with custom python script tailored to their own data. Categorical features extracted from a h5ad file are shown in the 'annotation groups' column of the table on CellDepot home page, while the numerical features are shown as the distributions in the rightmost panel on cellxgene VIP 
+
+![Figure S3. The exploration of observation features of dataset GSE140231. Red-marked categorical features are shown on CellDepot Project page (highlighted by red framed box), the numerical features marked in green color can be visualized as distribution plots on the rightmost panel in cellxgene VIP tool, which is highlighted by green box.](figures/S3.jpg)
+
+## CellDepot platform and installation
+
+The public version of CellDepot web portal is hosted at the web site,  http://celldepot.bxgenomics.com and is implemented with MySQL database, an advanced search engine, and powerful interactive visualizing tools that allow users to explore attributes of datasets as well as scRNA-seq analysis results. Also, users can intentionally select single-cell RNA-seq datasets on the web interface by simply browsing the online dataset table or applying advanced search to perform the cross-dataset comparison. Moreover, CellDepot also provides comprehensive data analysis tools via an embedded interactive visualization plugin. To host private datasets, local instance of CellDepot on Unix server can be installed by following the guide here, https://celldepot.bxgenomics.com/celldepot_manual/install_environment.php. 
+
+## Data import on user’s server
+
+The prepared h5ad files are required to copy to a folder defined in the configuration file, e.g., /data/celldepot/all_h5ad_files/. Afterwards, users can navigate to the CellDepot home page, click ‘Import Project’ at the top menu, then ‘Download Example File’ to fill in meta information of datasets into the downloaded template for submission. After the metadata file is uploaded, CellDepot will automatically convert the dataset to CSC format if needed through a cron job (\@ref(cron)). To explore the detail of imported datasets, users can enter ‘Browse Projects’ page and then search these datasets by user assigned accessions in the metadata file.
+
+
+## CellDepot API (Application Programming Interface)
+The CellDepot API web service provides a direct way to generate figures for users to share or embed in web page. For example, the following URL will generate a gene expression violin plot across cell clusters for IRAK4 gene for the data set with ID equaling one, https://celldepot.bxgenomics.com/celldepot/app/core/api_gene_plot.php?ID=1&Genes=IRAK4&Plot_Type=violin&Subsampling=0&n=0&g=0&Project_Group=CLUSTER. The complete format of the URL and explanation of parameters are detailed in the web page, https://celldepot.bxgenomics.com/celldepot_manual/api_gene_plot.php. 
+
+## Code availability
+The source code, local installation guide and complete tutorial of visualization and analysis tool are provided at https://github.com/interactivereport/CellDepot. With broad adoption and contribution in mind, CellDepot is released under the MIT License.
+
