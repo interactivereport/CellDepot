@@ -5,7 +5,7 @@
 library(kableExtra)
 df <- read.csv("S1.csv")
 df %>%
-  kbl(caption = "Table S1 - Comparsion matrix of web portal tools") %>%
+  kbl(caption = "Comparsion matrix of web portal tools") %>%
   kable_classic(full_width = F, html_font = "Cambria") %>%
   scroll_box(width = "100%")
 ```
@@ -16,7 +16,7 @@ Note: The criteria for query search and data analysis explorer please see Table 
 library(kableExtra)
 df <- read.csv("S2.csv")
 df %>%
-  kbl(caption = "Table S2 - Criterion for query searchs") %>%
+  kbl(caption = "Criterion for query searchs") %>%
   kable_classic(full_width = F, html_font = "Cambria") %>%
   scroll_box(width = "100%")
 ```
@@ -26,7 +26,7 @@ df %>%
 library(kableExtra)
 df <- read.csv("S3.csv")
 df %>%
-  kbl(caption = "Table S3 - Criterion for data analysis explorer") %>%
+  kbl(caption = "Criterion for data analysis explorer") %>%
   kable_classic(full_width = F, html_font = "Cambria") %>%
   scroll_box(width = "100%")
 ```
@@ -36,7 +36,7 @@ df %>%
 library(kableExtra)
 df <- read.csv("S4.csv")
 df %>%
-  kbl(caption = "Table S4 - Project metadata captured in CellDepot") %>%
+  kbl(caption = "Project metadata captured in CellDepot") %>%
   kable_classic(full_width = F, html_font = "Cambria") %>%
   scroll_box(width = "100%")
 ```
