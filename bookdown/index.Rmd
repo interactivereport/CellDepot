@@ -1,8 +1,8 @@
 --- 
-title: "Supplementary Materials - CellDepot: A unified repository for scRNAseq data and visual exploration "
+title: "Supplemental Tutorial - CellDepot: A unified repository for scRNAseq data and visual exploration "
 author:
   - name: Dongdong Lin
-    email: dongdong.lin@biogen.com
+    email: lindongdo@gmail.com
     affiliation: Biogen
   - name: Yirui Chen
     email: yirui.chen@biogen.com
@@ -42,7 +42,7 @@ output: radix::radix_article
 ---
 # Preface
 
-This is a CellDepot Supplementary book written in **Markdown**.
+This is a **supplemental tutorial** written in Markdown, which provides the detailed guide for CellDepot web portal. 
 
 
 ```{r include=FALSE}

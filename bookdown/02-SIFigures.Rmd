@@ -1,4 +1,4 @@
-# Supplementary Figures {#SIFigures}
+# Supplemental Figures {#SIFigures}
 
 
 ![Figure S1. Data Filtering. Query search of ‘Species is Human’ and ‘Annotation Groups contains Neuron’ brings about nine datasets of interest.](figures/S1.jpg)

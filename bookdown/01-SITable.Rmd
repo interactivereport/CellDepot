@@ -1,4 +1,4 @@
-# Supplementary Tables {#SITable}
+# Supplemental Tables {#SITable}
 
 ## Comparsion matrix of web portal tools
 ```{r, echo=FALSE}
