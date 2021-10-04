@@ -2,7 +2,7 @@
 
 
 ## Sources of annotation and metadata
-The original metadata information of each single cell RNA-seq dataset is retrieved from h5ad file, which is a preferred way of sharing and storing an on-disk representation of anndata object. When importing the dataset to the system, user inputs additional metadata information as shown in (\@ref(upload)). Both metadata are collected and stored in a MySQL database table that is presented at http://celldepot.bxgenomics.com.
+The original metadata information of each single cell RNA-seq dataset is retrieved from h5ad file, which is a preferred way of sharing and storing an on-disk representation of anndata object. When importing the dataset to the system, user inputs additional metadata information as shown in (\@ref(upload)). Both metadata are collected and stored in a MySQL database table that is presented at http://celldepot.bxgenomics.com and Biogen internal link http://go.biogen.com/CellDepot.
 
 ## Data format, availability and preparation 
 
@@ -12,7 +12,7 @@ CellDepot requires scRNA-seq data in h5ad file where the expression matrix is st
 
 ## CellDepot platform and installation
 
-The public version of CellDepot web portal is hosted at the web site,  http://celldepot.bxgenomics.com and is implemented with MySQL database, an advanced search engine, and powerful interactive visualizing tools that allow users to explore attributes of datasets as well as scRNA-seq analysis results. Also, users can intentionally select single-cell RNA-seq datasets on the web interface by simply browsing the online dataset table or applying advanced search to perform the cross-dataset comparison. Moreover, CellDepot also provides comprehensive data analysis tools via an embedded interactive visualization plugin. To host private datasets, local instance of CellDepot on Unix server can be installed by following the guide here, https://celldepot.bxgenomics.com/celldepot_manual/install_environment.php. 
+The public version of CellDepot web portal is hosted at the web site,  http://celldepot.bxgenomics.com and Biogen internal link http://go.biogen.com/CellDepot. It is implemented with MySQL database, an advanced search engine, and powerful interactive visualizing tools that allow users to explore attributes of datasets as well as scRNA-seq analysis results. Also, users can intentionally select single-cell RNA-seq datasets on the web interface by simply browsing the online dataset table or applying advanced search to perform the cross-dataset comparison. Moreover, CellDepot also provides comprehensive data analysis tools via an embedded interactive visualization plugin. To host private datasets, local instance of CellDepot on Unix server can be installed by following the guide here, https://celldepot.bxgenomics.com/celldepot_manual/install_environment.php. 
 
 ## Data import on user’s server
 

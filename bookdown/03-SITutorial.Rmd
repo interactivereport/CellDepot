@@ -1,18 +1,11 @@
 # Supplementary Tutorial {#SITutorial}
 
-CellDepot is database management system integrated with management system, query searching and data visualization tools for scRNA-seq datasets, which can be accessed by the link http://celldepot.bxgenomics.com. This is a supplemental tutorial provides a detailed guide.
+CellDepot is database management system integrated with management system, query searching and data visualization tools for scRNA-seq datasets, which can be accessed by the link http://celldepot.bxgenomics.com and Biogen internal link http://go.biogen.com/CellDepot. This is a supplemental tutorial provides a detailed guide.
 
 
 ![Figure S1. CellDepot website](figures/S4.png)
 
 The interface contains multiple tabs, corresponding to import and/or select objects in CellDepot scRNA-seq database, that can be accessed on top panel of the webpage. Users can upload their own dataset or explore the existing datasets for visualization and analysis.
-
-
-## Upload Projects {#upload}
-To upload new projects in CellDepot database, two files are required: 1) .h5ad files and 2) project information in csv format. Detailed formatting guidance can be found by ‘Download Example File’ hyperlink on webpage. In addition, two cellxgene VIP launch methods are provided: standard and preload in memory. Standard mode is for the first-time imported datasets, while preload in memory should be chosen when users update the meta information of datasets. 
-After the projects are submitted, CellDepot will automatically analyze the datasets. To explore the detail of uploaded datasets, users can navigate to ‘browse projects’ page and then search the imported datasets by the customized accession number. 
-
-![Figure S2. Workflow of how to import personal datasets.](figures/S5.png)
 
 ## 	Browse Projects
 ### Search Projects {#search}
@@ -72,6 +65,12 @@ As shown in Figure S10a, two cell groups from Astrocytes (1036 cells) and Oligod
 This tab allows searching on targeted genes with cell count cutoff and expression cutoff. The search outcome provides users every project contains the targeted genes.  Each project displays a link to project page and a figure plot if applicable. This plot can be either violin plot or dot plot shows the gene expression level in each annotation groups.
 
 ![Figure S11. The layout of ‘Search Genes’](figures/S12.png)
+
+## Upload Projects {#upload}
+To upload new projects in CellDepot database, two files are required: 1) .h5ad files and 2) project information in csv format. Detailed formatting guidance can be found by ‘Download Example File’ hyperlink on webpage. In addition, two cellxgene VIP launch methods are provided: standard and preload in memory. Standard mode is for the first-time imported datasets, while preload in memory should be chosen when users update the meta information of datasets. 
+After the projects are submitted, CellDepot will automatically analyze the datasets. To explore the detail of uploaded datasets, users can navigate to ‘browse projects’ page and then search the imported datasets by the customized accession number. 
+
+![Figure S2. Workflow of how to import personal datasets.](figures/S5.png)
 
 
 ## How to set up cron job? {#cron}
