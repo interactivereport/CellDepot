@@ -1,6 +1,6 @@
 # Supplemental Tutorial {#SITutorial}
 
-CellDepot is database management system integrated with management system, query searching and data visualization tools for scRNA-seq datasets, which can be accessed by the link http://celldepot.bxgenomics.com and Biogen internal link http://go.biogen.com/CellDepot. This is a supplemental tutorial provides a detailed guide.
+CellDepot is database management system integrated with management system, query searching and data visualization tools for scRNA-seq datasets, which can be accessed by the link http://celldepot.bxgenomics.com and Biogen internal link http://go.biogen.com/CellDepot. This is a supplemental tutorial providing a detailed guide.
 
 
 ![Figure S1. CellDepot website](figures/S4.png)
