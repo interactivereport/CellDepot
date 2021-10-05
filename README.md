@@ -48,14 +48,3 @@ Data Analysis Explorer|	Advanced	|Advanced	|Advanced|	Intermediate|	Intermediate
   <img src="https://github.com/interactivereport/CellDepot/blob/main/Figures/Comparison.png" />
 </p>
  -->
-### Public Web Portal
-https://celldepot.bxgenomics.com
-
-### Pre-print
-https://www.biorxiv.org/content/10.1101/2021.09.30.462602v1
-
-### Installation Guide
-https://celldepot.bxgenomics.com/celldepot_manual
-
-### cellxgene VIP Tutorial
-https://interactivereport.github.io/cellxgene_VIP/tutorial/docs
