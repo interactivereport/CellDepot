@@ -1,5 +1,7 @@
-[![Build Status](https://travis-ci.com/rstudio/bookdown-demo.svg?branch=master)](https://travis-ci.com/rstudio/bookdown-demo)
+[![Build Status](https://travis-ci.com/rstudio/bookdown-demo.svg?branch=master)](https://github.com/interactivereport/CellDepot/tree/gh-pages/bookdown)
 
-This is a minimal example of a book based on R Markdown and **bookdown** (https://github.com/rstudio/bookdown). Please see the page "[Get Started](https://bookdown.org/yihui/bookdown/get-started.html)" at https://bookdown.org/yihui/bookdown/ for how to compile this example into HTML. You may generate a copy of the book in `bookdown::pdf_book` format by calling `bookdown::render_book('index.Rmd', 'bookdown::pdf_book')`. More detailed instructions are available here https://bookdown.org/yihui/bookdown/build-the-book.html.
+**CellDepot** is database management system integrated with management system, query searching and data visualization tools for scRNA-seq datasets, which can be accessed by the link http://celldepot.bxgenomics.com and Biogen internal link http://go.biogen.com/CellDepot. 
 
-You can find the preview of this example at https://bookdown.org/yihui/bookdown-demo/.
+This is a supplemental tutorial written in Markdown, which provides the detailed guide for **CellDepot web portal**. Please see the HTML format tutorial at https://interactivereport.github.io/CellDepot/bookdown/docs/. You can also make a local copy of the supplemental tutorial by using **makebook.sh**. 
+
+
