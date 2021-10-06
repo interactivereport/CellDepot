@@ -256,10 +256,16 @@ function processGenePlot($string = '', $type = 'compact'){
 			return $string;
 		}
 	}
+	
 
 	if (true){
 		
-		$svg_height = 1000;
+		if ($plot_type == 'violin'){
+			$svg_height = 650;
+		} elseif ($plot_type == 'scatter'){
+			$svg_height = 650;
+		}
+		
 		$svg_width	= ceil($svg_height*($width/$height));
 		
 		$string = str_replace('{"responsive": true}', 'config', $string);

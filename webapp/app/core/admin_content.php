@@ -2,9 +2,7 @@
 
 if (isAdminUser()){
 	
-	
-	echo "<p>If you have performed any changes at the database level manually, you will need to run the following tools.</p>";
-	
+
 	unset($currentIndex);
 	
 	
@@ -18,6 +16,12 @@ if (isAdminUser()){
 	$tools[$currentIndex]['Title'] 	= 'Cellxgene Launching Command Documenation';
 	$tools[$currentIndex]['URL'] 	= 'admin_cellxgene_docs.php';
 	$tools[$currentIndex]['target'] = '_blank';	
+	
+	
+	$currentIndex++;
+	$tools[$currentIndex]['Title'] 	= 'API Documenation';
+	$tools[$currentIndex]['URL'] 	= 'https://celldepot.bxgenomics.com/celldepot_manual/api.php';
+	$tools[$currentIndex]['target'] = '_blank';
 	
 	
 	

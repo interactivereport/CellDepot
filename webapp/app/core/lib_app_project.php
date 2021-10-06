@@ -13,6 +13,13 @@ function createProject($inputArray = array()){
 	$dataArray['Date_Time']	 			= date('Y-m-d H:i:s');
 	$dataArray['User_ID'] 				= $_SESSION['User_Info']['ID'];
 	$dataArray['User_Name'] 			= "{$_SESSION['User_Info']['First_Name']} {$_SESSION['User_Info']['Last_Name']}";
+	
+	
+	
+	if ($inputArray['API']){
+		$dataArray['User_ID'] 			= 0;
+		$dataArray['User_Name'] 		= "System User";
+	}
 
 	if (true){
 		
@@ -56,16 +63,9 @@ function createProject($inputArray = array()){
 		return false;	
 	}
 	
-	/*
-	//GetH5ad has been moved to cronjob
-	$get_h5ad_info = get_h5ad_info("{$dataArray['File_Directory']}/{$dataArray['File_Name']}");
-	if ($get_h5ad_info['cellN'] > 0){
-		$dataArray['File_h5ad_status'] 	= 1;
-		$dataArray['Cell_Count'] 		= $get_h5ad_info['cellN'];
-		$dataArray['Gene_Count'] 		= $get_h5ad_info['geneN'];
-		$dataArray['File_h5ad_info'] 	= json_encode($get_h5ad_info);
+	if ($dataArray['Name'] == ''){
+		return false;	
 	}
-	*/
 	
 
 	$SQL = getInsertSQLQuery($APP_CONFIG['TABLES']['PROJECT'], $dataArray);
@@ -75,9 +75,6 @@ function createProject($inputArray = array()){
 	$projectID	= getLastInsertID();
 	
 	createColumnIndex($APP_CONFIG['TABLES']['PROJECT'], $APP_CONFIG['CONSTANTS']['TABLES']['Project'], $recordID, 'Species', $APP_CONFIG['CONSTANTS']['COLUMNS']['Project::Species'], $inputArray['Species']);
-	
-	
-	
 	
 	
 	return $projectID;
