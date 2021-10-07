@@ -34,7 +34,9 @@ $appObj['Record_Per_Page']					= $BXAF_CONFIG['Table_Record_Per_Page'];
 $appObj['Search_Keyword']					= '';
 $appObj['Settings_Handler']					= 'app_common_search_settings.php';
 $appObj['ajax']								= 'app_project_search_datatable_ajax.php';
-
+$appObj['Sort_Order']						= "[ 20, 'desc']";
+            
+            
 $IDAry = array('id' => $appObj['Record_IDs']);
 $IDKey = 'Temp_' . md5(json_encode($IDAry));
 putRedisCache(array($IDKey => $IDAry), 604800);
