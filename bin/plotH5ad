@@ -1,16 +1,17 @@
 #!/usr/bin/env bash
 
-if [[ -n "$1" ]] && [[ -n "$2" ]] && [[ -n "$3" ]] && [[ -n "$4" ]]; then
-  . "/raid/data/anaconda3/etc/profile.d/conda.sh"
+if [[ "$#" -ge 4 ]]; then
+  source /opt/anaconda3/etc/profile.d/conda.sh
   conda activate cellxgeneVIP
   python -W ignore -u $(dirname "${0}")/src/plotH5ad.py "$@"
 else
   echo "==============="
-  echo "plotH5ad path/to/h5ad plot/type [options]"
+  echo "plotH5ad path/to/h5ad plot/type [other arguments]"
   echo ""
   echo "    plotH5ad path/to/h5ad violin a/gene/name an/annotation/name -n cell/number -g gene/cutoff"
-  echo "    plotH5ad path/to/h5ad dot gene/names an/annotation/name -n cell/number -g gene/cutoff"
+  echo "    plotH5ad path/to/h5ad dot gene/names an/annotation/name -n cell/number -g gene/cutoff -e max/exp/scale -p max/percentage/scale -l max/value/log"
   echo "Gene names are NOT case-sensitive, and separated by (,)"
   echo "Return a html string which can be inserted into a DIV tag"
   echo "==============="
 fi
+

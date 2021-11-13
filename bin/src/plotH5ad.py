@@ -3,6 +3,7 @@
 import sys, io, random, time, getopt, math
 import anndata as ad
 import pandas as pd
+import numpy as np
 #from base64 import b64encode, b64decode
 import plotly.graph_objects as go
 import plotly.express as px
@@ -24,23 +25,29 @@ def checkGrp(grp,allGrp):
     if not grp in allGrp:
         print("ERROR: annotation ("+grp+") is unknown in the h5ad file!")
         exit()
-def filterCell(df,gCut):
-    if gCut is None:
-        return df
-    return df[df[df>float(gCut)].count(axis=1)>0]
-def obtainData(strH5ad,genes,grp,gN=None,cN=None,gCut=None):
+def filterCell(df,gCut,logFlag=False):
+    if gCut is not None:
+        df = df[df[df>float(gCut)].count(axis=1)>0]
+    if logFlag:
+        df=np.log2(1+df)
+    return df
+def obtainData(strH5ad,genes,grp,gN=None,cN=None,gCut=None,logMax=float("inf")):
     sT = time.time()
     D=ad.read_h5ad(strH5ad,backed='r',as_sparse=["X"],chunk_size=60000)
     checkGrp(grp,D.obs.columns)
+    logFlag = False
+    if logMax!=float("inf") and np.max(D.X.value)>logMax:
+        logFlag = True
+
     selG = findGenes(genes,D.var_names)
     checkGene(selG)
-    if not gN is None:
+    if gN is not None:
         selG=selG[0:gN]
     if cN is None:
-        X = pd.concat([filterCell(D[:,selG].to_df(),gCut),D.obs[grp]],axis=1,join='inner')
+        X = pd.concat([filterCell(D[:,selG].to_df(),gCut,logFlag),D.obs[grp]],axis=1,join='inner')
     elif int(cN)<D.shape[0] and int(cN)>10:
         selC=randomCell(int(cN),D.obs_names)
-        subD = filterCell(D[:,selG].to_df().loc[selC,:],gCut)
+        subD = filterCell(D[:,selG].to_df().loc[selC,:],gCut,logFlag)
         X = pd.concat([subD,D.obs.loc[selC,grp]],axis=1,join='inner')
     else:
         raise Exception("ERROR: input cell number ("+cN+") is invalid!")
@@ -94,7 +101,7 @@ def dotLegend(maxPercent):
         step = round(maxPercent/15)*5
     else:
         step = round(maxPercent/3)
-    maxDotSize=20*round(maxPercent)/100
+    #maxDotSize=20*round(maxPercent)/100
     dotLab=list()
     for i in range(3):
         dotLab += [[i,0,round(maxPercent/10)*10 - i*step,"%d%%"%(round(maxPercent/10)*10 - i*step)]]
@@ -109,9 +116,9 @@ def dotLegend(maxPercent):
                      margin={"l":0,"r":0,"t":0,"b":0},hovermode=False)
     buffer = io.StringIO()
     fig.write_html(buffer,config={'staticPlot':True},include_plotlyjs=False,full_html=False)
-    return overlay(buffer.getvalue(),10),maxDotSize
-def dot(strH5ad,genes,grp,cN=None,gCut=None):
-    X,selG = obtainData(strH5ad,genes,grp,cN=cN,gCut=gCut)
+    return overlay(buffer.getvalue(),10),dotLabMax*(maxPercent/dotLab["percent"].max())
+def dot(strH5ad,genes,grp,cN=None,gCut=None,expmax=None,permax=None,logmax=float("inf")):
+    X,selG = obtainData(strH5ad,genes,grp,cN=cN,gCut=gCut,logMax=logmax)
     df = list()
     for anno in X[grp].cat.categories:
         for gene in selG:
@@ -122,15 +129,22 @@ def dot(strH5ad,genes,grp,cN=None,gCut=None):
                     round(tmp[tmp>0].count()/tmp.shape[0]*100,2),
                     tmp.shape[0]]]
     DOT=pd.DataFrame(df,columns=['grp','gene','median','mean','percent','cellN'])
-    dotL,maxDotSize=dotLegend(DOT['percent'].max())
+    maxLegendDot=DOT['percent'].max()
+    if permax is not None:
+        maxLegendDot=permax
+    dotL,maxDotSize=dotLegend(maxLegendDot)
     annoMaxL=max([len(str(i)) for i in X[grp].cat.categories])
     xlabH=35+annoMaxL*4
     xlabW=annoMaxL*7
     h=50+30*len(selG)+xlabH
     w=160+30*len(X[grp].cat.categories)+xlabW
+    color_range=None
+    if expmax is not None:
+        color_range=[0,expmax]
     fig = px.scatter(DOT,x="grp",y="gene",color="mean",size="percent",hover_data={"cellN":":d","median":":.2f","mean":":.2f"},
-                     size_max=maxDotSize,
-                     color_continuous_scale=['rgb(0,0,255)','rgb(150,0,90)','rgb(255,0,0)'])
+                     size_max=maxDotSize*(DOT['percent'].max()/maxLegendDot),
+                     color_continuous_scale=['rgb(0,0,255)','rgb(150,0,90)','rgb(255,0,0)'],
+                     range_color=color_range)
     fig.update_yaxes(linecolor="#000",showdividers=True,dividercolor="#444",title={"text":""},
                     tickfont={"size":15})
     fig.update_xaxes(linecolor="#000",showdividers=True,dividercolor="#444",title={"text":""},
@@ -157,27 +171,37 @@ def dot(strH5ad,genes,grp,cN=None,gCut=None):
 def getAdditionalPara(argv):
     cN = None
     gCut = None
+    expmax = None
+    permax = None
+    logmax = float('inf')
     try:
-        opts, args = getopt.getopt(argv,"n:g:",["ncell=","gcutoff="])
+        opts, args = getopt.getopt(argv,"n:g:l:e:p:",["ncell=","gcutoff=","logmax=","expmax=","percentagemax="])
     except getopt.GetoptError:
-        raise Exception("plotH5ad path/to/H5ad/file plot/type A/gene/list An/annotation/group -n cell/number -g gene/cutoff")
+        raise Exception("plotH5ad path/to/H5ad/file plot/type A/gene/list An/annotation/group -n cell/number -g gene/cutoff -l max/value/log -e max/exp/scale -p max/percentage/scale")
     for opt, arg in opts:
         if opt in ("-n", "--ncell"):
-            cN = arg
+            cN = int(arg)
         elif opt in ("-g", "--gcutoff"):
-            gCut = arg
-    return cN,gCut
+            gCut = float(arg)
+        elif opt in ("-l", "--logmax"):
+            logmax = float(arg)
+        elif opt in ("-e", "--expmax"):
+            expmax = float(arg)
+        elif opt in ("-p", "--percentagemax"):
+            permax = float(arg)
+
+    return cN,gCut,expmax,permax,logmax
 
 def main():
     strH5ad = sys.argv[1]
     plotType = sys.argv[2]
     genes = sys.argv[3]
     grp = sys.argv[4]
-    cN,gCut = getAdditionalPara(sys.argv[5:])
+    cN,gCut,expmax,permax,logmax = getAdditionalPara(sys.argv[5:])
     if plotType=='violin':
         print(violin(strH5ad,genes,grp,cN,gCut))
     elif plotType=='dot':
-        print(dot(strH5ad,genes,grp,cN,gCut))
+        print(dot(strH5ad,genes,grp,cN,gCut,expmax,permax,logmax))
     else:
         print("ERROR: plot type ("+plotType+") is unknown!")
         exit()
