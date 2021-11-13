@@ -14,6 +14,9 @@ function createProject($inputArray = array()){
 	$dataArray['User_ID'] 				= $_SESSION['User_Info']['ID'];
 	$dataArray['User_Name'] 			= "{$_SESSION['User_Info']['First_Name']} {$_SESSION['User_Info']['Last_Name']}";
 	
+	if (isset($inputArray['Species_Raw']) && !isset($inputArray['Species'])){
+		$inputArray['Species'] = $inputArray['Species_Raw'];
+	}
 	
 	
 	if ($inputArray['API']){
@@ -25,7 +28,7 @@ function createProject($inputArray = array()){
 		
 		$dataArray['Accession'] 		= $inputArray['Accession'];
 		$dataArray['Name'] 				= $inputArray['Name'];
-		$dataArray['Species'] 			= implode(', ', splitCategories($inputArray['Species']));
+		$dataArray['Species'] 			= implode(', ', splitCategories($inputArray['Species'], 0));
 		$dataArray['Year'] 				= $inputArray['Year'];
 		$dataArray['Description'] 		= $inputArray['Description'];
 		$dataArray['DOI'] 				= $inputArray['DOI'];
@@ -74,8 +77,7 @@ function createProject($inputArray = array()){
 	
 	$projectID	= getLastInsertID();
 	
-	createColumnIndex($APP_CONFIG['TABLES']['PROJECT'], $APP_CONFIG['CONSTANTS']['TABLES']['Project'], $recordID, 'Species', $APP_CONFIG['CONSTANTS']['COLUMNS']['Project::Species'], $inputArray['Species']);
-	
+	createColumnIndex($APP_CONFIG['TABLES']['PROJECT'], $APP_CONFIG['CONSTANTS']['TABLES']['Project'], $projectID, 'Species', $APP_CONFIG['CONSTANTS']['COLUMNS']['Project::Species'], $inputArray['Species'], 0);
 	
 	return $projectID;
 
@@ -97,7 +99,9 @@ function updateProject($inputArray = NULL, $ID = 0){
 	$SQL = "SELECT * FROM {$SQL_TABLE} WHERE `ID` = '{$ID}'";
 	$beforeArray = getSQL_Data($SQL, 'GetRow');
 
-	
+	if (isset($inputArray['Species_Raw']) && !isset($inputArray['Species'])){
+		$inputArray['Species'] = $inputArray['Species_Raw'];
+	}
 	
 	$dataArray = array();
 	
@@ -105,7 +109,7 @@ function updateProject($inputArray = NULL, $ID = 0){
 		
 		$dataArray['Accession'] 		= $inputArray['Accession'];
 		$dataArray['Name'] 				= $inputArray['Name'];
-		$dataArray['Species'] 			= implode(', ', splitCategories($inputArray['Species']));
+		$dataArray['Species'] 			= implode(', ', splitCategories($inputArray['Species'], 0));
 		$dataArray['Year'] 				= $inputArray['Year'];
 		$dataArray['Description'] 		= $inputArray['Description'];
 		$dataArray['DOI'] 				= $inputArray['DOI'];
@@ -132,7 +136,7 @@ function updateProject($inputArray = NULL, $ID = 0){
 	
 
 	deleteColumnIndexByRecordID($APP_CONFIG['CONSTANTS']['TABLES']['Project'], $ID);
-	createColumnIndex($APP_CONFIG['TABLES']['PROJECT'], $APP_CONFIG['CONSTANTS']['TABLES']['Project'], $recordID, 'Species', $APP_CONFIG['CONSTANTS']['COLUMNS']['Project::Species'], $inputArray['Species']);
+	createColumnIndex($APP_CONFIG['TABLES']['PROJECT'], $APP_CONFIG['CONSTANTS']['TABLES']['Project'], $ID, 'Species', $APP_CONFIG['CONSTANTS']['COLUMNS']['Project::Species'], $inputArray['Species'], 0);
 	
 
 	return true;
@@ -178,7 +182,7 @@ function processProjectRecord($recordID = 0, $dataArray = NULL, $type = 0){
 		
 		$dataArray['Launch_Method_Raw'] 	= $dataArray['Launch_Method'];
 		$dataArray['Project_Groups_Raw'] 	= $dataArray['Project_Groups'];
-		
+		$dataArray['Species_Raw']			= splitCategories($dataArray['Species'], 0);
 		
 		if ($type == 0){
 			//Export
@@ -385,6 +389,7 @@ function processProjectRecord($recordID = 0, $dataArray = NULL, $type = 0){
 		}  elseif ($type == 3){
 			//3: Update
 			
+
 			
 		}
 		

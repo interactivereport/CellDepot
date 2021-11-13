@@ -23,6 +23,11 @@ if (isAdminUser()){
 	$tools[$currentIndex]['URL'] 	= 'https://celldepot.bxgenomics.com/celldepot_manual/api.php';
 	$tools[$currentIndex]['target'] = '_blank';
 	
+	$currentIndex++;
+	$tools[$currentIndex]['Title'] 	= 'Rebuild Project-Species Index';
+	$tools[$currentIndex]['URL'] 	= 'admin_rebuild_project_species_index.php';
+	$tools[$currentIndex]['target'] = '_blank';
+	
 	
 	
 	echo "<ul>";

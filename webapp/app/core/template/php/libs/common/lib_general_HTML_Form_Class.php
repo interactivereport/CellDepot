@@ -827,14 +827,22 @@ class HTML_Form {
 		$componentOnly				= $this->componentOnly;
 		$currentDropDownValue		= $this->currentDropDownValue;
 		$currentOptions				= $this->currentOptions;
-		
+		$currentValueFunction 		= $this->currentValueFunction;
 
 		$componentID			= $currentOptions['ComponentID'];
 		if ($componentID == ''){
 			$componentID = $currentSQL;
 		}
 		
-		$referenceValues 			= $currentDropDownValue;
+		if (($APP_CONFIG['DICTIONARY'][$currentTable][$currentSQL]['Value_Function'] != '') && function_exists($APP_CONFIG['DICTIONARY'][$currentTable][$currentSQL]['Value_Function'])){
+			$function 			= $APP_CONFIG['DICTIONARY'][$currentTable][$currentSQL]['Value_Function'];
+			$referenceValues	= $function();
+		} elseif (($currentValueFunction != '') && function_exists($currentValueFunction)){
+			$function 			= $currentValueFunction;
+			$referenceValues	= $function();
+		} else {
+			$referenceValues 	= $currentDropDownValue;
+		}
 		
 		
 		if ($currentValue != ''){

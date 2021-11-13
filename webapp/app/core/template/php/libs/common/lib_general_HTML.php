@@ -94,11 +94,11 @@ function printTableHTML($tableContent = array(), $compact = 1, $striped = 0, $ta
 					$result .= "<tr class='{$rowDetails['Class']}'>";
 						if (isset($tableContent['Header'])){
 							foreach($tableContent['Header'] as $tempKey => $tempValue){
-								$result .= "<td>{$rowDetails['Value'][$tempKey]}</td>";
+								$result .= "<td style='{$otherOption['td_style'][$tempKey]}'>{$rowDetails['Value'][$tempKey]}</td>";
 							}
 						} else {
 							foreach($rowDetails['Value'] as $tempKey => $tempValue){
-								$result .= "<td>{$tempValue}</td>";
+								$result .= "<td style='{$otherOption['td_style'][$tempKey]}'>{$tempValue}</td>";
 							}
 						}
 					$result .= "</tr>";

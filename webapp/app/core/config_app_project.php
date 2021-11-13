@@ -85,6 +85,20 @@ if (true){
 	$APP_CONFIG['DICTIONARY'][$currentTable][$currentColumn]['Browse']					= true;
 	$APP_CONFIG['DICTIONARY'][$currentTable][$currentColumn]['Type']					= 'array_value';
 	
+	
+	$currentColumn = 'Species_Raw';
+	$APP_CONFIG['DICTIONARY'][$currentTable][$currentColumn]['Title'] 					= $BXAF_CONFIG['MESSAGE'][$currentTable]['Column'][$currentColumn]['Title'];
+	$APP_CONFIG['DICTIONARY'][$currentTable][$currentColumn]['printForm']['New']		= 'printTag';
+	$APP_CONFIG['DICTIONARY'][$currentTable][$currentColumn]['Value_Function']			= 'getProject_Species_Values';
+	$APP_CONFIG['DICTIONARY'][$currentTable][$currentColumn]['Value']					= $BXAF_CONFIG['MESSAGE'][$currentTable]['Column'][$currentColumn]['Value'];
+	$APP_CONFIG['DICTIONARY'][$currentTable][$currentColumn]['PlaceHolder'] 			= $BXAF_CONFIG['MESSAGE'][$currentTable]['Column'][$currentColumn]['PlaceHolder'];
+	$APP_CONFIG['DICTIONARY'][$currentTable][$currentColumn]['First_Option_Empty']		= true;
+	$APP_CONFIG['DICTIONARY'][$currentTable][$currentColumn]['Label_Class']				= 'col-12';
+	$APP_CONFIG['DICTIONARY'][$currentTable][$currentColumn]['Value_Class']				= 'col-xl-4 col-lg-6 col-md-10 col-sm-12 col-xs-12';
+	$APP_CONFIG['DICTIONARY'][$currentTable][$currentColumn]['Search']					= false;
+	$APP_CONFIG['DICTIONARY'][$currentTable][$currentColumn]['Browse']					= false;
+	$APP_CONFIG['DICTIONARY'][$currentTable][$currentColumn]['Type']					= 'tag';
+	
 
 
 	$currentColumn = 'Year';
@@ -320,11 +334,6 @@ if (true){
 	
 	$currentColumn = 'User_Name';
 	$APP_CONFIG['DICTIONARY'][$currentTable][$currentColumn]['Title'] 					= $BXAF_CONFIG['MESSAGE'][$currentTable]['Column'][$currentColumn]['Title'];
-	/*
-	$APP_CONFIG['DICTIONARY'][$currentTable][$currentColumn]['Search']					= true;
-	$APP_CONFIG['DICTIONARY'][$currentTable][$currentColumn]['Browse']					= true;
-	$APP_CONFIG['DICTIONARY'][$currentTable][$currentColumn]['Type']					= 'text';
-	*/
 	$APP_CONFIG['DICTIONARY'][$currentTable][$currentColumn]['printForm']['New']		= 'printDropDown_From_DB';
 	$APP_CONFIG['DICTIONARY'][$currentTable][$currentColumn]['Value']					= $BXAF_CONFIG['MESSAGE'][$currentTable]['Column'][$currentColumn]['Value'];
 	$APP_CONFIG['DICTIONARY'][$currentTable][$currentColumn]['PlaceHolder'] 			= $BXAF_CONFIG['MESSAGE'][$currentTable]['Column'][$currentColumn]['PlaceHolder'];

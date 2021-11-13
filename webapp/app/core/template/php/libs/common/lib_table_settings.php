@@ -94,8 +94,12 @@ function load_common_config(){
 		$BXAF_CONFIG_DEFAULT['GREP_BIN']						= '/usr/bin/grep';
 		$BXAF_CONFIG_DEFAULT['ZIP_BIN']							= '/bin/zip';
 		$BXAF_CONFIG_DEFAULT['ENV_BIN']							= '/usr/bin/env';
+		
+		$BXAF_CONFIG_DEFAULT['WGET_BIN']						= '/usr/bin/wget';
+		$BXAF_CONFIG_DEFAULT['WGET']['Bin']						= '/usr/bin/wget';
+
 		$BXAF_CONFIG_DEFAULT['CURL_BIN']						= '/usr/bin/curl';
-		$BXAF_CONFIG_DEFAULT['CURL']['Bin']						= $BXAF_CONFIG_DEFAULT['CURL_BIN'];
+		$BXAF_CONFIG_DEFAULT['CURL']['Bin']						= '/usr/bin/curl';
 		
 		
 		$BXAF_CONFIG_DEFAULT['XLSX2CSV']['Bin']					= '/usr/bin/xlsx2csv';
@@ -135,6 +139,7 @@ function load_common_config(){
 		$APP_CONFIG['TABLES']['INFO']			= 'Template_Info';
 		$APP_CONFIG['TABLES']['MESSAGE']		= 'Template_Message';
 		$APP_CONFIG['TABLES']['SETTINGS']		= 'Template_Settings';
+		$APP_CONFIG['TABLES']['FILES']			= 'Template_Files';
 	}
 	
 	if (true){
@@ -148,7 +153,7 @@ function load_common_config(){
 		$APP_CONFIG['APP']['Search']['Operator']['String'][3]	= 'Is not';
 		$APP_CONFIG['APP']['Search']['Operator']['String'][4]	= 'Starts With';
 		$APP_CONFIG['APP']['Search']['Operator']['String'][5]	= 'Ends With';
-		
+		$APP_CONFIG['APP']['Search']['Operator_Default']['String'] = 2;		
 		
 		$APP_CONFIG['APP']['Search']['Operator']['Number'][10]	= '=';
 		$APP_CONFIG['APP']['Search']['Operator']['Number'][11]	= '>';
@@ -156,18 +161,21 @@ function load_common_config(){
 		$APP_CONFIG['APP']['Search']['Operator']['Number'][13]	= '<';
 		$APP_CONFIG['APP']['Search']['Operator']['Number'][14]	= '<=';
 		$APP_CONFIG['APP']['Search']['Operator']['Number'][15]	= '!=';
+		$APP_CONFIG['APP']['Search']['Operator_Default']['Number'] = 10;
 		
 		
 		$APP_CONFIG['APP']['Search']['Operator_By_Type']['String'] = $APP_CONFIG['APP']['Search']['Operator']['String'];
-		
+
 		$APP_CONFIG['APP']['Search']['Operator_By_Type']['Number'] = $APP_CONFIG['APP']['Search']['Operator']['Number'];
 		
 		$APP_CONFIG['APP']['Search']['Operator_By_Type']['Date']['10'] = 'On';
 		$APP_CONFIG['APP']['Search']['Operator_By_Type']['Date']['14'] = 'Before';
 		$APP_CONFIG['APP']['Search']['Operator_By_Type']['Date']['12'] = 'After';
+		$APP_CONFIG['APP']['Search']['Operator_Default']['Date'] = 10;
 		
 		$APP_CONFIG['APP']['Search']['Operator_By_Type']['Category']['2'] = 'Is';
 		$APP_CONFIG['APP']['Search']['Operator_By_Type']['Category']['3'] = 'Is not';
+		$APP_CONFIG['APP']['Search']['Operator_Default']['Category'] = 2;
 	}
 	
 	

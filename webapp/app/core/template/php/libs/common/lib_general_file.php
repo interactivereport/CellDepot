@@ -37,8 +37,6 @@ function extractZipFiles($path){
 	return $results;
 }
 
-
-
 function excelToCSV($file = NULL, $sheetID = 1){
 	//https://github.com/dilshod/xlsx2csv
 	
@@ -78,7 +76,6 @@ function excelToCSV($file = NULL, $sheetID = 1){
 		return $file;	
 	}
 }
-
 
 function getExcelSheetNames($file = NULL){
 	global $BXAF_CONFIG;
@@ -163,7 +160,7 @@ function CSV2Array($string, $separatorChar = ',', $enclosureChar = '"', $newline
     return $array;
 }
 
-function readFirstFewLinesFromFile($file = NULL, $rowCount = 5, $combine = 1, $delimiter = ' ', $function = ''){
+function readFirstFewLinesFromFile($file = NULL, $rowCount = 5, $combine = 1, $delimiter = ' ', $function = '', $dropFirstColumn = 0){
 
 	
 	if (!file_exists($file)){
@@ -249,6 +246,12 @@ function readFirstFewLinesFromFile($file = NULL, $rowCount = 5, $combine = 1, $d
 				$currentRow = str_getcsv($currentLine, $delimiter);
 			}
 			
+			if ($dropFirstColumn){
+				unset($currentRow[0]);
+			}
+			
+			if (array_size(array_clean($currentRow)) == 0) continue;
+			
 			if ($headerCount == array_size($currentRow)){
 				
 				if ($rowCount > 0){
@@ -278,7 +281,6 @@ function readFirstFewLinesFromFile($file = NULL, $rowCount = 5, $combine = 1, $d
 	return $results;
 	
 }
-
 
 function readFirstFewLinesFromFile_v2($file = NULL, $rowCount = 5, $combine = 1, $delimiter = '', $function = ''){
 
@@ -440,6 +442,5 @@ function moveFile($sourceFile = '', $destinationFolder = '', $prefix = ''){
 	return $filename;
 	
 }
-
 
 ?>

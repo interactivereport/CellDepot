@@ -11,7 +11,7 @@ $appObj['Search'][$currentIndex]['Operator'] 	= 1;
 $appObj['Search'][$currentIndex]['Value'] 		= '';
 $appObj['Search'][$currentIndex]['Logic'] 		= '';
 $appObj['Default_Field'] 						= 'TSTID';
-$appObj['Record_IDs']  = array(1, 3, 5, 7, 9);
+$appObj['Record_IDs']  		= array(1, 3, 5, 7, 9);
 
 $appObj['Page']['EXE']		= 'app_project_search_exe.php';
 $appObj['Page']['AJAX']		= 'app_project_search_ajax.php';
@@ -27,7 +27,6 @@ if (!isset($appObj)){
 
 if ($_GET['searchKey'] != ''){
 	$temp = getRedisCache($_GET['searchKey']);
-	
 	
 	if (array_size($temp) > 0){
 		$appObj['Search'] = $temp;	
@@ -301,7 +300,10 @@ echo "<div id='feedbackSection'></div>";
 
 ?>
 
+
+
 <script type="text/javascript">
+
 
 
 $(document).ready(function(){
@@ -449,6 +451,8 @@ $(document).ready(function(){
 		var currentColumn = $(this).val();
 		var rowCount = $(this).attr('rowcount');
 		var operatorHTML = '';
+		var operatorDefaultValue = '';
+		var operatorDefaultValueSet = false;
 		
 
 		if (currentColumn == '') return false;
@@ -459,18 +463,25 @@ $(document).ready(function(){
 
 				if (strtolower($type) == 'date'){
 					$operators = $APP_CONFIG['APP']['Search']['Operator_By_Type']['Date'];
+					$operatorDefaultValue = $APP_CONFIG['APP']['Search']['Operator_Default']['Date'];
 				} elseif (strpos($type, 'array_') === 0){
 					$operators = $APP_CONFIG['APP']['Search']['Operator_By_Type']['Category'];
+					$operatorDefaultValue = $APP_CONFIG['APP']['Search']['Operator_Default']['Category'];
 				} elseif ($type == 'tag_key_value'){
 					$operators = $APP_CONFIG['APP']['Search']['Operator_By_Type']['Category'];
+					$operatorDefaultValue = $APP_CONFIG['APP']['Search']['Operator_Default']['Category'];
 				} elseif ($type == 'number'){
 					$operators = $APP_CONFIG['APP']['Search']['Operator_By_Type']['Number'];
+					$operatorDefaultValue = $APP_CONFIG['APP']['Search']['Operator_Default']['Number'];
 				} else {
 					$operators = $APP_CONFIG['APP']['Search']['Operator_By_Type']['String'];
+					$operatorDefaultValue = $APP_CONFIG['APP']['Search']['Operator_Default']['String'];
 				}
 				
 				echo "if (currentColumn == '{$currentSQL}'){\n";
 				
+					echo "operatorDefaultValue = {$operatorDefaultValue};\n";
+					
 					foreach($operators as $tempKey => $tempValue){
 						echo "operatorHTML += \"<option value='{$tempKey}'>{$tempValue}</option>\";\n";
 					}
@@ -481,6 +492,8 @@ $(document).ready(function(){
 		?>
 		
 		$('#Operator_' + rowCount).html(operatorHTML);
+		
+		
 		
 
 		
@@ -494,13 +507,13 @@ $(document).ready(function(){
 					if (typeof $('#Value_' + rowCount + '_init').val() !== 'undefined'){
 						$('#Value_' + rowCount).val( $('#Value_' + rowCount + '_init').val() );
 						$('#Value_' + rowCount + '_init').remove();
+						operatorDefaultValueSet = true;
 					}
 					
 					if (typeof $('#Operator_' + rowCount + '_init').val() !== 'undefined'){
 						$('#Operator_' + rowCount).val( $('#Operator_' + rowCount + '_init').val() );
-						
-						
-						
+						$('#Operator_' + rowCount + '_init').remove();
+						operatorDefaultValueSet = true;
 						<?php
 							if ($submitAfterFieldChange) { ?>
 								if (<?php echo array_size($dataArray['Search']); ?> == rowCount){
@@ -510,6 +523,12 @@ $(document).ready(function(){
 						
 					}
 					
+					
+					
+					if (operatorDefaultValueSet == false){
+
+						$('#Operator_' + rowCount).val(operatorDefaultValue);
+					}
 
 					
 				}

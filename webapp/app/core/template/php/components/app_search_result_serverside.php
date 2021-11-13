@@ -44,6 +44,9 @@ if ($appObj['Enable_Group_Header']){
 	$allColumnsWithGroupHeaders = getSearchableColumnsWithGroupHeaders($appObj['Table']);
 }
 
+$defaultColumns = getDefaultSearchColumnSettingsForDataTable($appObj['Table']);
+
+
 
 
 
@@ -84,6 +87,7 @@ if (($appObj['Column_Settings_Modal']) || (array_size($appObj['Buttons']) > 0)){
 	echo "</div>";
 }
 
+//Table
 if (true){
 	echo "<div class='row'>";
 		echo "<div class='col-lg-12'>";
@@ -150,11 +154,20 @@ if (true){
 	echo "</div>";
 }
 
+
 if ($appObj['Column_Settings_Modal'] && !$appObj['Enable_Group_Header']){
 	$modalID 	= "settingsModal";
 	$modalTitle	= '<h4>Column Settings</h4>';
 	
 	$modalBody 	= '<p>Please select the columns you like to display:';
+
+	if (array_size($defaultColumns) > 0){
+		$modalBody	.= "<div class='row'>";
+			$modalBody	.= "<div class='col-4'>";
+				$modalBody .= "<a href='javascript:void(0);' id='columnSettingsCheckboxResetAllTrigger'> Reset to Default Settings</a>";
+			$modalBody	.= "</div>";
+		$modalBody	.= "</div>";
+	}
 	
 	$modalBody	.= "<div class='row'>";
 		$modalBody	.= "<div class='col-4'>";
@@ -203,8 +216,14 @@ if ($appObj['Column_Settings_Modal'] && !$appObj['Enable_Group_Header']){
 		
 		$currentTitle = getHeaderDisplayName($currentTable, $currentSQL, 1);
 		
+		if ((array_size($defaultColumns) > 0) && (in_array($currentSQL, $defaultColumns))){
+			$defaultColumnClass = 'defaultColumn';
+		} else {
+			$defaultColumnClass = '';
+		}
+		
 		$modalBody .= "<div class='col-4'>";
-			$modalBody .= "<input type='checkbox' id='{$currentSQL}_checkbox' class='columnSettingsCheckbox' data-column='{$columnID}' value='{$currentSQL}' {$checked}/> {$currentTitle}";
+			$modalBody .= "<input type='checkbox' id='{$currentSQL}_checkbox' class='columnSettingsCheckbox {$defaultColumnClass}' data-column='{$columnID}' value='{$currentSQL}' {$checked}/> {$currentTitle}";
 		$modalBody .= "</div>";
 		
 		if ($currentIndex % 3 == 0){
@@ -228,11 +247,21 @@ if ($appObj['Column_Settings_Modal'] && $appObj['Enable_Group_Header']){
 	
 	$modalBody 	= '<p>Please select the columns you like to display:';
 	
+	if (array_size($defaultColumns) > 0){
+		$modalBody	.= "<div class='row'>";
+			$modalBody	.= "<div class='col-4'>";
+				$modalBody .= "<a href='javascript:void(0);' id='columnSettingsCheckboxResetAllTrigger'> Reset to Default Settings</a>";
+			$modalBody	.= "</div>";
+		$modalBody	.= "</div>";
+	}
+	
 	$modalBody	.= "<div class='row'>";
 		$modalBody	.= "<div class='col-4'>";
 			$modalBody .= "<input type='checkbox' id='columnSettingsCheckboxSelectAllTrigger'/> Select All";
 		$modalBody	.= "</div>";
 	$modalBody	.= "</div>";
+	
+	
 	
 	
 
@@ -284,8 +313,16 @@ if ($appObj['Column_Settings_Modal'] && $appObj['Enable_Group_Header']){
 				
 				$currentTitle = getHeaderDisplayName($currentTable, $currentSQL, 1);
 				
+				
+				if ((array_size($defaultColumns) > 0) && (in_array($currentSQL, $defaultColumns))){
+					$defaultColumnClass = 'defaultColumn';
+				} else {
+					$defaultColumnClass = '';
+				}
+				
+				
 				$modalBody .= "<div class='col-4'>";
-					$modalBody .= "<input type='checkbox' id='{$currentSQL}_checkbox' class='columnSettingsCheckbox' data-column='{$columnID}' value='{$currentSQL}' {$checked}/> {$currentTitle}";
+					$modalBody .= "<input type='checkbox' id='{$currentSQL}_checkbox' class='columnSettingsCheckbox {$defaultColumnClass}' data-column='{$columnID}' value='{$currentSQL}' {$checked}/> {$currentTitle}";
 				$modalBody .= "</div>";
 				
 				if ($currentIndex % 3 == 0){
@@ -319,8 +356,6 @@ echo "</div>";
 	vertical-align:top;
 }
 
-
-
 .dataTables_length{
 	margin-top:3px;	
 }
@@ -330,6 +365,8 @@ echo "</div>";
 	margin-bottom:5px;
 	float: left !important;
 }
+
+
 </style>
 
 <script type="text/javascript">
@@ -361,6 +398,7 @@ $('#<?php echo $currentDivID; ?>').ready(function(){
 				"url": 	"<?php echo "{$appObj['ajax']}?temp={$IDKey}"; ?>",
 				"type": "POST",
 		},
+		
 		
         "processing": 	true,
 		
@@ -406,11 +444,19 @@ $('#<?php echo $currentDivID; ?>').ready(function(){
 		  
 		  
 		  
-		]
+		],
+
+		
     });
+	
 	
 	$($.fn.dataTable.tables(true)).css('width', '100%');
 	$($.fn.dataTable.tables(true)).DataTable().columns.adjust().draw();
+		<?php if ($appObj['Disable_Checkboxes']){ ?>
+			tableObj.column(0).visible(false);
+		<?php } else { ?>
+			tableObj.column(0).visible(true);
+		<?php } ?>
 	
 	<?php } ?>
 	
@@ -444,6 +490,14 @@ $('#<?php echo $currentDivID; ?>').ready(function(){
 			$('.columnSettingsCheckbox').prop('checked', false);	
 		}
 	});
+	
+	$('#<?php echo $currentDivID; ?>').on('click', '#columnSettingsCheckboxResetAllTrigger', function(){
+		$('.columnSettingsCheckbox').prop('checked', false);	
+		$('#columnSettingsCheckboxSelectAllTrigger').prop('checked', false);	
+		$('.defaultColumn').prop('checked', true);	
+		
+	});
+	
 	
 	
 	$('#<?php echo $currentDivID; ?>').on('click', '.saveColumnSettingsTrigger', function(){
@@ -505,9 +559,7 @@ $('#<?php echo $currentDivID; ?>').ready(function(){
 	});
 	<?php } ?>
 	
-	<?php if ($appObj['Disable_Checkboxes']){ ?>
-		tableObj.column(0).visible(false);
-	<?php } ?>
+	
 	
 	
 

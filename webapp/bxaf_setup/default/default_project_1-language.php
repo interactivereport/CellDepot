@@ -106,6 +106,8 @@ if (true){
 	
 	$BXAF_CONFIG_CUSTOM['MESSAGE'][$currentTable]['Column']['Species']['Title'] 		= 'Species';
 	
+	$BXAF_CONFIG_CUSTOM['MESSAGE'][$currentTable]['Column']['Species_Raw']['Title'] 	= 'Species';
+	
 	$BXAF_CONFIG_CUSTOM['MESSAGE'][$currentTable]['Column']['Year']['Title']			= 'Year';
 			
 	$BXAF_CONFIG_CUSTOM['MESSAGE'][$currentTable]['Column']['Description']['Title']		= 'Description';

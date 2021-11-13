@@ -1,6 +1,7 @@
 <?php
 
 
+
 echo "<form id='form_application' action='javascript:void(0);' method='post' role='form' class='form-horizontal' enctype='multipart/form-data' autocomplete='off'>";
 
 	foreach($BXAF_CONFIG['Project_Layout']['Update']['Columns'] as $tempKey => $currentColumn){
@@ -16,6 +17,7 @@ echo "<form id='form_application' action='javascript:void(0);' method='post' rol
 			} else {
 				$options['Value']	= $APP_CONFIG['DICTIONARY'][$currentTable][$currentColumn]['Default'];	
 			}
+			
 							
 			echo "<div id='{$currentColumn}_Section'>";
 				$currentFormObj = new HTML_Form($options);

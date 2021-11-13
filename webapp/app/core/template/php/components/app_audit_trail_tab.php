@@ -54,12 +54,18 @@ foreach($auditTrails as $auditTrailsID => $currentAuditTrail){
 		}
 		
 		$beforeValue = trim($beforeValue);
+		$beforeValueCheck = htmlspecialchars_decode(fixMicrosoftCharacters($beforeValue));
+		
 		$afterValue = trim($afterValue);
+		$afterValueCheck = htmlspecialchars_decode(fixMicrosoftCharacters($afterValue));
+		
 		
 		if ($beforeValue == $afterValue){
-			continue;	
-		} elseif (fixMicrosoftCharacters($beforeValue) == fixMicrosoftCharacters($afterValue)){
 			continue;
+		} elseif ($beforeValueCheck == $afterValueCheck){
+			continue;
+		} else {
+			//Display
 		}
 	}
 

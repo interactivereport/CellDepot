@@ -75,6 +75,39 @@ function getNameIndexes($SQL_TABLE = '', $names = NULL){
 	$results = getSQL_Data($SQL, 'GetAssoc', 1);
 
 	return $results;
+}
+
+function getNameIndexesByIndexes($SQL_TABLE = '', $indexes = NULL){
+	
+	global $APP_CONFIG;
+	
+	$indexes = id_sanitizer($indexes, 0, 1, 0, 2);
+	
+	if ($indexes == '') return FALSE;
+	if ($SQL_TABLE == '') return FALSE;
+	
+	$SQL = "SELECT `Name`, `ID` FROM {$SQL_TABLE} WHERE `ID` IN ({$indexes})";
+	
+	
+	$results = getSQL_Data($SQL, 'GetAssoc', 1);
+
+	return $results;
+}
+
+
+
+function getAllNameIndexes($SQL_TABLE = ''){
+	
+	global $APP_CONFIG;
+	
+	if ($SQL_TABLE == '') return false;
+	
+	$SQL = "SELECT `ID`, `Name` FROM {$SQL_TABLE} ORDER BY `Name`";
+	
+	
+	$results = getSQL_Data($SQL, 'GetAssoc', 1);
+
+	return $results;
 	
 }
 

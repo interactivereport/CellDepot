@@ -1,7 +1,5 @@
 <?php
 
-
-
 if (array_size($dataArray['Body']) <= 0){
 	echo printFontAwesomeIcon('fas fa-exclamation-triangle text-danger') . " Please verify your URL and try again.";
 	exit();

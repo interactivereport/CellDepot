@@ -12,6 +12,8 @@ if (!isset($getSearchSQLResults)){
 }
 
 
+
+
 if (!$getSearchSQLResults['All'] && $getSearchSQLResults['Record_Count'] <= 0){
 	echo "There are no records available. Please modify your search conditions and try again.";
 	exit();

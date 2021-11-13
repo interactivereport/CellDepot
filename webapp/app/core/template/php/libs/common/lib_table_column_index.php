@@ -120,10 +120,10 @@ function searchColumnIndex($Table = NULL, $Column = NULL, $Value = '', $operator
 		$Value		= addslashes(trim($Value));
 		if ($Value == '') return false;
 	}	
+
 	
 	$Value = string_to_sql_sanitizer($Value);
-	
-	
+
 	if (($Table_ID > 0) && ($Column_ID > 0)){
 		$SQL = "SELECT `Record_ID` FROM `{$APP_CONFIG['TABLES']['COLUMN_INDEX']}` WHERE `Table_ID` = '{$Table_ID}' AND (`Column_ID` = '{$Column_ID}') AND (`Value` IN ({$Value}))";
 	} elseif (($Table != '') && ($Column != '')){
@@ -131,6 +131,8 @@ function searchColumnIndex($Table = NULL, $Column = NULL, $Value = '', $operator
 	} else {
 		return false;
 	}
+	
+	
 	
 	$recordIDs = getSQL_Data($SQL, 'GetCol', 1);
 	$recordIDs = id_sanitizer($recordIDs, 0, 1, 0, 2);

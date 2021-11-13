@@ -77,15 +77,21 @@ function getSearchableColumns($currentTable = ''){
 	
 }
 
-function getSearchableColumnsWithGroupHeaders($currentTable = ''){
+//The columns are sorted by name
+function getSearchableColumnsWithGroupHeaders($currentTable = '', $hideColumnByPreference = 0){
 
 	global $APP_CONFIG;
 	
 	$results = array();
 	
+	if ($hideColumnByPreference){
+		$allColumns = getSearchTablePreferences($currentTable);
+		$preferences = getSearchColumnSettingsForDataTable($currentTable);
+		$preferences = array_combine(array_keys($allColumns), $preferences);
+	}
+	
 	foreach($APP_CONFIG['DICTIONARY'][$currentTable] as $currentColumn => $columnInfo){
-		
-		
+
 		$groupHeader = trim($columnInfo['Group_Header']);
 		
 		if ($groupHeader == ''){
@@ -93,11 +99,17 @@ function getSearchableColumnsWithGroupHeaders($currentTable = ''){
 		}
 		
 		if ($columnInfo['Search']){
-			$results[$groupHeader][$currentColumn] = getHeaderDisplayName($currentTable, $currentColumn, 2);
-			natcasesort($results[$groupHeader]);
+			
+			if ($hideColumnByPreference){
+				if ($preferences[$currentColumn]){
+					$results[$groupHeader][$currentColumn] = getHeaderDisplayName($currentTable, $currentColumn, 2);
+					natcasesort($results[$groupHeader]);
+				}
+			} else {
+				$results[$groupHeader][$currentColumn] = getHeaderDisplayName($currentTable, $currentColumn, 2);
+				natcasesort($results[$groupHeader]);
+			}
 		}
-		
-
 	}
 	
 	natcasesort($results);
@@ -105,6 +117,49 @@ function getSearchableColumnsWithGroupHeaders($currentTable = ''){
 	return $results;
 	
 }
+
+//Same as getSearchableColumnsWithGroupHeaders()
+//The columsn are sorted by display order
+function getSearchableColumnsWithGroupHeadersForDisplay($currentTable = ''){
+
+	global $APP_CONFIG;
+	
+	$results = array();
+	
+	
+	$allColumns = getSearchTablePreferences($currentTable);
+	$preferences = getSearchColumnSettingsForDataTable($currentTable);
+	$preferences = array_combine(array_keys($allColumns), $preferences);
+	$getSearchTablePreferences = getSearchTablePreferences($currentTable);
+
+	
+	foreach($getSearchTablePreferences as $currentColumn => $displayName){
+		
+		if ($preferences[$currentColumn]){
+			$columnInfo = $APP_CONFIG['DICTIONARY'][$currentTable][$currentColumn];
+			$groupHeader = trim($columnInfo['Group_Header']);
+			
+			if ($groupHeader == ''){
+				$groupHeader = 'Others';	
+			}
+			
+			$results[$groupHeader][$currentColumn] = getHeaderDisplayName($currentTable, $currentColumn, 2);
+		}
+		
+		
+	}
+	
+	
+	
+	natcasesort($results);
+	
+	return $results;
+	
+}
+
+
+
+
 
 function getExportableColumns($currentTable = ''){
 
@@ -125,7 +180,7 @@ function getExportableColumns($currentTable = ''){
 }
 
 
-function getSearchSQLResults($currentTable = '', $inputArray = array()){
+function getSearchSQLResults($currentTable = '', $inputArray = array(), $otherInfo = NULL){
 	
 	global $APP_CONFIG;
 
@@ -133,10 +188,18 @@ function getSearchSQLResults($currentTable = '', $inputArray = array()){
 	$rowCount 	= abs(intval($inputArray['rowCount']));
 	$dataArray 	= array();
 	
+	
 	if ($inputArray['Record_IDs_Key'] != ''){
 		$recordIDs = getRedisCache($inputArray['Record_IDs_Key']);
 		
+		
+		
 		$SQL_CONDITIONS = "(`ID` IN (" . id_sanitizer($recordIDs, 0, 1, 0, 2) . "))";
+		
+		if ($otherInfo['bxafStatus']){
+			$SQL_CONDITIONS = "({$SQL_CONDITIONS}) AND (`bxafStatus` = 0)";	
+		}
+		
 		
 		if (array_size($recordIDs) > 0){
 			$SQL 				= "SELECT `ID` FROM `{$currentTable}` WHERE {$SQL_CONDITIONS}";
@@ -172,18 +235,20 @@ function getSearchSQLResults($currentTable = '', $inputArray = array()){
 				$currentSQLCondition = $searchFunction($currentTable, $currentColumn, $value, intval($inputArray["Operator_{$i}"]));
 				
 				unset($searchRow);
-				$searchRow['Field'] 	= $currentColumn;
-				$searchRow['Operator'] 	= $operator;
-				$searchRow['Value'] 	= $value;
-				$searchRow['Logic'] 	= $inputArray["Logic_{$i}"];
-				$searchRow['SQL']		= $currentSQLCondition;
+				$searchRow['Field'] 			= $currentColumn;
+				$searchRow['Operator'] 			= $operator;
+				$searchRow['Value'] 			= $value;
+				$searchRow['Logic'] 			= $inputArray["Logic_{$i}"];
+				$searchRow['SQL']				= $currentSQLCondition;
+				$searchRow['Search_Function']	= $searchFunction;
+				
 				
 				if (!isset($dataArray['Search'])){
 					$dataArray['Search'][1] = $searchRow;
 				} else {
 					$dataArray['Search'][] = $searchRow;
 				}
-			} elseif (strpos($value, '*') !== FALSE){
+			} elseif (is_string($value) && strpos($value, '*') !== FALSE){
 				
 				$tempValue = str_replace('*', '%', $value);
 				$currentSQLCondition = "(`{$currentColumn}` LIKE '{$tempValue}')";
@@ -200,7 +265,38 @@ function getSearchSQLResults($currentTable = '', $inputArray = array()){
 				} else {
 					$dataArray['Search'][] = $searchRow;
 				}
+			} elseif ($APP_CONFIG['DICTIONARY'][$currentTable][$currentColumn]['Type'] == 'tag_key_value'){
 				
+				$tempValue = id_sanitizer($value, 0, 1, 0, 2);
+				$operator = intval($inputArray["Operator_{$i}"]);
+
+				
+				if ($tempValue != ''){
+					if ($operator == 3){
+						//IS NOT
+						$currentSQLCondition = "(`{$currentColumn}` NOT IN ({$tempValue}))";
+					} else {
+						// = 2
+						//IS
+						$currentSQLCondition = "(`{$currentColumn}` IN ({$tempValue}))";
+					}
+					
+					unset($searchRow);
+					$searchRow['Field'] 	= $currentColumn;
+					$searchRow['Operator'] 	= 0;
+					$searchRow['Value'] 	= $value;
+					$searchRow['Logic'] 	= $inputArray["Logic_{$i}"];
+					$searchRow['SQL']		= $currentSQLCondition;
+					
+					if (!isset($dataArray['Search'])){
+						$dataArray['Search'][1] = $searchRow;
+					} else {
+						$dataArray['Search'][] = $searchRow;
+					}
+					
+				}
+				
+			
 			} else {
 				
 				$tempValue = $value;
@@ -313,9 +409,22 @@ function getSearchSQLResults($currentTable = '', $inputArray = array()){
 		if ($SQL_CONDITIONS == ''){
 			$SQL 			= "SELECT `ID` FROM `{$currentTable}`";
 			$SQL_Count 		= "SELECT count(*) FROM `{$currentTable}`";
+			
+			if ($otherInfo['bxafStatus']){
+				$SQL 			= "SELECT `ID` FROM `{$currentTable}` WHERE (`bxafStatus` = 0)";
+				$SQL_Count 		= "SELECT count(*) FROM `{$currentTable}` WHERE (`bxafStatus` = 0)";
+			} else {
+				$SQL 			= "SELECT `ID` FROM `{$currentTable}`";
+				$SQL_Count 		= "SELECT count(*) FROM `{$currentTable}`";
+			}
 			$results['All']	= 1;
 					
 		} else {
+			if ($otherInfo['bxafStatus']){
+				$SQL_CONDITIONS = "({$SQL_CONDITIONS}) AND (`bxafStatus` = 0)";	
+			}
+			
+			
 			$SQL 				= "SELECT `ID` FROM `{$currentTable}` WHERE {$SQL_CONDITIONS}";
 			$SQL_Count 			= "SELECT count(*) FROM `{$currentTable}` WHERE {$SQL_CONDITIONS}";
 			$results['All']	= 0;
@@ -326,13 +435,14 @@ function getSearchSQLResults($currentTable = '', $inputArray = array()){
 	$results['SQL_ID'] 			= $SQL;
 	$results['SQL_Count'] 		= $SQL_Count;
 	$results['Record_Count'] 	= getSQL_Data($SQL_Count, 'GetOne', 1);
+	$results['dataArray'] = $dataArray;
 	
 	return $results;
 	
 	
 }
 
-function getFilterSQLResults($currentTable = '', $inputArray = array()){
+function getFilterSQLResults($currentTable = '', $inputArray = array(), $otherInfo = NULL){
 	
 	global $APP_CONFIG;
 
@@ -407,11 +517,20 @@ function getFilterSQLResults($currentTable = '', $inputArray = array()){
 	}
 	
 	if ($SQL_CONDITIONS == ''){
-		$SQL 			= "SELECT `ID` FROM `{$currentTable}`";
-		$SQL_Count 		= "SELECT count(*) FROM `{$currentTable}`";
+		if ($otherInfo['bxafStatus']){
+			$SQL 			= "SELECT `ID` FROM `{$currentTable}` WHERE (`bxafStatus` = 0)";
+			$SQL_Count 		= "SELECT count(*) FROM `{$currentTable}` WHERE (`bxafStatus` = 0)";
+		} else {
+			$SQL 			= "SELECT `ID` FROM `{$currentTable}`";
+			$SQL_Count 		= "SELECT count(*) FROM `{$currentTable}`";
+		}
 		$results['All']	= 1;
 				
 	} else {
+		if ($otherInfo['bxafStatus']){
+			$SQL_CONDITIONS = "({$SQL_CONDITIONS}) AND (`bxafStatus` = 0)";	
+		}
+			
 		$SQL 				= "SELECT `ID` FROM `{$currentTable}` WHERE {$SQL_CONDITIONS}";
 		$SQL_Count 			= "SELECT count(*) FROM `{$currentTable}` WHERE {$SQL_CONDITIONS}";
 		$results['All']	= 0;
@@ -428,7 +547,7 @@ function getFilterSQLResults($currentTable = '', $inputArray = array()){
 }
 
 
-function getSQLFromDataTable($SQL_TABLE = '', $SQL_FILTER_BASE = '', $columnMapping = NULL, $dataTableInput = array()){
+function getSQLFromDataTable($SQL_TABLE = '', $SQL_FILTER_BASE = '', $columnMapping = NULL, $dataTableInput = array(), $otherInfo = NULL){
 	
 	global $APP_CONFIG;
 	
@@ -462,10 +581,21 @@ function getSQLFromDataTable($SQL_TABLE = '', $SQL_FILTER_BASE = '', $columnMapp
 	
 	
 	if ($SQL_FILTER_BASE == ''){
-		$SQL_FILTER_BASE = '(1)';	
+		$SQL_FILTER_BASE = '(1)';
+		
+		if ($otherInfo['bxafStatus']){
+			$SQL_FILTER_BASE = "(`bxafStatus` = 0)";	
+		}
+			
 	} else {
 		$SQL_FILTER_BASE = "({$SQL_FILTER_BASE})";	
+		
+		if ($otherInfo['bxafStatus']){
+			$SQL_FILTER_BASE = "({$SQL_FILTER_BASE}) AND (`bxafStatus` = 0)";	
+		}
 	}
+	
+	
 	
 	
 	if ($searchKeyword != ''){
@@ -578,6 +708,14 @@ function getSearchColumnSettingsForDataTable($table = ''){
 	}
 	
 	return $results;
+}
+
+function getDefaultSearchColumnSettingsForDataTable($table = ''){
+	
+	global $BXAF_CONFIG, $APP_CONFIG;
+	
+	return $BXAF_CONFIG['SETTINGS']["{$table}_Column_Order_Default"];
+
 }
 
 

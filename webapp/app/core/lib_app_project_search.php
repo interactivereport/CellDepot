@@ -8,7 +8,14 @@ function getProject_Species_MenuForSearch(){
 function getProjectConditionForSearch($currentTable = '', $currentColumn = '', $searchValue = '', $operator = 2){
 	global $APP_CONFIG;
 	
+	
 	return searchColumnIndex($APP_CONFIG['CONSTANTS']['TABLES']['Project'], $APP_CONFIG['CONSTANTS']['COLUMNS']["Project::{$currentColumn}"], $searchValue, $operator);
 }
+
+function getProject_Species_Values(){
+	global $APP_CONFIG;
+	return array_values(getColumnIndexMenu($APP_CONFIG['CONSTANTS']['TABLES']['Project'], $APP_CONFIG['CONSTANTS']['COLUMNS']['Project::Species']));
+}
+
 
 ?>

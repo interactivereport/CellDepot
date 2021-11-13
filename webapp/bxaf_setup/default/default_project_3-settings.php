@@ -1,7 +1,8 @@
 <?php
 
-
-$BXAF_CONFIG_CUSTOM['SETTINGS']['App_Project_Column_Order'] = array('Actions', 'Accession','Name', 'Species', 'Cell_Count', 'Gene_Count');
+$BXAF_CONFIG_CUSTOM['SETTINGS']["App_Project_Column_Order_Default"]
+= $BXAF_CONFIG_CUSTOM['SETTINGS']['App_Project_Column_Order'] 
+= array('Actions', 'Accession','Name', 'Species', 'Cell_Count', 'Gene_Count');
 
 //Annotation Group Limit
 //Browse Multiple Records
