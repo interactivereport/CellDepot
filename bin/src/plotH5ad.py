@@ -138,13 +138,10 @@ def dot(strH5ad,genes,grp,cN=None,gCut=None,expmax=None,permax=None,logmax=float
     xlabW=annoMaxL*7
     h=50+30*len(selG)+xlabH
     w=160+30*len(X[grp].cat.categories)+xlabW
-    color_range=None
-    if expmax is not None:
-        color_range=[0,expmax]
     fig = px.scatter(DOT,x="grp",y="gene",color="mean",size="percent",hover_data={"cellN":":d","median":":.2f","mean":":.2f"},
                      size_max=maxDotSize*(DOT['percent'].max()/maxLegendDot),
                      color_continuous_scale=['rgb(0,0,255)','rgb(150,0,90)','rgb(255,0,0)'],
-                     range_color=color_range)
+                     range_color=expmax)
     fig.update_yaxes(linecolor="#000",showdividers=True,dividercolor="#444",title={"text":""},
                     tickfont={"size":15})
     fig.update_xaxes(linecolor="#000",showdividers=True,dividercolor="#444",title={"text":""},
@@ -177,7 +174,8 @@ def getAdditionalPara(argv):
     try:
         opts, args = getopt.getopt(argv,"n:g:l:e:p:",["ncell=","gcutoff=","logmax=","expmax=","percentagemax="])
     except getopt.GetoptError:
-        raise Exception("plotH5ad path/to/H5ad/file plot/type A/gene/list An/annotation/group -n cell/number -g gene/cutoff -l max/value/log -e max/exp/scale -p max/percentage/scale")
+        print("Usage: plotH5ad path/to/H5ad/file plot/type A/gene/list An/annotation/group -n cell/number -g gene/cutoff -l max/value/log -e min,max/exp/scale -p max/percentage/scale")
+        exit()
     for opt, arg in opts:
         if opt in ("-n", "--ncell"):
             cN = int(arg)
@@ -186,7 +184,10 @@ def getAdditionalPara(argv):
         elif opt in ("-l", "--logmax"):
             logmax = float(arg)
         elif opt in ("-e", "--expmax"):
-            expmax = float(arg)
+            expmax = [float(x) for x in arg.split(",")]
+            if len(expmax)!=2:
+                print("expression scale format require min,max")
+                exit()
         elif opt in ("-p", "--percentagemax"):
             permax = float(arg)
 
