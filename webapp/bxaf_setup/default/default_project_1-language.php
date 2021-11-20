@@ -166,6 +166,19 @@ if (true){
 	$BXAF_CONFIG_CUSTOM['MESSAGE'][$currentTable]['Column']['n']['Title']						= 'Cell Count Cutoff';
 		
 	$BXAF_CONFIG_CUSTOM['MESSAGE'][$currentTable]['Column']['g']['Title']						= 'Expression Cutoff';	
+	
+	$BXAF_CONFIG_CUSTOM['MESSAGE'][$currentTable]['Column']['e']['Title']						= 'Gene Expression Color Scale';
+	
+	$BXAF_CONFIG_CUSTOM['MESSAGE'][$currentTable]['Column']['p']['Title']						= 'Max Percentage of Dots';
+	
+	$BXAF_CONFIG_CUSTOM['MESSAGE'][$currentTable]['Column']['p_Short_HTML']['Title']			= 'Max % of Dots';
+	
+	$BXAF_CONFIG_CUSTOM['MESSAGE'][$currentTable]['Column']['l']['Title']						= 'Perform log2 transformation if maximum gene expression value is greater than';
+	
+	$BXAF_CONFIG_CUSTOM['MESSAGE'][$currentTable]['Column']['l_HTML']['Title']					= 'Perform log<sub>2</sub> transformation if maximum gene expression value is greater than';
+	
+	$BXAF_CONFIG_CUSTOM['MESSAGE'][$currentTable]['Column']['l_Short_HTML']['Title']			= 'Log<sub>2</sub> transformation &gt;';
+	
 
 }
 
