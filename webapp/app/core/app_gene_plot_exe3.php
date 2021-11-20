@@ -34,7 +34,7 @@ if ($_GET['default'] == 1){
 	}
 }
 
-
+$_GET['Plot_Type'] = strtolower($_GET['Plot_Type']);
 if ($_GET['Plot_Type'] == ''){
 	if (array_size($_POST['Genes']) <= 1){
 		$_GET['Plot_Type'] = 'violin';	
@@ -46,15 +46,19 @@ if ($_GET['Plot_Type'] == ''){
 
 
 
-$plotContent 			= getGenePlot($currentProjectID, 
-										$currentProject['File_Directory_CSCh5ad'] . $currentProject['File_Name'], 
-										$_POST['Genes'], 
-										$_GET['Plot_Type'], 
-										$annotationGroup, 
-										$use_default_annotation_group,
-										$_GET['Subsampling'],
-										$_POST['n'], 
-										$_POST['g']);
+$plotContent = getGenePlot( $currentProjectID, 
+							$currentProject['File_Directory_CSCh5ad'] . $currentProject['File_Name'], 
+							$_POST['Genes'], 
+							$_GET['Plot_Type'], 
+							$annotationGroup, 
+							$use_default_annotation_group,
+							$_GET['Subsampling'],
+							$_POST['g'],
+							$_POST['e_min'],
+							$_POST['e_max'],
+							$_POST['p'],
+							$_POST['l']
+							);
 
 
 
@@ -66,19 +70,33 @@ echo "<div class='row'>";
 				echo "<span class='badge badge-pill badge-success'>" . number_format($currentProject['Cell_Count']) . " Cells</span>";
 				echo "&nbsp;<span class='badge badge-pill badge-warning'>" . number_format($currentProject['Gene_Count']) . " Genes</span>";
 				
-				if ($_POST['n'] > 0){
-					echo "&nbsp;<span class='badge badge-pill badge-primary'>{$BXAF_CONFIG['MESSAGE'][$APP_CONFIG['TABLES']['PROJECT']]['Column']['n']['Title']}: " . ($_POST['n']) . "</span>";
-				}
-				
 				if ($_POST['g'] > 0){
 					echo "&nbsp;<span class='badge badge-pill badge-danger'>{$BXAF_CONFIG['MESSAGE'][$APP_CONFIG['TABLES']['PROJECT']]['Column']['g']['Title']}: " . ($_POST['g']) . "</span>";
 				}
+				
+				
+				if ($_GET['Plot_Type'] == 'dot'){
+					if (($_POST['e_min'] >= 0) && ($_POST['e_max'] > 0)){
+						echo "&nbsp;<span class='badge badge-pill badge-primary'>{$BXAF_CONFIG['MESSAGE'][$APP_CONFIG['TABLES']['PROJECT']]['Column']['e']['Title']}: {$_POST['e_min']}-{$_POST['e_max']}</span>";
+					}	
+					
+					if ($_POST['p'] > 0){
+						echo "&nbsp;<span class='badge badge-pill badge-dark'>{$BXAF_CONFIG['MESSAGE'][$APP_CONFIG['TABLES']['PROJECT']]['Column']['p_Short_HTML']['Title']}: " . ($_POST['p']) . "%</span>";
+					}
+					
+					if ($_POST['l'] > 0){
+						echo "&nbsp;<span class='badge badge-pill badge-secondary'>{$BXAF_CONFIG['MESSAGE'][$APP_CONFIG['TABLES']['PROJECT']]['Column']['l_Short_HTML']['Title']} " . ($_POST['l']) . "</span>";
+					}
+				}
+				
 				
 				foreach($_POST['Genes'] as $tempKeyX => $currentGene){
 					echo "&nbsp;<span class='badge badge-pill badge-info'>{$currentGene}</span>";
 				}
 				
-				$URL = getGenePlotAPIURL($currentProjectID, $_POST['Genes'], $_GET['Plot_Type'], $_GET['Subsampling'], $_POST['n'], $_POST['g'], $annotationGroup);
+				$URL = getGenePlotAPIURL($currentProjectID, $_GET['Plot_Type'], $_POST['Genes'], $annotationGroup, 
+										$_GET['Subsampling'], $_POST['g'], 
+										$_POST['e_min'], $_POST['e_max'], $_POST['p'], $_POST['l']);
 				
 				echo "&nbsp;<span class='badge badge-pill badge-secdonary'><a href='{$URL}' target='_blank'>View Plot in Full Screen</a></span>";
 				

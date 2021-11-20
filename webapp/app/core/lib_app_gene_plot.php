@@ -1,16 +1,15 @@
 <?php
 
-function getGenePlot($projectID = 0, $h5ad_file = '', $genes = array(), $plotType = '', $annotation_group = '', $use_default_annotation_group = 0, $subSampling = 0, $n = 0, $g = 0){
+function getGenePlot($projectID = 0, $h5ad_file = '', $genes = array(), $plotType = '', $annotation_group = '', $use_default_annotation_group = 0, 
+					$subSampling = 0, $g = 0, $e_min = 0, $e_max = 0, $p = 0, $l = 0){
 	
 	global $BXAF_CONFIG, $APP_CONFIG;
 	
-	$version = '2021-07-02 19:00';
-	
+	$version = '2021-11-19 00:00';
 	
 	if (!file_exists($h5ad_file)){
 		return false;	
 	}
-	
 	
 	$genes = id_sanitizer($genes, 1, 0, 0, 1);
 	$genes = id_sanitizer($genes, 1, 0, 0, 1);
@@ -21,7 +20,7 @@ function getGenePlot($projectID = 0, $h5ad_file = '', $genes = array(), $plotTyp
 		return false;	
 	}
 	
-	
+	$plotType = trim(strtolower($plotType));
 	if (($plotType != 'violin') && ($plotType != 'dot')){
 		if (array_size($genes) == 1){
 			$plotType = 'violin';	
@@ -41,17 +40,37 @@ function getGenePlot($projectID = 0, $h5ad_file = '', $genes = array(), $plotTyp
 	
 	$subSampling = abs(intval($subSampling));
 	if ($subSampling > 0){
-		$cmd[] = $subSampling;	
+		$cmd[] = "-n {$subSampling}";
 	}
 	
-	$n = abs(floatval($n));
-	if ($n > 0){
-		$cmd[] = "-n {$n}";
-	}
 	
 	$g = abs(floatval($g));
 	if ($g > 0){
 		$cmd[] = "-g {$g}";
+	}
+	
+	
+	if ($plotType == 'dot'){
+		$e_min = abs(floatval($e_min));
+		$e_max = abs(floatval($e_max));
+		if (($e_min >= 0) && ($e_max > 0)){
+			$cmd[] = "-e {$e_min},{$e_max}";
+		}
+		
+		$p = abs(intval($p));
+		
+		if ($p > 100){
+			$p = 100;	
+		}
+		
+		if ($p > 0){
+			$cmd[] = "-p {$p}";
+		}
+		
+		$l = abs(floatval($l));
+		if ($l > 0){
+			$cmd[] = "-l {$l}";
+		}
 	}
 	
 	$cmd = implode(' ', $cmd);
@@ -92,11 +111,10 @@ function getGenePlot($projectID = 0, $h5ad_file = '', $genes = array(), $plotTyp
 		$dataArray['Plot_Type'] 			= $plotType;
 		$dataArray['Annotation_Group'] 		= $annotation_group;
 		$dataArray['SubSampling'] 			= $subSampling;
-		$dataArray['n'] 					= $n;
 		$dataArray['g'] 					= $g;
 		$dataArray['Command'] 				= $cmd;
-		$dataArray['Command_Checksum'] 		= md5($cmd);
-		$dataArray['Parameters_Checksum'] 	= getGenePlotParameterChecksum($genes, $annotation_group, $use_default_annotation_group, $subSampling, $n, $g);
+		$dataArray['Command_Checksum'] 		= md5($cmd . '::' . $version);
+		$dataArray['Parameters_Checksum'] 	= getGenePlotParameterChecksum($genes, $annotation_group, $use_default_annotation_group, $subSampling, $g, $e_min, $e_max, $p, $l);
 		
 		$dataArray['Results'] 				= $results['plot'];
 		$dataArray['Result_Status'] 		= $results['result'];
@@ -115,7 +133,8 @@ function getGenePlot($projectID = 0, $h5ad_file = '', $genes = array(), $plotTyp
 	
 }
 
-function getGenePlotParameterChecksum($genes = array(), $annotation_group = '', $use_default_annotation_group = 0, $subSampling = 0, $n = 0, $g = 0){
+function getGenePlotParameterChecksum($genes = array(), $annotation_group = '', $use_default_annotation_group = 0, 
+										$subSampling = 0, $g = 0, $e_min = 0, $e_max = 0, $p = 0, $l = 0){
 	
 	$genes = id_sanitizer($genes, 1, 0, 0, 1);
 	$genes = id_sanitizer($genes, 1, 0, 0, 1);
@@ -130,10 +149,9 @@ function getGenePlotParameterChecksum($genes = array(), $annotation_group = '', 
 	}
 	
 	$subSampling = abs(intval($subSampling));
-	$n = abs(floatval($n));
 	$g = abs(intval($g));
 	
-	
+	$checksum = array();
 	$checksum['Genes'] = $genes;
 	$checksum['Plot_Type'] = $plotType;
 	
@@ -142,9 +160,19 @@ function getGenePlotParameterChecksum($genes = array(), $annotation_group = '', 
 	} else {
 		$checksum['annotation_group'] = $annotation_group;
 	}
-	$checksum['subSampling'] = $subSampling;
-	$checksum['n'] = $n;
-	$checksum['g'] = $g;
+	$checksum['subSampling'] 	= $subSampling;
+	$checksum['g'] 				= $g;
+
+	
+	if ($plotType == 'dot'){
+		$checksum['e_min'] 			= $e_min;
+		$checksum['e_max'] 			= $e_max;
+		$checksum['p'] 				= $p;
+		$checksum['l'] 				= $l;
+	}
+	
+	
+	
 	
 	return md5(json_encode($checksum));
 }
@@ -160,19 +188,7 @@ function getProjectsForGenePlot($inputArray = NULL){
 	$geneIndexes = id_sanitizer($geneIndexes, 0, 1, 0, 2);
 	
 	
-	
-	//if ($geneIndexes == ''){
-	if (0){
-		if ($inputArray['Hide_Empty']){
-			
-			$parameterChecksum = getGenePlotParameterChecksum($inputArray['Genes'], '', 1, 0, $inputArray['n'], $inputArray['g']);
-			
-			$SQL = "SELECT `Project_ID` FROM `{$APP_CONFIG['TABLES']['PROJECT_GENE_PLOT']}` WHERE
-				(`Parameters_Checksum` = '{$parameterChecksum}') AND (`Result_Status` = 0)";
-			$badProjectIDs = getSQL_Data($SQL, 'GetCol');	
-			$badProjectIDs = id_sanitizer($badProjectIDs, 0, 1, 0, 2);
-		}
-	} else {
+	if (true){
 		$projectWithResultIDs = '';
 		
 		$inputArray['g'] = floatval($inputArray['g']);
@@ -188,8 +204,6 @@ function getProjectsForGenePlot($inputArray = NULL){
 
 	}
 
-	
-	
 
 	$SQL = "SELECT `ID`, `Name`, `Accession` FROM {$SQL_TABLE} WHERE (`File_CSCh5ad_status` = 1)";
 	
@@ -220,11 +234,31 @@ function getProjectsForGenePlot($inputArray = NULL){
 	
 }
 
-function getGenePlotAPIURL($ID = 0, $Genes = NULL, $Plot_Type = '', $Subsampling = '', $n = 0, $g = 0, $Project_Group = ''){
+
+function getGenePlotAPIURL($ID = 0, $Plot_Type = '', $Genes = NULL, $Project_Group = '',
+							$Subsampling = '', $g = 0, $e_min = 0, $e_max = 0, $p = 0, $l = 0){
 	
 	$Genes = implode(',', $Genes);
+	
+	$parameters = array();
+	$parameters['ID'] 				= $ID;
+	$parameters['Plot_Type'] 		= strtolower($Plot_Type);
+	$parameters['Genes'] 			= trim($Genes);
+	$parameters['Project_Group'] 	= trim($Project_Group);
+	$parameters['Subsampling'] 		= $Subsampling;
+	$parameters['g'] 				= $g;
+	
+	if ($parameters['Plot_Type'] == 'dot'){
+		$parameters['e_min'] 			= $e_min;
+		$parameters['e_max'] 			= $e_max;
+		$parameters['p'] 				= $p;
+		$parameters['l'] 				= $l;
+	}
+	
+	$http_build_query = http_build_query($parameters);
+	
 
-	return "api_gene_plot.php?ID={$ID}&Genes={$Genes}&Plot_Type={$Plot_Type}&Subsampling={$Subsampling}&n={$n}&g={$g}&Project_Group={$Project_Group}";
+	return "api_gene_plot.php?" . $http_build_query;
 	
 }
 

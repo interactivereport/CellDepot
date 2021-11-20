@@ -4,12 +4,10 @@ include_once('config_init.php');
 
 echo "<hr/>";
 
+
 $_POST['Genes'] = id_sanitizer($_POST['Genes'], 1, 0, 0, 1);
 $_POST['Genes'] = array_iunique($_POST['Genes'], 1);
 $_POST['Genes'] = array_map('strtoupper', $_POST['Genes']);
-
-
-
 
 
 if ($_POST['preselected'] != ''){
@@ -17,8 +15,12 @@ if ($_POST['preselected'] != ''){
 }
 
 
-$_POST['n'] = abs(floatval($_POST['n']));
-$_POST['g'] = abs(floatval($_POST['g']));
+
+$_POST['g'] 	= abs(floatval($_POST['g']));
+$_POST['e_min'] = abs(floatval($_POST['e_min']));
+$_POST['e_max'] = abs(floatval($_POST['e_max']));
+$_POST['p'] 	= abs(intval($_POST['p']));
+$_POST['l'] 	= abs(floatval($_POST['l']));
 
 $uniqueID = getUniqueID();
 
