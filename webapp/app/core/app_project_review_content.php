@@ -99,7 +99,7 @@ if (array_size($projectInfo) <= 0){
 			}
 			
 			
-			if (array_size($projectInfo['File_h5ad_info']['genes']) > 0){
+			if ((array_size($projectInfo['File_h5ad_info']['genes']) > 0) && (array_size($projectInfo['File_h5ad_info']['genes']) <= 5000)){
 				$display = $BXAF_CONFIG['MESSAGE'][$currentTable]['Column']['Genes']['Title'];
 				echo "<li class='nav-item'>
 						<a class='nav-link' href='#Genes' role='tab' data-toggle='tab'>{$display}</a>
@@ -155,7 +155,7 @@ if (array_size($projectInfo) <= 0){
 				echo "</div>";
 			}
 			
-			if (array_size($projectInfo['File_h5ad_info']['genes']) > 0){
+			if ((array_size($projectInfo['File_h5ad_info']['genes']) > 0) && (array_size($projectInfo['File_h5ad_info']['genes']) <= 5000)){
 				echo "<div role='tabpanel' id='Genes' class='tab-pane fade in'>";
 					$dataArray = $projectInfo;
 					include('app_project_review_content_tab_genes.php');
