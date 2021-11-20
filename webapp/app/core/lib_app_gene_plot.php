@@ -53,7 +53,7 @@ function getGenePlot($projectID = 0, $h5ad_file = '', $genes = array(), $plotTyp
 	if ($plotType == 'dot'){
 		$e_min = abs(floatval($e_min));
 		$e_max = abs(floatval($e_max));
-		if (($e_min >= 0) && ($e_max > 0)){
+		if (($e_min >= 0) && ($e_max > 0) && ($e_max > $e_min)){
 			$cmd[] = "-e {$e_min},{$e_max}";
 		}
 		
