@@ -32,7 +32,7 @@ function getGenePlot($projectID = 0, $h5ad_file = '', $genes = array(), $plotTyp
 	$cmd[] = $BXAF_CONFIG['CELLXGENE_plotH5ad'];
 	$cmd[] = $h5ad_file;
 	$cmd[] = $plotType;
-	$cmd[] = implode(',', $genes);
+	$cmd[] = str_replace(' ', '', implode(',', $genes));
 	
 	if ($annotation_group != ''){
 		$cmd[] = "'{$annotation_group}'";
