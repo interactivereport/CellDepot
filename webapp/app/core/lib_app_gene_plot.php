@@ -5,7 +5,7 @@ function getGenePlot($projectID = 0, $h5ad_file = '', $genes = array(), $plotTyp
 	
 	global $BXAF_CONFIG, $APP_CONFIG;
 	
-	$version = '2021-11-22 21:00';
+	$version = '2021-11-23 00:00';
 	
 	if (!file_exists($h5ad_file)){
 		return false;	
