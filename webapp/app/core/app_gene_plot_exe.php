@@ -5,9 +5,11 @@ include_once('config_init.php');
 echo "<hr/>";
 
 
-$_POST['Genes'] = id_sanitizer($_POST['Genes'], 1, 0, 0, 1);
+$_POST['Genes'] = id_sanitizer($_POST['Genes'], 0, 0, 0, 1);
+$_POST['Genes'] = array_map('trim', $_POST['Genes']);
 $_POST['Genes'] = array_iunique($_POST['Genes'], 1);
 $_POST['Genes'] = array_map('strtoupper', $_POST['Genes']);
+
 
 
 if ($_POST['preselected'] != ''){

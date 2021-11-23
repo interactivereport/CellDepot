@@ -10,6 +10,8 @@ if (true){
 	if (array_size($_POST) <= 0) exit();
 }
 
+
+
 $page = abs(intval($_GET['page']));
 if ($page <= 0) $page = 1;
 

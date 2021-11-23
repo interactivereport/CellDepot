@@ -34,6 +34,7 @@ if ($_GET['default'] == 1){
 	}
 }
 
+
 $_GET['Plot_Type'] = strtolower($_GET['Plot_Type']);
 if ($_GET['Plot_Type'] == ''){
 	if (array_size($_POST['Genes']) <= 1){

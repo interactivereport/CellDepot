@@ -5,16 +5,18 @@ function getGenePlot($projectID = 0, $h5ad_file = '', $genes = array(), $plotTyp
 	
 	global $BXAF_CONFIG, $APP_CONFIG;
 	
-	$version = '2021-11-19 00:00';
+	$version = '2021-11-22 21:00';
 	
 	if (!file_exists($h5ad_file)){
 		return false;	
 	}
 	
-	$genes = id_sanitizer($genes, 1, 0, 0, 1);
-	$genes = id_sanitizer($genes, 1, 0, 0, 1);
+	$genes = id_sanitizer($genes, 0, 0, 0, 1);
+	$genes = array_map('trim', $genes);
 	$genes = array_iunique($genes, 1);
 	$genes = array_map('strtoupper', $genes);
+	
+	
 	
 	if (array_size($genes) <= 0){
 		return false;	
