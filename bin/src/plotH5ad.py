@@ -11,7 +11,7 @@ import plotly.express as px
 def findGenes(genes,gNames):
     genes = genes.lower().split(",")
     allG = {v.lower():v for v in gNames}
-    return [allG[x] for x in list(set(allG.keys()) & set(genes))]
+    return [allG[x] for x in sorted(set(allG.keys()) & set(genes),key=genes.index)]
 def randomCell(selN,cNames):
     selC = [False]*len(cNames)
     for i in random.sample(list(range(len(cNames))),selN):
