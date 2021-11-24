@@ -106,7 +106,7 @@ def dotLegend(maxPercent):
     for i in range(3):
         dotLab += [[i,0,round(maxPercent/10)*10 - i*step,"%d%%"%(round(maxPercent/10)*10 - i*step)]]
     dotLab = pd.DataFrame(dotLab,columns=['x','y','percent','txt'])
-    dotLabMax = dotLab["percent"].max()*20/100
+    dotLabMax = 20 #dotLab["percent"].max()*20/100
     fig = px.scatter(dotLab,x="x",y="y",size="percent",text="txt",size_max=dotLabMax,
                     color_discrete_sequence=["#888"])
     fig.update_traces(textposition='top center',textfont={'size':14,"color":"#000"})#
