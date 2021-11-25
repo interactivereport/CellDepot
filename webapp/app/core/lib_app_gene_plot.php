@@ -5,7 +5,7 @@ function getGenePlot($projectID = 0, $h5ad_file = '', $genes = array(), $plotTyp
 	
 	global $BXAF_CONFIG, $APP_CONFIG;
 	
-	$version = '2021-11-23 00:00';
+	$version = '2021-11-25 00:00';
 	
 	if (!file_exists($h5ad_file)){
 		return false;	
@@ -338,10 +338,6 @@ function processGenePlot($string = '', $type = 'compact'){
 			$string = str_replace("height:{$height}px;", '', $string);
 			$string = str_replace("width:{$width}px;", '', $string);
 			
-			/*
-			$string = str_replace("\"height\": {$height},", "\"height\": {$plot_height},", $string);
-			$string = str_replace("\"width\": {$width},", "\"width\": {$plot_width},", $string);
-			*/
 			
 			$string = str_replace("\"height\": {$height},", '', $string);
 			$string = str_replace("\"width\": {$width},", '', $string);
@@ -349,7 +345,7 @@ function processGenePlot($string = '', $type = 'compact'){
 		
 		if ($plot_type == 'scatter'){
 			
-			$plot_height 	= 800;
+			$plot_height 	= 700;
 			$plot_width		= ceil($plot_height*($width/$height));
 		
 			$string = str_replace("height:{$height}px;", "height:{$plot_height}px;", $string);
@@ -359,13 +355,11 @@ function processGenePlot($string = '', $type = 'compact'){
 			$string = str_replace("\"height\": {$height},", "\"height\": {$plot_height},", $string);
 			$string = str_replace("\"width\": {$width},", "\"width\": {$plot_width},", $string);
 			
-			/*
-			$string = str_replace("\"height\": {$height},", '', $string);
-			$string = str_replace("\"width\": {$width},", '', $string);
-			*/
+			
 		}
 
 	}
+	
 	
 	
 	
