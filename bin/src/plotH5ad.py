@@ -7,6 +7,8 @@ import numpy as np
 #from base64 import b64encode, b64decode
 import plotly.graph_objects as go
 import plotly.express as px
+from plotly.subplots import make_subplots
+import plotly.offline
 
 def findGenes(genes,gNames):
     genes = genes.lower().split(",")
@@ -91,33 +93,7 @@ def violin(strH5ad,genes,grp,cN=None,gCut=None):
     #    f.write(imgD)
     return buffer.getvalue() #html[divIndex:(scriptIndex+len("</script>"))]
 
-def overlay(html,z):
-    mark='style="'
-    ix = html.find(mark)
-    html = html[:(ix+len(mark))]+"position:absolute;bottom:0;left:0;z-index:%d;"%z+html[(ix+len(mark)):]
-    return html
-def dotLegend(maxPercent):
-    if maxPercent>15:
-        step = round(maxPercent/15)*5
-    else:
-        step = round(maxPercent/3)
-    #maxDotSize=20*round(maxPercent)/100
-    dotLab=list()
-    for i in range(3):
-        dotLab += [[i,0,round(maxPercent/10)*10 - i*step,"%d%%"%(round(maxPercent/10)*10 - i*step)]]
-    dotLab = pd.DataFrame(dotLab,columns=['x','y','percent','txt'])
-    dotLabMax = 20 #dotLab["percent"].max()*20/100
-    fig = px.scatter(dotLab,x="x",y="y",size="percent",text="txt",size_max=dotLabMax,
-                    color_discrete_sequence=["#888"])
-    fig.update_traces(textposition='top center',textfont={'size':14,"color":"#000"})#
-    fig.update_yaxes(visible=False)
-    fig.update_xaxes(visible=False,range=[-0.5,2.5])
-    fig.update_layout(plot_bgcolor='#fff',height=65,width=90,
-                     margin={"l":0,"r":0,"t":0,"b":0},hovermode=False)
-    buffer = io.StringIO()
-    fig.write_html(buffer,config={'staticPlot':True},include_plotlyjs=False,full_html=False)
-    return overlay(buffer.getvalue(),10),dotLabMax*(maxPercent/dotLab["percent"].max())
-def dot(strH5ad,genes,grp,cN=None,gCut=None,expmax=None,permax=None,logmax=float("inf")):
+def dot(strH5ad,genes,grp,cN=None,gCut=None,expRange=[None,None],permax=100,logmax=float("inf")):
     X,selG = obtainData(strH5ad,genes,grp,cN=cN,gCut=gCut,logMax=logmax)
     df = list()
     for anno in X[grp].cat.categories:
@@ -129,50 +105,67 @@ def dot(strH5ad,genes,grp,cN=None,gCut=None,expmax=None,permax=None,logmax=float
                     round(tmp[tmp>0].count()/tmp.shape[0]*100,2),
                     tmp.shape[0]]]
     DOT=pd.DataFrame(df,columns=['grp','gene','median','mean','percent','cellN'])
-    maxLegendDot=DOT['percent'].max()
-    if permax is not None:
-        maxLegendDot=permax
-    dotL,maxDotSize=dotLegend(maxLegendDot)
+
+    percentSizeLegendW=80
     annoMaxL=max([len(str(i)) for i in X[grp].cat.categories])
-    xlabH=35+annoMaxL*4
+    xlabH=35+annoMaxL*5
     xlabW=annoMaxL*7
     h=50+30*len(selG)+xlabH
-    w=160+30*len(X[grp].cat.categories)+xlabW
-    fig = px.scatter(DOT,x="grp",y="gene",color="mean",size="percent",hover_data={"cellN":":d","median":":.2f","mean":":.2f"},
-                     size_max=maxDotSize*(DOT['percent'].max()/maxLegendDot),
-                     color_continuous_scale=['rgb(0,0,255)','rgb(150,0,90)','rgb(255,0,0)'],
-                     range_color=expmax)
-    fig.update_yaxes(linecolor="#000",showdividers=True,dividercolor="#444",title={"text":""},
-                    tickfont={"size":15})
-    fig.update_xaxes(linecolor="#000",showdividers=True,dividercolor="#444",title={"text":""},
-                    tickfont={"size":15})
-    fig.update_layout(plot_bgcolor='#fff',title={"text":grp},title_x=0.5,height=h,width=w,
-                     margin={"l":0,"r":0,"t":30,"b":xlabH})#
-    fig.update_coloraxes({"colorbar":{"len":1.5}})
-    #fig.write_html("/home/oyoung/test/test.html")
-    buffer = io.StringIO()
-    fig.write_html(buffer,include_plotlyjs=False,full_html=False)
-    #html=buffer.getvalue()
-    #divIndex=html.find('<div id')
-    #if html.find('<div id',divIndex+1)!=-1:
-    #    print("Error: plotly structure change! Contact oyoung@bioinforx.com")
-    #    exit()
-    #scriptIndex=html.find('</script>',divIndex)
-    #imgD = buffer.getvalue()
-    #imgD = b64encode(imgD.encode()).decode()
-    #with open("test1.txt","w") as f:
-    #    f.write(imgD)
+    w=160+30*len(X[grp].cat.categories)+xlabW+percentSizeLegendW
 
-    return "<div style='height:%dpx; width:%dpx; position: relative;'>"%(h,w)+overlay(buffer.getvalue(),0)+dotL+'</div>' #html[divIndex:(scriptIndex+len("</script>"))]
+    figDot = make_subplots(rows=1, cols=2,
+                           column_widths=[1-percentSizeLegendW/w, percentSizeLegendW/w],
+                           horizontal_spacing=0,
+                           subplot_titles=("","Percentage"))
+    figDot.update_annotations(font_size=11)
+    figDot.add_trace(go.Scatter(x=DOT["grp"],y=DOT["gene"],mode='markers',
+            text=['%s'%i for i in DOT['cellN']],
+            name="",
+            marker=dict(size=DOT['percent'],color=DOT["mean"],
+                cmin=expRange[0],cmax=expRange[1],
+                colorscale=['rgb(0,0,255)','rgb(150,0,90)','rgb(255,0,0)'],
+                sizemin=0,
+                sizemode='area',
+                sizeref=0.25*permax/100,
+                showscale=True,
+                colorbar={'title':"Mean",'len':1.5}),
+                customdata=DOT['median'],
+                hovertemplate='Group:%{x}<br>Gene:%{y}<br>Cell numner:%{text}<br>Percentage:%{marker.size:.1f}<br>Mean:%{marker.color:.2f}<br>Median:%{customdata:.2f}'),
+        row=1,col=1)
+    perScale = [(int)(permax*i) for i in [1,0.67,0.33]]
+    figDot.add_trace(go.Scatter(x=[1,1,1],y=[1,2,3],mode='markers+text',
+            text=['%d%%'%i for i in perScale],
+            textfont={'size':13,"color":"#000000"},
+            marker=dict(size=[permax,permax*0.67,permax*0.33],
+                color="#888888",
+                sizemin=0,
+                sizemode='area',
+                sizeref=0.25*permax/100,
+                showscale=False),
+                hoverinfo='skip'),
+        row=1,col=2)
+
+    figDot.update_yaxes(linecolor="#000",showdividers=True,dividercolor="#444",title={"text":""},
+                    tickfont={"size":15})
+    figDot.update_xaxes(linecolor="#000",showdividers=True,dividercolor="#444",title={"text":""},
+                    tickfont={"size":15},tickangle=45)
+    figDot.update_xaxes(showticklabels=False,showline=False,row=1,col=2)
+    figDot.update_yaxes(showticklabels=False,showline=False,row=1,col=2)
+    figDot.update_layout(plot_bgcolor='#fff',title={"text":grp},title_x=0.5,height=h,width=w,
+                     margin={"l":0,"r":0,"t":30,"b":xlabH},showlegend=False)
+    buffer = io.StringIO()
+    figDot.write_html(buffer,include_plotlyjs=False,full_html=False)
+
+    return buffer.getvalue()
 
 def getAdditionalPara(argv):
     cN = None
     gCut = None
-    expmax = None
-    permax = None
+    expRange = [None,None]
+    permax = 100
     logmax = float('inf')
     try:
-        opts, args = getopt.getopt(argv,"n:g:l:e:p:",["ncell=","gcutoff=","logmax=","expmax=","percentagemax="])
+        opts, args = getopt.getopt(argv,"n:g:l:e:p:",["ncell=","gcutoff=","logmax=","exprange=","percentagemax="])
     except getopt.GetoptError:
         print("Usage: plotH5ad path/to/H5ad/file plot/type A/gene/list An/annotation/group -n cell/number -g gene/cutoff -l max/value/log -e min,max/exp/scale -p max/percentage/scale")
         exit()
@@ -183,26 +176,26 @@ def getAdditionalPara(argv):
             gCut = float(arg)
         elif opt in ("-l", "--logmax"):
             logmax = float(arg)
-        elif opt in ("-e", "--expmax"):
-            expmax = [float(x) for x in arg.split(",")]
-            if len(expmax)!=2:
+        elif opt in ("-e", "--exprange"):
+            expRange = [float(x) for x in arg.split(",")]
+            if len(expRange)!=2:
                 print("expression scale format require min,max")
                 exit()
         elif opt in ("-p", "--percentagemax"):
             permax = float(arg)
 
-    return cN,gCut,expmax,permax,logmax
+    return cN,gCut,expRange,permax,logmax
 
 def main():
     strH5ad = sys.argv[1]
     plotType = sys.argv[2]
     genes = sys.argv[3]
     grp = sys.argv[4]
-    cN,gCut,expmax,permax,logmax = getAdditionalPara(sys.argv[5:])
+    cN,gCut,expRange,permax,logmax = getAdditionalPara(sys.argv[5:])
     if plotType=='violin':
         print(violin(strH5ad,genes,grp,cN,gCut))
     elif plotType=='dot':
-        print(dot(strH5ad,genes,grp,cN,gCut,expmax,permax,logmax))
+        print(dot(strH5ad,genes,grp,cN,gCut,expRange,permax,logmax))
     else:
         print("ERROR: plot type ("+plotType+") is unknown!")
         exit()
