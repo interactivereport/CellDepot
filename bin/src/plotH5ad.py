@@ -93,7 +93,7 @@ def violin(strH5ad,genes,grp,cN=None,gCut=None):
     #    f.write(imgD)
     return buffer.getvalue() #html[divIndex:(scriptIndex+len("</script>"))]
 
-def dot(strH5ad,genes,grp,cN=None,gCut=None,expRange=[None,None],permax=100,logmax=float("inf")):
+def dot(strH5ad,genes,grp,cN=None,gCut=None,expRange=[None,None],permax=None,logmax=float("inf")):
     X,selG = obtainData(strH5ad,genes,grp,cN=cN,gCut=gCut,logMax=logmax)
     df = list()
     for anno in X[grp].cat.categories:
@@ -112,7 +112,9 @@ def dot(strH5ad,genes,grp,cN=None,gCut=None,expRange=[None,None],permax=100,logm
     xlabW=annoMaxL*7
     h=50+30*len(selG)+xlabH
     w=160+30*len(X[grp].cat.categories)+xlabW+percentSizeLegendW
-
+    
+    if permax is None:
+        permax = (int)(DOT["percent"].max())
     figDot = make_subplots(rows=1, cols=2,
                            column_widths=[1-percentSizeLegendW/w, percentSizeLegendW/w],
                            horizontal_spacing=0,
@@ -162,7 +164,7 @@ def getAdditionalPara(argv):
     cN = None
     gCut = None
     expRange = [None,None]
-    permax = 100
+    permax = None
     logmax = float('inf')
     try:
         opts, args = getopt.getopt(argv,"n:g:l:e:p:",["ncell=","gcutoff=","logmax=","exprange=","percentagemax="])
