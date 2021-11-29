@@ -5,7 +5,7 @@ output:
 ---
 # Supplemental Tables {#SITable}
 
-## S1 - Comparsion matrix of web portal tools {-}
+## Table S1 - Comparsion matrix of web portal tools {-}
 ```{r, echo=FALSE}
 library(kableExtra)
 df <- read.csv("S1.csv")
@@ -16,7 +16,7 @@ df %>%
 ```
 Note: The criteria for query search and data analysis explorer please see Table S2 and S3.
 
-## S2 - Criterion for query search {-}
+## Table S2 - Criterion for query search {-}
 ```{r, echo=FALSE}
 library(kableExtra)
 df <- read.csv("S2.csv")
@@ -26,7 +26,7 @@ df %>%
   scroll_box(width = "100%")
 ```
 
-## S3 - Criterion for data analysis explorer {-}
+## Table S3 - Criterion for data analysis explorer {-}
 ```{r, echo=FALSE}
 library(kableExtra)
 df <- read.csv("S3.csv")
@@ -36,7 +36,7 @@ df %>%
   scroll_box(width = "100%")
 ```
 
-## S4 - Project metadata captured in CellDepot {-}
+## Table S4 - Project metadata captured in CellDepot {-}
 ```{r, echo=FALSE}
 library(kableExtra)
 df <- read.csv("S4.csv")
