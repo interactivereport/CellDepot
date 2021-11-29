@@ -93,7 +93,7 @@ def violin(strH5ad,genes,grp,cN=None,gCut=None):
     #    f.write(imgD)
     return buffer.getvalue() #html[divIndex:(scriptIndex+len("</script>"))]
 
-def dot(strH5ad,genes,grp,cN=None,gCut=None,expRange=[None,None],permax=None,logmax=float("inf")):
+def dot(strH5ad,genes,grp,cN=None,gCut=None,expRange=[None,None],permax=None,logmax=float("inf"),legendDirection="v"):
     X,selG = obtainData(strH5ad,genes,grp,cN=cN,gCut=gCut,logMax=logmax)
     df = list()
     for anno in X[grp].cat.categories:
@@ -107,17 +107,31 @@ def dot(strH5ad,genes,grp,cN=None,gCut=None,expRange=[None,None],permax=None,log
     DOT=pd.DataFrame(df,columns=['grp','gene','median','mean','percent','cellN'])
 
     percentSizeLegendW=80
+    percentSizeLegendH=80
     annoMaxL=max([len(str(i)) for i in X[grp].cat.categories])
     xlabH=35+annoMaxL*5
     xlabW=annoMaxL*7
     h=50+30*len(selG)+xlabH
-    w=160+30*len(X[grp].cat.categories)+xlabW+percentSizeLegendW
-    
+    w=160+30*len(X[grp].cat.categories)+xlabW
+    if legendDirection=="v":
+        w += percentSizeLegendW
+        subF = {"dot":[1,1],"legend":[1,2]}
+        wR = [1-percentSizeLegendW/w, percentSizeLegendW/w]
+        hR = None
+        legendXY={"x":[1,1,1],"y":[1,2,3]}
+    else:
+        h += percentSizeLegendH
+        subF = {"dot":[2,1],"legend":[1,1]}
+        wR = None
+        hR = [percentSizeLegendH/h, 1-percentSizeLegendH/h]
+        legendXY={"y":[1,1,1],"x":[1,2,3]}
+
     if permax is None:
         permax = (int)(DOT["percent"].max())
-    figDot = make_subplots(rows=1, cols=2,
-                           column_widths=[1-percentSizeLegendW/w, percentSizeLegendW/w],
-                           horizontal_spacing=0,
+    figDot = make_subplots(rows=max(subF['dot'][0],subF['legend'][0]),
+                           cols=max(subF['dot'][1],subF['legend'][1]),
+                           column_widths=wR,row_heights=hR,
+                           horizontal_spacing=0,vertical_spacing=0,
                            subplot_titles=("","Percentage"))
     figDot.update_annotations(font_size=11)
     figDot.add_trace(go.Scatter(x=DOT["grp"],y=DOT["gene"],mode='markers',
@@ -130,12 +144,12 @@ def dot(strH5ad,genes,grp,cN=None,gCut=None,expRange=[None,None],permax=None,log
                 sizemode='area',
                 sizeref=0.25*permax/100,
                 showscale=True,
-                colorbar={'title':"Mean",'len':1.5}),
+                colorbar={'title':"Mean",'len':1+1/len(selG)}),
                 customdata=DOT['median'],
-                hovertemplate='Group:%{x}<br>Gene:%{y}<br>Cell numner:%{text}<br>Percentage:%{marker.size:.1f}<br>Mean:%{marker.color:.2f}<br>Median:%{customdata:.2f}'),
-        row=1,col=1)
+                hovertemplate='Group:%{x}<br>Gene:%{y}<br>Cell number:%{text}<br>Percentage:%{marker.size:.1f}<br>Mean:%{marker.color:.2f}<br>Median:%{customdata:.2f}'),
+        row=subF['dot'][0],col=subF['dot'][1])
     perScale = [(int)(permax*i) for i in [1,0.67,0.33]]
-    figDot.add_trace(go.Scatter(x=[1,1,1],y=[1,2,3],mode='markers+text',
+    figDot.add_trace(go.Scatter(x=legendXY["x"],y=legendXY["y"],mode='markers+text',
             text=['%d%%'%i for i in perScale],
             textfont={'size':13,"color":"#000000"},
             marker=dict(size=[permax,permax*0.67,permax*0.33],
@@ -145,14 +159,24 @@ def dot(strH5ad,genes,grp,cN=None,gCut=None,expRange=[None,None],permax=None,log
                 sizeref=0.25*permax/100,
                 showscale=False),
                 hoverinfo='skip'),
-        row=1,col=2)
+        row=subF['legend'][0],col=subF['legend'][1])
 
     figDot.update_yaxes(linecolor="#000",showdividers=True,dividercolor="#444",title={"text":""},
                     tickfont={"size":15})
     figDot.update_xaxes(linecolor="#000",showdividers=True,dividercolor="#444",title={"text":""},
                     tickfont={"size":15},tickangle=45)
-    figDot.update_xaxes(showticklabels=False,showline=False,row=1,col=2)
-    figDot.update_yaxes(showticklabels=False,showline=False,row=1,col=2)
+    figDot.update_xaxes(showticklabels=False,showline=False,fixedrange=True,
+                        row=subF['legend'][0],col=subF['legend'][1])
+    figDot.update_yaxes(showticklabels=False,showline=False,fixedrange=True,
+                        row=subF['legend'][0],col=subF['legend'][1])
+    if legendDirection=="h":
+        figDot.update_annotations(x=0,y=1)#,xanchor="right"
+        figDot.update_xaxes(range=[0.5,max(3.5,len(X[grp].cat.categories))],
+                            row=subF['legend'][0],col=subF['legend'][1])
+    else:
+        figDot.update_yaxes(range=[min(0.5,5-len(selG)),3.5],
+                            row=subF['legend'][0],col=subF['legend'][1])
+
     figDot.update_layout(plot_bgcolor='#fff',title={"text":grp},title_x=0.5,height=h,width=w,
                      margin={"l":0,"r":0,"t":30,"b":xlabH},showlegend=False)
     buffer = io.StringIO()
@@ -166,10 +190,11 @@ def getAdditionalPara(argv):
     expRange = [None,None]
     permax = None
     logmax = float('inf')
+    lDirection = 'v'
     try:
-        opts, args = getopt.getopt(argv,"n:g:l:e:p:",["ncell=","gcutoff=","logmax=","exprange=","percentagemax="])
+        opts, args = getopt.getopt(argv,"n:g:l:e:p:d:",["ncell=","gcutoff=","logmax=","exprange=","percentagemax=","direction="])
     except getopt.GetoptError:
-        print("Usage: plotH5ad path/to/H5ad/file plot/type A/gene/list An/annotation/group -n cell/number -g gene/cutoff -l max/value/log -e min,max/exp/scale -p max/percentage/scale")
+        print("Usage: plotH5ad path/to/H5ad/file plot/type A/gene/list An/annotation/group -n cell/number -g gene/cutoff -l max/value/log -e min,max/exp/scale -p max/percentage/scale -d legend/direction")
         exit()
     for opt, arg in opts:
         if opt in ("-n", "--ncell"):
@@ -185,19 +210,24 @@ def getAdditionalPara(argv):
                 exit()
         elif opt in ("-p", "--percentagemax"):
             permax = float(arg)
+        elif opt in ("-d","--direction"):
+            lDirection = arg[0].lower() # can be v, h, vertical, horizontal, V, H, V..., H...
+            if lDirection not in ("v","h"):
+                print("-d, --direction: only takes v, h, vertical, horizontal")
+                exit()
 
-    return cN,gCut,expRange,permax,logmax
+    return cN,gCut,expRange,permax,logmax,lDirection
 
 def main():
     strH5ad = sys.argv[1]
     plotType = sys.argv[2]
     genes = sys.argv[3]
     grp = sys.argv[4]
-    cN,gCut,expRange,permax,logmax = getAdditionalPara(sys.argv[5:])
+    cN,gCut,expRange,permax,logmax,lDirection = getAdditionalPara(sys.argv[5:])
     if plotType=='violin':
         print(violin(strH5ad,genes,grp,cN,gCut))
     elif plotType=='dot':
-        print(dot(strH5ad,genes,grp,cN,gCut,expRange,permax,logmax))
+        print(dot(strH5ad,genes,grp,cN,gCut,expRange,permax,logmax,lDirection))
     else:
         print("ERROR: plot type ("+plotType+") is unknown!")
         exit()
