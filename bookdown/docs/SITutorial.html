@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Chapter 4 Supplemental Tutorial | Supplemental Tutorial - CellDepot: A unified repository for scRNAseq data and visual exploration</title>
   <meta name="description" content="Chapter 4 Supplemental Tutorial | Supplemental Tutorial - CellDepot: A unified repository for scRNAseq data and visual exploration" />
-  <meta name="generator" content="bookdown 0.19 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Chapter 4 Supplemental Tutorial | Supplemental Tutorial - CellDepot: A unified repository for scRNAseq data and visual exploration" />
   <meta property="og:type" content="book" />
@@ -23,7 +23,7 @@
 
 
 
-<meta name="date" content="2021-10-05" />
+<meta name="date" content="2021-11-29" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -32,7 +32,9 @@
   
 <link rel="prev" href="SITable.html"/>
 
-<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<script src="libs/header-attrs-2.11/header-attrs.js"></script>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
@@ -48,7 +50,8 @@
 
 
 
-
+<link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
 <script src="libs/kePrint-0.0.1/kePrint.js"></script>
 <link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
 <link href="libs/bsTable-3.3.7/bootstrapTable.min.css" rel="stylesheet" />
@@ -56,25 +59,27 @@
 
 
 <style type="text/css">
-a.sourceLine { display: inline-block; line-height: 1.25; }
-a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
-a.sourceLine:empty { height: 1.2em; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
-code.sourceCode { white-space: pre; position: relative; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
 pre.sourceCode { margin: 0; }
 @media screen {
 div.sourceCode { overflow: auto; }
 }
 @media print {
-code.sourceCode { white-space: pre-wrap; }
-a.sourceLine { text-indent: -1em; padding-left: 1em; }
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
 }
-pre.numberSource a.sourceLine
-  { position: relative; left: -4em; }
-pre.numberSource a.sourceLine::before
-  { content: attr(title);
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
     position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; pointer-events: all; display: inline-block;
+    border: none; display: inline-block;
     -webkit-touch-callout: none; -webkit-user-select: none;
     -khtml-user-select: none; -moz-user-select: none;
     -ms-user-select: none; user-select: none;
@@ -83,9 +88,9 @@ pre.numberSource a.sourceLine::before
   }
 pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
 div.sourceCode
-  {  }
+  {   }
 @media screen {
-a.sourceLine::before { text-decoration: underline; }
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 code span.al { color: #ff0000; font-weight: bold; } /* Alert */
 code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
@@ -118,6 +123,7 @@ code span.vs { color: #4070a0; } /* VerbatimString */
 code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
+
 <link rel="stylesheet" href="style.css" type="text/css" />
 </head>
 
@@ -135,7 +141,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 <li class="divider"></li>
 <li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Preface</a></li>
-<li class="chapter" data-level="2" data-path="getting-start-with-celldepot.html"><a href="getting-start-with-celldepot.html"><i class="fa fa-check"></i><b>2</b> Getting start with CellDepot</a><ul>
+<li class="chapter" data-level="2" data-path="getting-start-with-celldepot.html"><a href="getting-start-with-celldepot.html"><i class="fa fa-check"></i><b>2</b> Getting start with CellDepot</a>
+<ul>
 <li class="chapter" data-level="2.1" data-path="getting-start-with-celldepot.html"><a href="getting-start-with-celldepot.html#sources-of-annotation-and-metadata"><i class="fa fa-check"></i><b>2.1</b> Sources of annotation and metadata</a></li>
 <li class="chapter" data-level="2.2" data-path="getting-start-with-celldepot.html"><a href="getting-start-with-celldepot.html#data-format-availability-and-preparation"><i class="fa fa-check"></i><b>2.2</b> Data format, availability and preparation</a></li>
 <li class="chapter" data-level="2.3" data-path="getting-start-with-celldepot.html"><a href="getting-start-with-celldepot.html#celldepot-platform-and-installation"><i class="fa fa-check"></i><b>2.3</b> CellDepot platform and installation</a></li>
@@ -143,18 +150,22 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="2.5" data-path="getting-start-with-celldepot.html"><a href="getting-start-with-celldepot.html#celldepot-api-application-programming-interface"><i class="fa fa-check"></i><b>2.5</b> CellDepot API (Application Programming Interface)</a></li>
 <li class="chapter" data-level="2.6" data-path="getting-start-with-celldepot.html"><a href="getting-start-with-celldepot.html#code-availability"><i class="fa fa-check"></i><b>2.6</b> Code availability</a></li>
 </ul></li>
-<li class="chapter" data-level="3" data-path="SITable.html"><a href="SITable.html"><i class="fa fa-check"></i><b>3</b> Supplemental Tables</a><ul>
-<li class="chapter" data-level="3.1" data-path="SITable.html"><a href="SITable.html#comparsion-matrix-of-web-portal-tools"><i class="fa fa-check"></i><b>3.1</b> Comparsion matrix of web portal tools</a></li>
-<li class="chapter" data-level="3.2" data-path="SITable.html"><a href="SITable.html#criterion-for-query-search"><i class="fa fa-check"></i><b>3.2</b> Criterion for query search</a></li>
-<li class="chapter" data-level="3.3" data-path="SITable.html"><a href="SITable.html#criterion-for-data-analysis-explorer"><i class="fa fa-check"></i><b>3.3</b> Criterion for data analysis explorer</a></li>
-<li class="chapter" data-level="3.4" data-path="SITable.html"><a href="SITable.html#project-metadata-captured-in-celldepot"><i class="fa fa-check"></i><b>3.4</b> Project metadata captured in CellDepot</a></li>
+<li class="chapter" data-level="3" data-path="SITable.html"><a href="SITable.html"><i class="fa fa-check"></i><b>3</b> Supplemental Tables</a>
+<ul>
+<li class="chapter" data-level="" data-path="SITable.html"><a href="SITable.html#s1---comparsion-matrix-of-web-portal-tools"><i class="fa fa-check"></i>S1 - Comparsion matrix of web portal tools</a></li>
+<li class="chapter" data-level="" data-path="SITable.html"><a href="SITable.html#s2---criterion-for-query-search"><i class="fa fa-check"></i>S2 - Criterion for query search</a></li>
+<li class="chapter" data-level="" data-path="SITable.html"><a href="SITable.html#s3---criterion-for-data-analysis-explorer"><i class="fa fa-check"></i>S3 - Criterion for data analysis explorer</a></li>
+<li class="chapter" data-level="" data-path="SITable.html"><a href="SITable.html#s4---project-metadata-captured-in-celldepot"><i class="fa fa-check"></i>S4 - Project metadata captured in CellDepot</a></li>
 </ul></li>
-<li class="chapter" data-level="4" data-path="SITutorial.html"><a href="SITutorial.html"><i class="fa fa-check"></i><b>4</b> Supplemental Tutorial</a><ul>
-<li class="chapter" data-level="4.1" data-path="SITutorial.html"><a href="SITutorial.html#browse-projects"><i class="fa fa-check"></i><b>4.1</b> Browse Projects</a><ul>
+<li class="chapter" data-level="4" data-path="SITutorial.html"><a href="SITutorial.html"><i class="fa fa-check"></i><b>4</b> Supplemental Tutorial</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="SITutorial.html"><a href="SITutorial.html#browse-projects"><i class="fa fa-check"></i><b>4.1</b> Browse Projects</a>
+<ul>
 <li class="chapter" data-level="4.1.1" data-path="SITutorial.html"><a href="SITutorial.html#search"><i class="fa fa-check"></i><b>4.1.1</b> Search Projects</a></li>
 <li class="chapter" data-level="4.1.2" data-path="SITutorial.html"><a href="SITutorial.html#project-filters"><i class="fa fa-check"></i><b>4.1.2</b> Project Filters</a></li>
 </ul></li>
-<li class="chapter" data-level="4.2" data-path="SITutorial.html"><a href="SITutorial.html#visaulize-datasets"><i class="fa fa-check"></i><b>4.2</b> Visaulize Datasets</a><ul>
+<li class="chapter" data-level="4.2" data-path="SITutorial.html"><a href="SITutorial.html#visaulize-datasets"><i class="fa fa-check"></i><b>4.2</b> Visaulize Datasets</a>
+<ul>
 <li class="chapter" data-level="4.2.1" data-path="SITutorial.html"><a href="SITutorial.html#view-details"><i class="fa fa-check"></i><b>4.2.1</b> View Details</a></li>
 <li class="chapter" data-level="4.2.2" data-path="SITutorial.html"><a href="SITutorial.html#update"><i class="fa fa-check"></i><b>4.2.2</b> Update</a></li>
 <li class="chapter" data-level="4.2.3" data-path="SITutorial.html"><a href="SITutorial.html#data-visualization-and-analysis"><i class="fa fa-check"></i><b>4.2.3</b> Data Visualization and Analysis</a></li>
@@ -183,107 +194,107 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="SITutorial" class="section level1">
+<div id="SITutorial" class="section level1" number="4">
 <h1><span class="header-section-number">Chapter 4</span> Supplemental Tutorial</h1>
 <p>CellDepot is database management system integrated with management system, query searching and data visualization tools for scRNA-seq datasets, which can be accessed by the link <a href="http://celldepot.bxgenomics.com" class="uri">http://celldepot.bxgenomics.com</a> and Biogen internal link <a href="http://go.biogen.com/CellDepot" class="uri">http://go.biogen.com/CellDepot</a>. This is a supplemental tutorial providing a detailed guide.</p>
 <div class="figure">
-<img src="figures/S4.png" alt="Figure S1. CellDepot website" />
+<img src="figures/S4.png" alt="" />
 <p class="caption">Figure S1. CellDepot website</p>
 </div>
 <p>The interface contains multiple tabs, corresponding to import and/or select objects in CellDepot scRNA-seq database, that can be accessed on top panel of the webpage. Users can upload their own dataset or explore the existing datasets for visualization and analysis.</p>
-<div id="browse-projects" class="section level2">
+<div id="browse-projects" class="section level2" number="4.1">
 <h2><span class="header-section-number">4.1</span> Browse Projects</h2>
-<div id="search" class="section level3">
+<div id="search" class="section level3" number="4.1.1">
 <h3><span class="header-section-number">4.1.1</span> Search Projects</h3>
-<p>This function allows the user to search any targeted interests, which also can be accessed through search projects on the top panel of the webpage. Users is allowed to select the projects by 17 attributes: annotation groups, cell count, cellxgene VIP launch method, Custom accession, description, DOI, file name, file size, gene count, name, notes, PMC ID, Publication Title, PubMed ID, Species, URL, Year. These 17 fields can also be (partially) displayed on the webpage through ‘column setting’ on the webpage. Users can also search projects by the keywords via the search function on the right of the webpage. In addition, by ‘column setting’, users can set up the customized layout of targeted projects; thereby exporting to csv format.</p>
+<p>This function allows the user to search any targeted interests, which also can be accessed through search projects on the top panel of the webpage. Users is allowed to select the projects by 17 attributes: annotation groups, cell count, cellxgene VIP launch method, Custom accession, description, DOI, file name, file size, gene count, name, notes, PMC ID, Publication Title, PubMed ID, Species, URL, Year. These 17 fields can also be (partially) displayed on the webpage through ‘column setting’ on the webpage. Users can also search projects by the keywords via the search function on the right of the webpage. In addition, by ‘column setting,’ users can set up the customized layout of targeted projects; thereby exporting to csv format.</p>
 <div class="figure">
-<img src="figures/S6.png" alt="Figure S3. Workflow of how to search query on ‘Browse Projects’ page." />
+<img src="figures/S6.png" alt="" />
 <p class="caption">Figure S3. Workflow of how to search query on ‘Browse Projects’ page.</p>
 </div>
-<div id="case-study-1" class="section level4">
+<div id="case-study-1" class="section level4" number="4.1.1.1">
 <h4><span class="header-section-number">4.1.1.1</span> Case study 1</h4>
-<p>Six datasets are filtered when searching by ‘Species is Human’ and ‘Annotation Group contains Neuron’.</p>
+<p>Six datasets are filtered when searching by ‘Species is Human’ and ‘Annotation Group contains Neuron.’</p>
 <div class="figure">
-<img src="figures/S1.jpg" alt="Figure S4. Data Filtering. Query search of ‘Species is Human’ and ‘Annotation Groups contains Neuron’ brings about nine datasets of interest." />
+<img src="figures/S1.jpg" alt="" />
 <p class="caption">Figure S4. Data Filtering. Query search of ‘Species is Human’ and ‘Annotation Groups contains Neuron’ brings about nine datasets of interest.</p>
 </div>
 </div>
-<div id="case-study-2" class="section level4">
+<div id="case-study-2" class="section level4" number="4.1.1.2">
 <h4><span class="header-section-number">4.1.1.2</span> Case Study 2</h4>
 <p>Cross-project comparison of skeletal muscle marker genes PAX3, PAX7, PITX2, MYF5, MYF6, MYOD1, MYOG, NEB, and MYH3 among the datasets whose species is human and cell type is myogenic.</p>
 <div class="figure">
-<img src="figures/s7.png" alt="Figure S5. Workflow of how to conduct the cross-project comparison of gene sets among the selected datasets." />
+<img src="figures/S7.png" alt="" />
 <p class="caption">Figure S5. Workflow of how to conduct the cross-project comparison of gene sets among the selected datasets.</p>
 </div>
-<p>For each project, users can view the datasets information, visualize data analysis, and conduct update through clicking on “View Details”, “cellxgene VIP”, and “Update” links, respectively.</p>
+<p>For each project, users can view the datasets information, visualize data analysis, and conduct update through clicking on “View Details,” “cellxgene VIP,” and “Update” links, respectively.</p>
 </div>
 </div>
-<div id="project-filters" class="section level3">
+<div id="project-filters" class="section level3" number="4.1.2">
 <h3><span class="header-section-number">4.1.2</span> Project Filters</h3>
 <p>This page provides the matched datasets by simply clicking the categories. It is a first-time user-friendly functionality as users may not be familiar with the content of the database. The advance search function is the same as that on the ‘Browse Projects’ page (<a href="SITutorial.html#search">4.1.1</a>).</p>
 <div class="figure">
-<img src="figures/S8.png" alt="Figure S6. The layout of ‘Project Filters’ page." />
+<img src="figures/S8.png" alt="" />
 <p class="caption">Figure S6. The layout of ‘Project Filters’ page.</p>
 </div>
 </div>
 </div>
-<div id="visaulize-datasets" class="section level2">
+<div id="visaulize-datasets" class="section level2" number="4.2">
 <h2><span class="header-section-number">4.2</span> Visaulize Datasets</h2>
-<div id="view-details" class="section level3">
+<div id="view-details" class="section level3" number="4.2.1">
 <h3><span class="header-section-number">4.2.1</span> View Details</h3>
 <p>The datasets information consists of project summary and annotation groups. The project summary is provided by each user when uploading projects. The information of annotation groups is retrieved from uploaded .h5ad file.</p>
 <div class="figure">
-<img src="figures/S9.png" alt="Figure S7. Visualization of details of datasets." />
+<img src="figures/S9.png" alt="" />
 <p class="caption">Figure S7. Visualization of details of datasets.</p>
 </div>
 </div>
-<div id="update" class="section level3">
+<div id="update" class="section level3" number="4.2.2">
 <h3><span class="header-section-number">4.2.2</span> Update</h3>
 <p>Project summary information can be updated on ‘Browse Project’ page with ‘Preload in Memory’ cellxgene VIP launch method via click ‘Update’ hyperlink.</p>
 <div class="figure">
-<img src="figures/s10.png" alt="Figure S8. Update project on ‘Browse Project’ page." />
+<img src="figures/S10.png" alt="" />
 <p class="caption">Figure S8. Update project on ‘Browse Project’ page.</p>
 </div>
 </div>
-<div id="data-visualization-and-analysis" class="section level3">
+<div id="data-visualization-and-analysis" class="section level3" number="4.2.3">
 <h3><span class="header-section-number">4.2.3</span> Data Visualization and Analysis</h3>
-<p>CellDepot is not only a database management system, but also a web portal to visualize the scRNA-seq dataset. Here, we embed cellxgene and cellxgene VIP in CellDepot. By clicking ‘Cellxgene VIP’, data analysis results can be visualized. Detailed guides of cellxgene and cellxgene VIP, please go to <a href="https://interactivereport.github.io/cellxgene_VIP/tutorial/docs/" class="uri">https://interactivereport.github.io/cellxgene_VIP/tutorial/docs/</a>.</p>
+<p>CellDepot is not only a database management system, but also a web portal to visualize the scRNA-seq dataset. Here, we embed cellxgene and cellxgene VIP in CellDepot. By clicking ‘Cellxgene VIP,’ data analysis results can be visualized. Detailed guides of cellxgene and cellxgene VIP, please go to <a href="https://interactivereport.github.io/cellxgene_VIP/tutorial/docs/" class="uri">https://interactivereport.github.io/cellxgene_VIP/tutorial/docs/</a>.</p>
 <div class="figure">
-<img src="figures/S11.png" alt="Figure S9. See visualization of selected datasets." />
+<img src="figures/S11.png" alt="" />
 <p class="caption">Figure S9. See visualization of selected datasets.</p>
 </div>
-<div id="case-study-1-1" class="section level4">
+<div id="case-study-1-1" class="section level4" number="4.2.3.1">
 <h4><span class="header-section-number">4.2.3.1</span> Case study 1</h4>
 <p>Exploration and visualization of the expression of gene(s) across the cluster of cells under various conditions.</p>
 <p>As shown in Figure S10a, two cell groups from Astrocytes (1036 cells) and Oligodendrocytes (4417 cells) are selected. By running differential analysis with one of the built-in statistical methods such as Welch’s t-test, we detected 1578 differential expressed genes (DEGs), including 715 up-regulated and 853 down-regulated genes in astrocytes compared to oligodendrocytes (Figure S10a). The expression of the top four DEGs among the cell types indicates that gene MBP, ST18 and RNF220 are expressed explicitly in oligodendrocytes, while gene PITPNC3 is expressed mainly in astrocytes and endothelial cells (Figure S10b). In the future, we plan to add other multi-omics data modalities, which can be incorporated and integrated with scRNA-seq, such as spatial transcriptomics and scATAC-seq data.</p>
 <div class="figure">
-<img src="figures/S2.jpg" alt="Figure S10. Exploration of differential expressed genes in dataset GSE140231 through cellxgene VIP. (a) Differential expressed genes in astrocytes and oligodendrocytes. (b) The expression of top four genes in different cell types." />
+<img src="figures/S2.jpg" alt="" />
 <p class="caption">Figure S10. Exploration of differential expressed genes in dataset GSE140231 through cellxgene VIP. (a) Differential expressed genes in astrocytes and oligodendrocytes. (b) The expression of top four genes in different cell types.</p>
 </div>
 </div>
 </div>
 </div>
-<div id="search-genes" class="section level2">
+<div id="search-genes" class="section level2" number="4.3">
 <h2><span class="header-section-number">4.3</span> Search Genes</h2>
 <p>This tab allows searching on targeted genes with cell count cutoff and expression cutoff. The search outcome provides users every project contains the targeted genes. Each project displays a link to project page and a figure plot if applicable. This plot can be either violin plot or dot plot shows the gene expression level in each annotation groups.</p>
 <div class="figure">
-<img src="figures/S12.png" alt="Figure S11. The layout of ‘Search Genes’" />
+<img src="figures/S12.png" alt="" />
 <p class="caption">Figure S11. The layout of ‘Search Genes’</p>
 </div>
 </div>
-<div id="upload" class="section level2">
+<div id="upload" class="section level2" number="4.4">
 <h2><span class="header-section-number">4.4</span> Upload Projects</h2>
 <p>To upload new projects in CellDepot database, two files are required: 1) .h5ad files and 2) project information in csv format. Detailed formatting guidance can be found by ‘Download Example File’ hyperlink on webpage. In addition, two cellxgene VIP launch methods are provided: standard and preload in memory. Standard mode is for the first-time imported datasets, while preload in memory should be chosen when users update the meta information of datasets.
 After the projects are submitted, CellDepot will automatically analyze the datasets. To explore the detail of uploaded datasets, users can navigate to ‘browse projects’ page and then search the imported datasets by the customized accession number.</p>
 <div class="figure">
-<img src="figures/S5.png" alt="Figure S2. Workflow of how to import personal datasets." />
+<img src="figures/S5.png" alt="" />
 <p class="caption">Figure S2. Workflow of how to import personal datasets.</p>
 </div>
 </div>
-<div id="cron" class="section level2">
+<div id="cron" class="section level2" number="4.5">
 <h2><span class="header-section-number">4.5</span> How to set up cron job?</h2>
 <p>The following cron job entry is needed to convert h5ad file to CSC format on the background,</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode bash"><code class="sourceCode bash"><a class="sourceLine" id="cb1-1" title="1"><span class="ex">@hourly</span> <span class="op">&lt;</span>user-name<span class="op">&gt;</span> cd /var/www/html/celldepot/app/core<span class="kw">;</span> <span class="ex">php</span> ./api_toCSCh5ad.php</a></code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb1-1"><a href="SITutorial.html#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="ex">@hourly</span> <span class="op">&lt;</span>user-name<span class="op">&gt;</span> cd /var/www/html/celldepot/app/core<span class="kw">;</span> <span class="ex">php</span> ./api_toCSCh5ad.php</span></code></pre></div>
 <p>Please make sure that the user has the permission to write in the data directory.</p>
 
 </div>
@@ -298,7 +309,6 @@ After the projects are submitted, CellDepot will automatically analyze the datas
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
-<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
 <script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
@@ -317,6 +327,7 @@ gitbook.start({
 "weibo": false,
 "instapaper": false,
 "vk": false,
+"whatsapp": false,
 "all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
 },
 "fontsettings": {
@@ -337,6 +348,10 @@ gitbook.start({
 "text": null
 },
 "download": ["CellDepot.pdf", "CellDepot.epub"],
+"search": {
+"engine": "fuse",
+"options": null
+},
 "toc": {
 "collapse": "subsection"
 },

@@ -1,3 +1,7 @@
+tab:unnamed-chunk-2
+tab:unnamed-chunk-3
+tab:unnamed-chunk-4
+tab:unnamed-chunk-5
 preface
 getting-start-with-celldepot
 sources-of-annotation-and-metadata
@@ -7,10 +11,6 @@ data-import-on-users-server
 celldepot-api-application-programming-interface
 code-availability
 SITable
-comparsion-matrix-of-web-portal-tools
-criterion-for-query-search
-criterion-for-data-analysis-explorer
-project-metadata-captured-in-celldepot
 SITutorial
 browse-projects
 search
@@ -25,7 +25,3 @@ case-study-1-1
 search-genes
 upload
 cron
-tab:unnamed-chunk-1
-tab:unnamed-chunk-2
-tab:unnamed-chunk-3
-tab:unnamed-chunk-4
