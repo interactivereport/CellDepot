@@ -106,17 +106,17 @@ echo "<head>\n";
  
 	//DataTables
 	if ($BXAF_CONFIG['BXAF_PAGE_HEADER_LIBRARIES']['DataTable']){
-		echo "<link rel='stylesheet' type='text/css' href='./template/js/dataTables/core/1.10.24/dataTables.bootstrap4.min.css'>";
-		echo "<script type='text/javascript'          src='./template/js/dataTables/core/1.10.24/jquery.dataTables.min.js'></script>";
-		echo "<script type='text/javascript'          src='./template/js/dataTables/core/1.10.24/dataTables.bootstrap4.min.js'></script>";
+		echo "<link rel='stylesheet' type='text/css' href='./template/js/dataTables/core/1.11.3/dataTables.bootstrap4.min.css'>";
+		echo "<script type='text/javascript'          src='./template/js/dataTables/core/1.11.3/jquery.dataTables.min.js'></script>";
+		echo "<script type='text/javascript'          src='./template/js/dataTables/core/1.11.3/dataTables.bootstrap4.min.js'></script>";
 		echo "<script type='text/javascript'          src='./template/js/dataTables/natural/1.0.0/natural.js'></script>";
 	}
 
 	//DataTables-Buttons: Add Copy/CSV	
 	if ($BXAF_CONFIG['BXAF_PAGE_HEADER_LIBRARIES']['DataTable-Buttons']){
-		echo "<link rel='stylesheet' type='text/css' href='./template/js/dataTables/buttons/1.7.0/buttons.dataTables.min.css'>";
-		echo "<script type='text/javascript'          src='./template/js/dataTables/buttons/1.7.0/dataTables.buttons.min.js'></script>";
-		echo "<script type='text/javascript'          src='./template/js/dataTables/buttons/1.7.0/buttons.html5.min.js'></script>";
+		echo "<link rel='stylesheet' type='text/css' href='./template/js/dataTables/buttons/2.0.1/buttons.dataTables.min.css'>";
+		echo "<script type='text/javascript'          src='./template/js/dataTables/buttons/2.0.1/dataTables.buttons.min.js'></script>";
+		echo "<script type='text/javascript'          src='./template/js/dataTables/buttons/2.0.1/buttons.html5.min.js'></script>";
 	}
 	
 	
@@ -160,6 +160,10 @@ echo "<head>\n";
 	if ($BXAF_CONFIG['BXAF_PAGE_HEADER_LIBRARIES']['Venn']){
 		echo "<script type='text/javascript' src='./template/js/d3/d3-3.5.6.js'></script>";
 		echo "<script src='./template/js/venn/0.2/venn.js'></script>\n";
+	}
+	
+	if ($BXAF_CONFIG['BXAF_PAGE_HEADER_LIBRARIES']['slimScroll']){
+		echo "<script type='text/javascript' src='./template/js/slimScroll/1.3.8/jquery.slimscroll.min.js'></script>";
 	}
    
    	if (true){ 

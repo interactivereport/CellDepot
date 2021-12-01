@@ -24,11 +24,17 @@ a {
     overflow-x: auto !important;
 }
 
+.modal-body-half-width{
+    max-width: 60% !important;
+    width: auto !important;
+    overflow-x: auto !important;
+}
+
 .modal-body-full-height{
     height: 800px;
     overflow-y: auto !important;
-	
 }
+
 
 .tableHeaderToSort{
 	cursor:	pointer;
@@ -218,3 +224,5 @@ span.twitter-typeahead {
   line-height: 1.33;
   border-radius: 25px;
 }
+
+

@@ -49,7 +49,6 @@ $defaultColumns = getDefaultSearchColumnSettingsForDataTable($appObj['Table']);
 
 
 
-
 echo "<div id='{$currentDivID}'>";
 
 //Buttons

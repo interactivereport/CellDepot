@@ -10,6 +10,14 @@ if (true){
 	if (array_size($_POST) <= 0) exit();
 }
 
+$_POST['Genes'] = id_sanitizer($_POST['Genes'], 0, 0, 0, 1);
+$_POST['Genes'] = array_map('trim', $_POST['Genes']);
+$_POST['Genes'] = array_iunique($_POST['Genes'], 1);
+$_POST['Genes'] = array_map('strtoupper', $_POST['Genes']);
+foreach($_POST['Genes'] as $tempKey => $currentGene){
+	$_POST['Genes'][$tempKey] = preg_replace('/[\W]/', '', $currentGene);
+}
+
 $currentProjectID 		= $_GET['ID'];
 $currentProject 		= getProjectByID($currentProjectID);
 $currentProjectProcessed = processProjectRecord($currentProjectID, $currentProject, 2);
@@ -61,6 +69,11 @@ $plotContent = getGenePlot( $currentProjectID,
 							$_POST['l']
 							);
 
+$otherInfo = $_POST;
+$processGenePlot 	= processGenePlot($plotContent, 'compact', $otherInfo);
+$plotDownloadID 	= $processGenePlot['download_id'];
+$plotCode 			= $processGenePlot['plot'];
+
 
 
 
@@ -95,11 +108,16 @@ echo "<div class='row'>";
 					echo "&nbsp;<span class='badge badge-pill badge-info'>{$currentGene}</span>";
 				}
 				
-				$URL = getGenePlotAPIURL($currentProjectID, $_GET['Plot_Type'], $_POST['Genes'], $annotationGroup, 
-										$_GET['Subsampling'], $_POST['g'], 
-										$_POST['e_min'], $_POST['e_max'], $_POST['p'], $_POST['l']);
+				if ($plotContent['result']){
+					$URL = getGenePlotAPIURL($currentProjectID, $_GET['Plot_Type'], $_POST['Genes'], $annotationGroup, 
+											$_GET['Subsampling'], $_POST['g'], 
+											$_POST['e_min'], $_POST['e_max'], $_POST['p'], $_POST['l']);
+					echo "&nbsp;<span class='badge badge-pill badge-secdonary'><a href='{$URL}' target='_blank'>" . printFontAwesomeIcon('fas fa-expand') . "&nbsp;Advanced Options / Full Screen</a></span>";
+				}
 				
-				echo "&nbsp;<span class='badge badge-pill badge-secdonary'><a href='{$URL}' target='_blank'>View Plot in Full Screen</a></span>";
+				if ($plotContent['result']){
+					echo "&nbsp;<span class='badge badge-pill badge-secdonary'><a href='javascript:void(0);' id='{$plotDownloadID}'>" . printFontAwesomeIcon('fas fa-file-download') . "&nbsp;Download Plot (SVG)</a></span>";
+				}
 				
 			echo "</p>";
 			
@@ -112,7 +130,7 @@ echo "<div class='row'>";
 			
 	
 		echo "<div class='overflow-auto' style='padding:10px;'>";
-			echo processGenePlot($plotContent['plot'], 'compact');
+			echo $plotCode;
 		echo "</div>";
 	echo "</div>";
 	

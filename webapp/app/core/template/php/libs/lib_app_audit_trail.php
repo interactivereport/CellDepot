@@ -8,6 +8,8 @@ function addAuditTrail($table = '', $recordID = 0, $before = array(), $after = a
 	
 	if ($table == '') return false;
 	
+	if ($APP_CONFIG['TABLES']['AUDIT_TRAIL'] == '') return false;
+	
 	$auditTrail = array();
 	
 	foreach($before as $currentSQL => $beforeValue){
@@ -71,6 +73,8 @@ function addMultipleAuditTrails($table = '', $recordIDs = array(), $after = arra
 	
 	global $APP_CONFIG;
 	
+	if ($APP_CONFIG['TABLES']['AUDIT_TRAIL'] == '') return false;
+	
 	$recordIDs = id_sanitizer($recordIDs, 0, 1, 0, 2);
 	
 	if ($recordIDs == '') return false;
@@ -123,6 +127,8 @@ function addMultipleAuditTrails($table = '', $recordIDs = array(), $after = arra
 function addMultipleAuditTrails2($table = '', $recordIDs = array(), $before = array(), $after = array()){
 	
 	global $APP_CONFIG;
+	
+	if ($APP_CONFIG['TABLES']['AUDIT_TRAIL'] == '') return false;
 	
 	$recordIDs = id_sanitizer($recordIDs, 0, 1, 0, 2);
 	

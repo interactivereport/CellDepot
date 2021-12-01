@@ -9,7 +9,9 @@ $_POST['Genes'] = id_sanitizer($_POST['Genes'], 0, 0, 0, 1);
 $_POST['Genes'] = array_map('trim', $_POST['Genes']);
 $_POST['Genes'] = array_iunique($_POST['Genes'], 1);
 $_POST['Genes'] = array_map('strtoupper', $_POST['Genes']);
-
+foreach($_POST['Genes'] as $tempKey => $currentGene){
+	$_POST['Genes'][$tempKey] = preg_replace('/[\W]/', '', $currentGene);
+}
 
 
 if ($_POST['preselected'] != ''){

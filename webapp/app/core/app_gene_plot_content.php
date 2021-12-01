@@ -125,11 +125,7 @@ echo "<form id='form_application' action='javascript:void(0);' method='post' rol
 		echo "</div>";
 		echo "</div>";
 	}
-	
-	
-	
-	
-	
+
 	
 	if (true){
 		echo "<div id='advancedOptionsSection' class='startHidden'>";
@@ -179,7 +175,7 @@ echo "<form id='form_application' action='javascript:void(0);' method='post' rol
 		}
 		
 		
-		//Gene Expression Color Scale
+		//Percentage Represented by the Largest Dot (1-100):
 		if (true){
 			echo "<div class='form-row'>";
 				echo "<div class='form-group col-xl-2 col-lg-4 col-md-6 col-sm-8 col-xs-12'>";
@@ -194,7 +190,7 @@ echo "<form id='form_application' action='javascript:void(0);' method='post' rol
 		if (true){
 			echo "<div class='form-row'>";
 				echo "<div class='form-group col-xl-2 col-lg-4 col-md-6 col-sm-8 col-xs-12'>";
-					echo "<label for='l'>{$BXAF_CONFIG['MESSAGE'][$APP_CONFIG['TABLES']['PROJECT']]['Column']['l_HTML']['Title']}</label>";
+					echo "<label for='l'>{$BXAF_CONFIG['MESSAGE'][$APP_CONFIG['TABLES']['PROJECT']]['Column']['l_HTML']['Title']}:</label>";
 					echo "<input type='text' class='form-control form-control-sm' id='l' name='l' placeholder=''>";
 				echo "</div>";
 			echo "</div>";

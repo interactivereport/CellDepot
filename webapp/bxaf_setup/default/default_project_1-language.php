@@ -79,6 +79,10 @@ if (true){
 	$BXAF_CONFIG_CUSTOM['MESSAGE'][$currentTable]['General']['Gene_Plot_Tooltip']
 		= 'Search genes within selected projects';
 		
+	$BXAF_CONFIG_CUSTOM['MESSAGE'][$currentTable]['General']['Gene_Search_No_Result']
+		= 'The result is not available.';
+		
+		
 
 
 }
@@ -169,15 +173,27 @@ if (true){
 	
 	$BXAF_CONFIG_CUSTOM['MESSAGE'][$currentTable]['Column']['e']['Title']						= 'Gene Expression Color Scale';
 	
-	$BXAF_CONFIG_CUSTOM['MESSAGE'][$currentTable]['Column']['p']['Title']						= 'Max Percentage of Dots';
+	$BXAF_CONFIG_CUSTOM['MESSAGE'][$currentTable]['Column']['p']['Title']						= 'Percentage Represented by the Largest Dot';
 	
-	$BXAF_CONFIG_CUSTOM['MESSAGE'][$currentTable]['Column']['p_Short_HTML']['Title']			= 'Max % of Dots';
+	$BXAF_CONFIG_CUSTOM['MESSAGE'][$currentTable]['Column']['p_Short_HTML']['Title']			= '% of Largest Dots';
 	
-	$BXAF_CONFIG_CUSTOM['MESSAGE'][$currentTable]['Column']['l']['Title']						= 'Perform log2 transformation if maximum gene expression value is greater than';
+	$BXAF_CONFIG_CUSTOM['MESSAGE'][$currentTable]['Column']['l']['Title']						= 'Perform natural-log transformation, log(x+1) of a data set if the maximum gene expression value in the data set is greater than';
 	
-	$BXAF_CONFIG_CUSTOM['MESSAGE'][$currentTable]['Column']['l_HTML']['Title']					= 'Perform log<sub>2</sub> transformation if maximum gene expression value is greater than';
+	$BXAF_CONFIG_CUSTOM['MESSAGE'][$currentTable]['Column']['l_HTML']['Title']					= 'Perform natural-log transformation, log(x+1) of a data set if the maximum gene expression value in the data set is greater than';
 	
-	$BXAF_CONFIG_CUSTOM['MESSAGE'][$currentTable]['Column']['l_Short_HTML']['Title']			= 'Log<sub>2</sub> transformation &gt;';
+	$BXAF_CONFIG_CUSTOM['MESSAGE'][$currentTable]['Column']['l_Short_HTML']['Title']			= 'ln transformation &gt;';
+	
+	$BXAF_CONFIG_CUSTOM['MESSAGE'][$currentTable]['Column']['plot_height']['Title']				= 'Height of Plot';
+	
+	$BXAF_CONFIG_CUSTOM['MESSAGE'][$currentTable]['Column']['plot_width']['Title']				= 'Width of Plot';
+	
+	$BXAF_CONFIG_CUSTOM['MESSAGE'][$currentTable]['Column']['export_height']['Title']			= 'Height of Download Image';
+	
+	$BXAF_CONFIG_CUSTOM['MESSAGE'][$currentTable]['Column']['export_width']['Title']			= 'Width of Download Image';
+	
+	$BXAF_CONFIG_CUSTOM['MESSAGE'][$currentTable]['Column']['d']['Title']						= 'Position of the Size Legend';
+	$BXAF_CONFIG_CUSTOM['MESSAGE'][$currentTable]['Column']['d']['Value']['v']					= 'Right';
+	$BXAF_CONFIG_CUSTOM['MESSAGE'][$currentTable]['Column']['d']['Value']['h']					= 'Upper Left';
 	
 
 }

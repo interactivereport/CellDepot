@@ -411,4 +411,55 @@ function printWizard($wizard = array()){
 	
 }
 
+function getFullScreenSpinner($id = '', $icon = '', $text = ''){
+	
+	if ($id == '') $id = 'full_screen_spinner';
+	
+	if ($icon == '') $icon = 'fas fa-spinner fa-spin';
+	$fontAwesomeIcon = printFontAwesomeIcon($icon);
+	
+	if ($text == '') $text = 'Loading...';
+	
+	$results = "<div id='{$id}'>
+					<div id='{$id}_content'>
+						{$fontAwesomeIcon} {$text}
+					</div>
+			    </div>";
+				
+	$results .='			
+				<style>
+
+			#full_screen_spinner {
+			  position: fixed;
+			  top: 0; left: 0; z-index: 9999;
+			  width: 100vw; height: 100vh;
+			  background: rgba(0, 0, 0, 0.7);
+			  transition: opacity 0.2s;
+			}
+
+			#full_screen_spinner_content {
+			  position: absolute;
+			  top: 50%; left: 50%;
+			  transform: translate(-50%);
+			  color:#FFF;
+			  font-size:35px;
+			}
+			 
+			
+			#full_screen_spinner {
+			  visibility: hidden;
+			  opacity: 0;
+			}
+			
+			#full_screen_spinner.show {
+			  visibility: visible;
+			  opacity: 1;
+			}
+			
+			</style>';
+			
+	return $results;
+	
+}
+
 ?>

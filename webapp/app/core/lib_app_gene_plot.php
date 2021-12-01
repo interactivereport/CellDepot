@@ -1,23 +1,31 @@
 <?php
 
 function getGenePlot($projectID = 0, $h5ad_file = '', $genes = array(), $plotType = '', $annotation_group = '', $use_default_annotation_group = 0, 
-					$subSampling = 0, $g = 0, $e_min = 0, $e_max = 0, $p = 0, $l = 0){
+					$subSampling = 0, $g = 0, $e_min = 0, $e_max = 0, $p = 0, $l = 0, $d = 'v'){
 	
 	global $BXAF_CONFIG, $APP_CONFIG;
 	
-	$version = '2021-11-25 00:00';
+	$version = '2021-11-29 18:00';
 	
 	if (!file_exists($h5ad_file)){
 		return false;	
 	}
+	
+	
 	
 	$genes = id_sanitizer($genes, 0, 0, 0, 1);
 	$genes = array_map('trim', $genes);
 	$genes = array_iunique($genes, 1);
 	$genes = array_map('strtoupper', $genes);
 	
+	foreach($genes as $tempKey => $currentGene){
+		$genes[$tempKey] = preg_replace( '/[\W]/', '', $currentGene);
+	}
 	
+	$genes = array_filter($genes, 'trim');
 	
+
+
 	if (array_size($genes) <= 0){
 		return false;	
 	}
@@ -73,7 +81,14 @@ function getGenePlot($projectID = 0, $h5ad_file = '', $genes = array(), $plotTyp
 		if ($l > 0){
 			$cmd[] = "-l {$l}";
 		}
+		
+		$d = trim(strtolower($d));
+		if ($d != ''){
+			if ($d != 'h') $d = 'v';
+			$cmd[] = "-d {$d}";
+		}
 	}
+	
 	
 	$cmd = implode(' ', $cmd);
 	
@@ -85,20 +100,26 @@ function getGenePlot($projectID = 0, $h5ad_file = '', $genes = array(), $plotTyp
 	$results = array();
 	$results['command'] = $cmd;
 	
-	if ($resultsFromCache !== false){
+	
+	
+	if (($resultsFromCache !== false) && ($resultsFromCache !== NULL)){
 		$results = $resultsFromCache;
 		$results['source'] 	= 'cache';
 	} else {
 		$cmd_results = trim(shell_exec($cmd));
 		$results['source'] 	= 'executed command';
+
 		
-		if ($cmd_results == ''){
-			$cmd_results = 'The result is not available.';
+		if (($cmd_results == '') || (strpos($cmd_results, '</script>') === false)){
+			$cmd_results = '';
 			$results['result'] = 0;	
 		} else {
 			$results['result'] = 1;	
 		}
 		$results['plot'] 	= $cmd_results;
+		
+		
+		
 		
 		if (true){
 			putRedisCache(array($cacheKey => $results));
@@ -265,7 +286,20 @@ function getGenePlotAPIURL($ID = 0, $Plot_Type = '', $Genes = NULL, $Project_Gro
 }
 
 
-function processGenePlot($string = '', $type = 'compact'){
+//$getGenePlot: output from getGenePlot()
+function processGenePlot($getGenePlot = NULL, $type = 'compact', $otherInfo = NULL){
+	
+	global $BXAF_CONFIG, $APP_CONFIG;
+	
+	$results = array();
+	
+	$string = $getGenePlot['plot'];
+
+	if ((!$getGenePlot['result']) || ($string == '') || ($string == $BXAF_CONFIG['MESSAGE'][($APP_CONFIG['TABLES']['PROJECT'])]['General']['Gene_Search_No_Result'])){
+		$results['plot'] = $BXAF_CONFIG['MESSAGE'][($APP_CONFIG['TABLES']['PROJECT'])]['General']['Gene_Search_No_Result'];
+		
+		return $results;
+	}
 	
 	if ($type != 'compact'){
 		$type = 'fullsize';	
@@ -293,16 +327,58 @@ function processGenePlot($string = '', $type = 'compact'){
 		}
 	}
 	
+	
+	if (true){
+		preg_match("/getElementById\(\"(.*?)\"\)/", $string, $matches);
+		$graphDivID = trim($matches[1]);
+	}
+	
+	
 
 	if (true){
 		
 		if ($plot_type == 'violin'){
-			$svg_height = 650;
+			$svg_height = 800;
 		} elseif ($plot_type == 'scatter'){
-			$svg_height = 650;
+			$svg_height = 700;
+			
+			if (array_size($otherInfo['Genes']) > 0){
+				if (array_size($otherInfo['Genes']) <= 5){
+					$height_per_gene = 55;		
+				} elseif (array_size($otherInfo['Genes']) <= 10){
+					$height_per_gene = 50;					
+				} elseif (array_size($otherInfo['Genes']) <= 20){
+					$height_per_gene = 45;
+				} else {
+					$height_per_gene = 40;
+				}
+				
+				$svg_height = 225 + array_size($otherInfo['Genes'])*$height_per_gene;
+			}
 		}
 		
 		$svg_width	= ceil($svg_height*($width/$height));
+		
+		
+		$otherInfo['export_height'] = positiveInt($otherInfo['export_height']);
+		if ($otherInfo['export_height'] > 50000) $otherInfo['export_height'] = 50000;
+		
+		$otherInfo['export_width'] 	= positiveInt($otherInfo['export_width']);
+		if ($otherInfo['export_width'] > 50000) $otherInfo['export_width'] = 50000;
+		
+		if ($otherInfo['export_height'] > 0){
+			$svg_height	= $otherInfo['export_height'];
+			$svg_width	= ceil($svg_height*($width/$height));
+		} elseif ($otherInfo['export_width'] > 0){
+			$svg_width	= $otherInfo['export_width'];
+			$svg_height	= ceil($svg_width*($height/$width));
+		}
+		
+		
+		if ($svg_width < $width){
+			$svg_width = $width;
+			$svg_height = $height;
+		}
 		
 		$string = str_replace('{"responsive": true}', 'config', $string);
 		
@@ -311,7 +387,7 @@ function processGenePlot($string = '', $type = 'compact'){
 						
 						"var config = {
 						  toImageButtonOptions: {
-							format: 'svg', // one of png, svg, jpeg, webp
+							format: 'png', // one of png, svg, jpeg, webp
 							filename: 'gene_search',
 							height: {$svg_height},
 							width: {$svg_width},
@@ -327,6 +403,8 @@ function processGenePlot($string = '', $type = 'compact'){
 
 						$string);
 	}
+
+	
 	
 	if ($type == 'fullsize'){
 		
@@ -334,37 +412,78 @@ function processGenePlot($string = '', $type = 'compact'){
 			
 			$plot_height 	= 800;
 			$plot_width		= ceil($plot_height*($width/$height));
-		
-			$string = str_replace("height:{$height}px;", '', $string);
-			$string = str_replace("width:{$width}px;", '', $string);
 			
-			
-			$string = str_replace("\"height\": {$height},", '', $string);
-			$string = str_replace("\"width\": {$width},", '', $string);
-		}
-		
-		if ($plot_type == 'scatter'){
+		} elseif ($plot_type == 'scatter'){
 			
 			$plot_height 	= 700;
+			
+			if (array_size($otherInfo['Genes']) > 0){
+				if (array_size($otherInfo['Genes']) <= 5){
+					$height_per_gene = 55;		
+				} elseif (array_size($otherInfo['Genes']) <= 10){
+					$height_per_gene = 50;					
+				} elseif (array_size($otherInfo['Genes']) <= 20){
+					$height_per_gene = 45;
+				} else {
+					$height_per_gene = 40;
+				}
+				
+				$plot_height = 225 + array_size($otherInfo['Genes'])*$height_per_gene;
+			}
+			
 			$plot_width		= ceil($plot_height*($width/$height));
+		}
 		
+		if (true){
+			$otherInfo['plot_height'] = positiveInt($otherInfo['plot_height']);
+			if ($otherInfo['plot_height'] > 50000) $otherInfo['plot_height'] = 50000;
+			
+			$otherInfo['plot_width'] 	= positiveInt($otherInfo['plot_width']);
+			if ($otherInfo['plot_width'] > 50000) $otherInfo['plot_width'] = 50000;
+			
+			if ($otherInfo['plot_height'] > 0){
+				$plot_height	= $otherInfo['plot_height'];
+				$plot_width	= ceil($plot_height*($width/$height));
+			} elseif ($otherInfo['plot_width'] > 0){
+				$plot_width	= $otherInfo['plot_width'];
+				$plot_height	= ceil($plot_width*($height/$width));
+			}
+		}
+		
+		
+		if ($plot_width > $width){
 			$string = str_replace("height:{$height}px;", "height:{$plot_height}px;", $string);
 			$string = str_replace("width:{$width}px;", "width:{$plot_width}px;", $string);
 			
 			
 			$string = str_replace("\"height\": {$height},", "\"height\": {$plot_height},", $string);
 			$string = str_replace("\"width\": {$width},", "\"width\": {$plot_width},", $string);
-			
-			
 		}
-
 	}
 	
 	
 	
 	
 	
-	return $string;
+	
+	$downloadImageCode = '	
+								$(document).ready(function(){
+									$(document).on("click", "#downloadTrigger_' . $graphDivID . '", function(){
+										var graphDiv = document.getElementById("' . $graphDivID . '");
+										Plotly.downloadImage(graphDiv, {format: "svg", width: ' . $svg_width . ', height: ' . $svg_height . ', filename: "gene_search"});
+									});	
+								});
+							
+							';
+	
+	$string = str_replace('</script>', "{$downloadImageCode}</script>", $string);
+
+	$results['plot'] = $string;
+	$results['download_id'] = "downloadTrigger_{$graphDivID}";
+	$results['download'] = "<a href='javascript:void(0); id='downloadTrigger_{$graphDivID}'>Download</a>";
+	
+	
+	return $results;
 	
 }
 
