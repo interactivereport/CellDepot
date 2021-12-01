@@ -168,6 +168,8 @@ def dot(strH5ad,genes,grp,cN=None,gCut=None,expRange=[None,None],permax=None,log
                     tickfont={"size":15},tickangle=45)
     figDot.update_xaxes(showticklabels=False,showline=False,fixedrange=True,
                         row=subF['legend'][0],col=subF['legend'][1])
+    figDot.update_xaxes(range=[-0.5,len(X[grp].cat.categories)],
+                        row=subF['dot'][0],col=subF['dot'][1])
     figDot.update_yaxes(showticklabels=False,showline=False,fixedrange=True,
                         row=subF['legend'][0],col=subF['legend'][1])
     if legendDirection=="h":
