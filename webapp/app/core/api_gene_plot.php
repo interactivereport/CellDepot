@@ -119,18 +119,18 @@ if (($_GET['Plot_Type'] != 'violin') && ($_GET['Plot_Type'] != 'dot')){
 
 
 $_GET['Subsampling'] 	= positiveInt($_GET['Subsampling']);
-$_GET['g'] 				= abs(floatval($_GET['g']));
-$_GET['plot_height'] 	= positiveInt($_GET['plot_height']);
-$_GET['plot_width'] 	= positiveInt($_GET['plot_width']);
-$_GET['export_height'] 	= positiveInt($_GET['export_height']);
-$_GET['export_width'] 	= positiveInt($_GET['export_width']);
+$_GET['g'] 				= zero2null(abs(floatval($_GET['g'])));
+$_GET['plot_height'] 	= zero2null(positiveInt($_GET['plot_height']));
+$_GET['plot_width'] 	= zero2null(positiveInt($_GET['plot_width']));
+$_GET['export_height'] 	= zero2null(positiveInt($_GET['export_height']));
+$_GET['export_width'] 	= zero2null(positiveInt($_GET['export_width']));
 
 if ($_GET['Plot_Type'] == 'dot'){
-	$_GET['e_min'] 			= abs(floatval($_GET['e_min']));
-	$_GET['e_max'] 			= abs(floatval($_GET['e_max']));
-	$_GET['p'] 				= positiveInt($_GET['p']);
-	$_GET['l'] 				= abs(floatval($_GET['l']));
-	$_GET['d'] 				= $_GET['d'];
+	$_GET['e_min'] 			= zero2null(abs(floatval($_GET['e_min'])));
+	$_GET['e_max'] 			= zero2null(abs(floatval($_GET['e_max'])));
+	$_GET['p'] 				= zero2null(positiveInt($_GET['p']));
+	$_GET['l'] 				= zero2null(abs(floatval($_GET['l'])));
+	$_GET['d'] 				= trim(strtolower($_GET['d']));
 } else {
 	$_GET['e_min'] 			= NULL;
 	$_GET['e_max'] 			= NULL;

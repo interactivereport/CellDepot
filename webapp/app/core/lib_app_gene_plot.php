@@ -1,17 +1,15 @@
 <?php
 
 function getGenePlot($projectID = 0, $h5ad_file = '', $genes = array(), $plotType = '', $annotation_group = '', $use_default_annotation_group = 0, 
-					$subSampling = 0, $g = 0, $e_min = 0, $e_max = 0, $p = 0, $l = 0, $d = 'v'){
+					$subSampling = 0, $g = 0, $e_min = 0, $e_max = 0, $p = 0, $l = 0, $d = 'h'){
 	
 	global $BXAF_CONFIG, $APP_CONFIG;
 	
-	$version = '2021-11-29 18:00';
+	$version = '2021-11-30 20:00';
 	
 	if (!file_exists($h5ad_file)){
 		return false;	
 	}
-	
-	
 	
 	$genes = id_sanitizer($genes, 0, 0, 0, 1);
 	$genes = array_map('trim', $genes);
@@ -83,10 +81,8 @@ function getGenePlot($projectID = 0, $h5ad_file = '', $genes = array(), $plotTyp
 		}
 		
 		$d = trim(strtolower($d));
-		if ($d != ''){
-			if ($d != 'h') $d = 'v';
-			$cmd[] = "-d {$d}";
-		}
+		if ($d != 'v') $d = 'h';
+		$cmd[] = "-d {$d}";
 	}
 	
 	

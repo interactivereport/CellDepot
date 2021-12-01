@@ -192,8 +192,9 @@ if (true){
 	$BXAF_CONFIG_CUSTOM['MESSAGE'][$currentTable]['Column']['export_width']['Title']			= 'Width of Download Image';
 	
 	$BXAF_CONFIG_CUSTOM['MESSAGE'][$currentTable]['Column']['d']['Title']						= 'Position of the Size Legend';
-	$BXAF_CONFIG_CUSTOM['MESSAGE'][$currentTable]['Column']['d']['Value']['v']					= 'Right';
 	$BXAF_CONFIG_CUSTOM['MESSAGE'][$currentTable]['Column']['d']['Value']['h']					= 'Upper Left';
+	$BXAF_CONFIG_CUSTOM['MESSAGE'][$currentTable]['Column']['d']['Value']['v']					= 'Right';
+
 	
 
 }

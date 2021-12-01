@@ -408,6 +408,17 @@ function positiveInt($number = 0){
 	return abs(intval(trim($number)));
 }
 
+function zero2null($string = ''){
+	
+	$string = trim($string);
+	
+	if ($string == 0) $string = '';
+	
+	return $string;
+}
+
+
+
 function DOS2Unix($s) {
     $s = str_replace("\r\n", "\n", $s);
     $s = str_replace("\r", "\n", $s);

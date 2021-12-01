@@ -1,5 +1,5 @@
 <?php
 
-$APP_CONFIG['VERSION']['TEMPLATE'] 	= '2021-11-12';
+$APP_CONFIG['VERSION']['TEMPLATE'] 	= '2021-11-30';
 
 ?>
