@@ -5,7 +5,7 @@ output:
 ---
 # Supplemental Tables {#SITable}
 
-## Table S1 - Comparsion matrix of web portal tools {-}
+## [Table S1](https://github.com/interactivereport/CellDepot/blob/gh-pages/bookdown/S1.csv) - Comparsion matrix of web portal tools {-}
 ```{r, echo=FALSE}
 library(kableExtra)
 df <- read.csv("S1.csv")
@@ -16,7 +16,7 @@ df %>%
 ```
 Note: The criteria for query search and data analysis explorer please see Table S2 and S3.
 
-## Table S2 - Criterion for query search {-}
+## [Table S2](https://github.com/interactivereport/CellDepot/blob/gh-pages/bookdown/S2.csv) - Criterion for query search {-}
 ```{r, echo=FALSE}
 library(kableExtra)
 
@@ -28,7 +28,7 @@ df %>%
   scroll_box(width = "100%")
 ```
 
-## Table S3 - Criterion for data analysis explorer {-}
+## [Table S3](https://github.com/interactivereport/CellDepot/blob/gh-pages/bookdown/S3.csv) - Criterion for data analysis explorer {-}
 ```{r, echo=FALSE}
 library(kableExtra)
 df <- read.csv("S3.csv")
@@ -38,7 +38,7 @@ df %>%
   scroll_box(width = "100%")
 ```
 
-## Table S4 - Project metadata captured in CellDepot {-}
+## [Table S4](https://github.com/interactivereport/CellDepot/blob/gh-pages/bookdown/S4.csv) - Project metadata captured in CellDepot {-}
 ```{r, echo=FALSE}
 library(kableExtra)
 df <- read.csv("S4.csv")
