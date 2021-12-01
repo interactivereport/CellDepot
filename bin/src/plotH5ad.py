@@ -105,6 +105,7 @@ def dot(strH5ad,genes,grp,cN=None,gCut=None,expRange=[None,None],permax=None,log
                     round(tmp[tmp>0].count()/tmp.shape[0]*100,2),
                     tmp.shape[0]]]
     DOT=pd.DataFrame(df,columns=['grp','gene','median','mean','percent','cellN'])
+    DOT=DOT.fillna(0)
 
     percentSizeLegendW=80
     percentSizeLegendH=80
