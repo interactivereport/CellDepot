@@ -464,7 +464,7 @@ function processGenePlot($getGenePlot = NULL, $type = 'compact', $otherInfo = NU
 	
 	$downloadImageCode = '	
 								$(document).ready(function(){
-									$(document).on("click", "#downloadTrigger_' . $graphDivID . '", function(){
+									$(document).off("click", "#downloadTrigger_' . $graphDivID . '").on("click", "#downloadTrigger_' . $graphDivID . '", function(){
 										var graphDiv = document.getElementById("' . $graphDivID . '");
 										Plotly.downloadImage(graphDiv, {format: "svg", width: ' . $svg_width . ', height: ' . $svg_height . ', filename: "gene_search"});
 									});	
