@@ -6,12 +6,13 @@ include_once('config_init.php');
 
 
 if (true){
-	$_GET['Genes'] = id_sanitizer($_GET['Genes'], 1, 0, 0, 1);
+	$_GET['Genes'] = explode(',', $_GET['Genes']);
 	$_GET['Genes'] = array_iunique($_GET['Genes'], 1);
 	$_GET['Genes'] = array_map('strtoupper', $_GET['Genes']);
 	foreach($_GET['Genes'] as $tempKey => $currentGene){
 		$_GET['Genes'][$tempKey] = preg_replace( '/[\W]/', '', $currentGene);
 	}
+	$_GET['Genes'] = array_clean($_GET['Genes']);
 	$_GET['Genes_String'] = implode(',', $_GET['Genes']);
 
 
