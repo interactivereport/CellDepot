@@ -3,7 +3,7 @@
 CellDepot is database management system integrated with management system, query searching and data visualization tools for scRNA-seq datasets, which can be accessed by the link http://celldepot.bxgenomics.com and Biogen internal link http://go.biogen.com/CellDepot. This is a supplemental tutorial providing a detailed guide.
 
 
-![Figure S1. CellDepot website](figures/S4.png)
+![Figure S1. CellDepot website](figures/S1.jpg)
 
 The interface contains multiple tabs, corresponding to import and/or select objects in CellDepot scRNA-seq database, that can be accessed on top panel of the webpage. Users can upload their own dataset or explore the existing datasets for visualization and analysis.
 
