@@ -20,7 +20,7 @@ def main():
     steps = [0]+[(i+1)*k+min(i+1, m) for i in range(stepN)]
     gMax = []
     for i in range(stepN):
-        X=D.X[,range(steps[i],steps[i+1])]
+        X=D.X[:,range(steps[i],steps[i+1])]
         if hasattr(X,'toarray'):
             X = X.toarray()
         gMax = np.concatenate([gMax,np.round(np.nanmax(X,0).astype('float64'),2)])
