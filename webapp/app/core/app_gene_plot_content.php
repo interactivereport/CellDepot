@@ -214,7 +214,7 @@ echo "<form id='form_application' action='javascript:void(0);' method='post' rol
 			
 			
 			//Hide Projects with no results
-			if (true){
+			if (false){
 				echo "<div class='row'>";
 				echo "<div class='col-xl-12 col-lg-12 col-md-12'>";
 					echo "<div class='form-group row'>";

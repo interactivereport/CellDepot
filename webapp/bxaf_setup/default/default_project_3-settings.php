@@ -23,5 +23,7 @@ $BXAF_CONFIG_CUSTOM['SETTINGS']['Gene_Plot_SubSampling'] = array(0 => 'All Cells
 
 $BXAF_CONFIG_CUSTOM['SETTINGS']['Project_Filter_Candidates'] = array('Year', 'Species');
 
+$BXAF_CONFIG_CUSTOM['SETTINGS']['Tutorial_URL'] = 'https://interactivereport.github.io/CellDepot/bookdown/docs/SITutorial.html';
+
 
 ?>

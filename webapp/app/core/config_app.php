@@ -27,6 +27,8 @@ include_once('config_app_project.php');
 //Menu Items
 if (true){
 	$BXAF_CONFIG['LEFT_MENU_ITEMS'] = array();
+	
+	
 
 	if (!isGuestUser()){
 		$BXAF_CONFIG['PAGE_MENU_ITEMS'][] = 
@@ -92,6 +94,16 @@ if (true){
 				'URL'	=> 'admin.php',
 				'Icon' 	=> 'fas fa-cog',
 			);
+	}
+	
+	if ($BXAF_CONFIG['SETTINGS']['Tutorial_URL'] != ''){
+		$BXAF_CONFIG['PAGE_MENU_ITEMS'][] = 
+			array(
+					'Name'	=> 'Tutorial',
+					'URL'	=> $BXAF_CONFIG['SETTINGS']['Tutorial_URL'],
+					'Icon' 	=> 'fas fa-info-circle',
+				);
+		 
 	}
 }
 
