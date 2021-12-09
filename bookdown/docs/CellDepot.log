@@ -1,10 +1,10 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.23 (TeX Live 2022/dev) (preloaded format=pdflatex 2021.12.8)  9 DEC 2021 11:18
+This is pdfTeX, Version 3.141592653-2.6-1.40.23 (TeX Live 2022/dev) (preloaded format=pdflatex 2021.11.29)  29 NOV 2021 18:41
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
 **CellDepot.tex
 (./CellDepot.tex
-LaTeX2e <2021-11-15> patch level 1
+LaTeX2e <2021-11-15>
 L3 programming layer <2021-11-22> (/Users/yiruichen/Library/TinyTeX/texmf-dist/tex/latex/base/book.cls
 Document Class: book 2021/10/04 v1.4n Standard LaTeX document class
 (/Users/yiruichen/Library/TinyTeX/texmf-dist/tex/latex/base/bk10.clo
@@ -125,6 +125,25 @@ Package: ifxetex 2019/10/25 v0.7 ifxetex legacy package. Use iftex instead.
 Package: iftex 2020/03/06 v1.0d TeX engine tests
 )) (/Users/yiruichen/Library/TinyTeX/texmf-dist/tex/generic/iftex/ifluatex.sty
 Package: ifluatex 2019/10/25 v1.5 ifluatex legacy package. Use iftex instead.
+) (/Users/yiruichen/Library/TinyTeX/texmf-dist/tex/latex/caption/caption.sty
+Package: caption 2020/10/26 v3.5g Customizing captions (AR)
+ (/Users/yiruichen/Library/TinyTeX/texmf-dist/tex/latex/caption/caption3.sty
+Package: caption3 2020/10/21 v2.2e caption3 kernel (AR)
+ (/Users/yiruichen/Library/TinyTeX/texmf-dist/tex/latex/graphics/keyval.sty
+Package: keyval 2014/10/28 v1.15 key=value parser (DPC)
+\KV@toks@=\toks21
+)
+\captionmargin=\dimen148
+\captionmargin@=\dimen149
+\captionwidth=\dimen150
+\caption@tempdima=\dimen151
+\caption@indent=\dimen152
+\caption@parindent=\dimen153
+\caption@hangindent=\dimen154
+Package caption Info: Standard document class detected.
+)
+\c@caption@flags=\count270
+\c@continuedfloat=\count271
 ) (/Users/yiruichen/Library/TinyTeX/texmf-dist/tex/latex/base/fontenc.sty
 Package: fontenc 2021/04/29 v2.0v Standard LaTeX package
 LaTeX Font Info:    Trying to load font information for T1+lmr on input line 112.
@@ -132,8 +151,8 @@ LaTeX Font Info:    Trying to load font information for T1+lmr on input line 112
 File: t1lmr.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 )) (/Users/yiruichen/Library/TinyTeX/texmf-dist/tex/latex/base/inputenc.sty
 Package: inputenc 2021/02/14 v1.3d Input encoding file
-\inpenc@prehook=\toks21
-\inpenc@posthook=\toks22
+\inpenc@prehook=\toks22
+\inpenc@posthook=\toks23
 ) (/Users/yiruichen/Library/TinyTeX/texmf-dist/tex/latex/base/textcomp.sty
 Package: textcomp 2020/02/02 v2.0n Standard LaTeX package
 ) (/Users/yiruichen/Library/TinyTeX/texmf-dist/tex/latex/xcolor/xcolor.sty
@@ -166,9 +185,6 @@ Package: infwarerr 2019/12/03 v1.5 Providing info/warning/error messages (HO)
 Package pdftexcmds Info: \pdf@primitive is available.
 Package pdftexcmds Info: \pdf@ifprimitive is available.
 Package pdftexcmds Info: \pdfdraftmode found.
-) (/Users/yiruichen/Library/TinyTeX/texmf-dist/tex/latex/graphics/keyval.sty
-Package: keyval 2014/10/28 v1.15 key=value parser (DPC)
-\KV@toks@=\toks23
 ) (/Users/yiruichen/Library/TinyTeX/texmf-dist/tex/generic/kvsetkeys/kvsetkeys.sty
 Package: kvsetkeys 2019/12/15 v1.18 Key value parser (HO)
 ) (/Users/yiruichen/Library/TinyTeX/texmf-dist/tex/generic/kvdefinekeys/kvdefinekeys.sty
@@ -184,9 +200,9 @@ Package: auxhook 2019-12-17 v1.6 Hooks for auxiliary files (HO)
 ) (/Users/yiruichen/Library/TinyTeX/texmf-dist/tex/latex/kvoptions/kvoptions.sty
 Package: kvoptions 2020-10-07 v3.14 Key value format for package options (HO)
 )
-\@linkdim=\dimen148
-\Hy@linkcounter=\count270
-\Hy@pagecounter=\count271
+\@linkdim=\dimen155
+\Hy@linkcounter=\count272
+\Hy@pagecounter=\count273
  (/Users/yiruichen/Library/TinyTeX/texmf-dist/tex/latex/hyperref/pd1enc.def
 File: pd1enc.def 2021-06-07 v7.00m Hyperref: PDFDocEncoding definition (HO)
 Now handling font encoding PD1 ...
@@ -198,7 +214,7 @@ Package: intcalc 2019/12/15 v1.3 Expandable calculations with integers (HO)
 ) (/Users/yiruichen/Library/TinyTeX/texmf-dist/tex/generic/etexcmds/etexcmds.sty
 Package: etexcmds 2019/12/15 v1.7 Avoid name clashes with e-TeX commands (HO)
 )
-\Hy@SavedSpaceFactor=\count272
+\Hy@SavedSpaceFactor=\count274
  (/Users/yiruichen/Library/TinyTeX/texmf-dist/tex/latex/hyperref/puenc.def
 File: puenc.def 2021-06-07 v7.00m Hyperref: PDF Unicode definition (HO)
 Now handling font encoding PU ...
@@ -212,21 +228,21 @@ Package hyperref Info: Plain pages OFF on input line 4207.
 Package hyperref Info: Backreferencing OFF on input line 4212.
 Package hyperref Info: Implicit mode ON; LaTeX internals redefined.
 Package hyperref Info: Bookmarks ON on input line 4445.
-\c@Hy@tempcnt=\count273
+\c@Hy@tempcnt=\count275
  (/Users/yiruichen/Library/TinyTeX/texmf-dist/tex/latex/url/url.sty
 \Urlmuskip=\muskip17
 Package: url 2013/09/16  ver 3.4  Verb mode for urls, etc.
 )
 LaTeX Info: Redefining \url on input line 4804.
-\XeTeXLinkMargin=\dimen149
+\XeTeXLinkMargin=\dimen156
  (/Users/yiruichen/Library/TinyTeX/texmf-dist/tex/generic/bitset/bitset.sty
 Package: bitset 2019/12/09 v1.3 Handle bit-vector datatype (HO)
  (/Users/yiruichen/Library/TinyTeX/texmf-dist/tex/generic/bigintcalc/bigintcalc.sty
 Package: bigintcalc 2019/12/15 v1.5 Expandable calculations on big integers (HO)
 ))
-\Fld@menulength=\count274
-\Field@Width=\dimen150
-\Fld@charsize=\dimen151
+\Fld@menulength=\count276
+\Field@Width=\dimen157
+\Fld@charsize=\dimen158
 Package hyperref Info: Hyper figures OFF on input line 6076.
 Package hyperref Info: Link nesting OFF on input line 6081.
 Package hyperref Info: Hyper index ON on input line 6084.
@@ -240,9 +256,9 @@ LaTeX Info: Redefining \pageref on input line 6150.
 Package: atbegshi-ltx 2021/01/10 v1.0c Emulation of the original atbegshi
 package with kernel methods
 )
-\Hy@abspage=\count275
-\c@Item=\count276
-\c@Hfootnote=\count277
+\Hy@abspage=\count277
+\c@Item=\count278
+\c@Hfootnote=\count279
 )
 Package hyperref Info: Driver (autodetected): hpdftex.
  (/Users/yiruichen/Library/TinyTeX/texmf-dist/tex/latex/hyperref/hpdftex.def
@@ -251,8 +267,8 @@ File: hpdftex.def 2021-06-07 v7.00m Hyperref driver for pdfTeX
 Package: atveryend-ltx 2020/08/19 v1.0a Emulation of the original atveryend package
 with kernel methods
 )
-\Fld@listcount=\count278
-\c@bookmark@seq@number=\count279
+\Fld@listcount=\count280
+\c@bookmark@seq@number=\count281
  (/Users/yiruichen/Library/TinyTeX/texmf-dist/tex/latex/rerunfilecheck/rerunfilecheck.sty
 Package: rerunfilecheck 2019/12/05 v1.9 Rerun checks for auxiliary files (HO)
  (/Users/yiruichen/Library/TinyTeX/texmf-dist/tex/generic/uniquecounter/uniquecounter.sty
@@ -266,98 +282,98 @@ Package: geometry 2020/01/02 v5.9 Page Geometry
  (/Users/yiruichen/Library/TinyTeX/texmf-dist/tex/generic/iftex/ifvtex.sty
 Package: ifvtex 2019/10/25 v1.7 ifvtex legacy package. Use iftex instead.
 )
-\Gm@cnth=\count280
-\Gm@cntv=\count281
-\c@Gm@tempcnt=\count282
-\Gm@bindingoffset=\dimen152
-\Gm@wd@mp=\dimen153
-\Gm@odd@mp=\dimen154
-\Gm@even@mp=\dimen155
-\Gm@layoutwidth=\dimen156
-\Gm@layoutheight=\dimen157
-\Gm@layouthoffset=\dimen158
-\Gm@layoutvoffset=\dimen159
+\Gm@cnth=\count282
+\Gm@cntv=\count283
+\c@Gm@tempcnt=\count284
+\Gm@bindingoffset=\dimen159
+\Gm@wd@mp=\dimen160
+\Gm@odd@mp=\dimen161
+\Gm@even@mp=\dimen162
+\Gm@layoutwidth=\dimen163
+\Gm@layoutheight=\dimen164
+\Gm@layouthoffset=\dimen165
+\Gm@layoutvoffset=\dimen166
 \Gm@dimlist=\toks24
 ) (/Users/yiruichen/Library/TinyTeX/texmf-dist/tex/latex/fancyvrb/fancyvrb.sty
 Package: fancyvrb 2021/11/24\nobreakspace {} 4.1a\nobreakspace {}verbatim text (tvz,hv)
-\FV@CodeLineNo=\count283
+\FV@CodeLineNo=\count285
 \FV@InFile=\read2
 \FV@TabBox=\box52
-\c@FancyVerbLine=\count284
-\FV@StepNumber=\count285
+\c@FancyVerbLine=\count286
+\FV@StepNumber=\count287
 \FV@OutFile=\write3
 ) (/Users/yiruichen/Library/TinyTeX/texmf-dist/tex/latex/framed/framed.sty
 Package: framed 2011/10/22 v 0.96: framed or shaded text with page breaks
 \OuterFrameSep=\skip53
-\fb@frw=\dimen160
-\fb@frh=\dimen161
-\FrameRule=\dimen162
-\FrameSep=\dimen163
+\fb@frw=\dimen167
+\fb@frh=\dimen168
+\FrameRule=\dimen169
+\FrameSep=\dimen170
 ) (/Users/yiruichen/Library/TinyTeX/texmf-dist/tex/latex/tools/longtable.sty
 Package: longtable 2021-09-01 v4.17 Multi-page Table package (DPC)
 \LTleft=\skip54
 \LTright=\skip55
 \LTpre=\skip56
 \LTpost=\skip57
-\LTchunksize=\count286
-\LTcapwidth=\dimen164
+\LTchunksize=\count288
+\LTcapwidth=\dimen171
 \LT@head=\box53
 \LT@firsthead=\box54
 \LT@foot=\box55
 \LT@lastfoot=\box56
 \LT@gbox=\box57
-\LT@cols=\count287
-\LT@rows=\count288
-\c@LT@tables=\count289
-\c@LT@chunks=\count290
+\LT@cols=\count289
+\LT@rows=\count290
+\c@LT@tables=\count291
+\c@LT@chunks=\count292
 \LT@p@ftn=\toks25
 ) (/Users/yiruichen/Library/TinyTeX/texmf-dist/tex/latex/booktabs/booktabs.sty
 Package: booktabs 2020/01/12 v1.61803398 Publication quality tables
-\heavyrulewidth=\dimen165
-\lightrulewidth=\dimen166
-\cmidrulewidth=\dimen167
-\belowrulesep=\dimen168
-\belowbottomsep=\dimen169
-\aboverulesep=\dimen170
-\abovetopsep=\dimen171
-\cmidrulesep=\dimen172
-\cmidrulekern=\dimen173
-\defaultaddspace=\dimen174
-\@cmidla=\count291
-\@cmidlb=\count292
-\@aboverulesep=\dimen175
-\@belowrulesep=\dimen176
-\@thisruleclass=\count293
-\@lastruleclass=\count294
-\@thisrulewidth=\dimen177
+\heavyrulewidth=\dimen172
+\lightrulewidth=\dimen173
+\cmidrulewidth=\dimen174
+\belowrulesep=\dimen175
+\belowbottomsep=\dimen176
+\aboverulesep=\dimen177
+\abovetopsep=\dimen178
+\cmidrulesep=\dimen179
+\cmidrulekern=\dimen180
+\defaultaddspace=\dimen181
+\@cmidla=\count293
+\@cmidlb=\count294
+\@aboverulesep=\dimen182
+\@belowrulesep=\dimen183
+\@thisruleclass=\count295
+\@lastruleclass=\count296
+\@thisrulewidth=\dimen184
 ) (/Users/yiruichen/Library/TinyTeX/texmf-dist/tex/latex/tools/array.sty
 Package: array 2021/10/04 v2.5f Tabular extension package (FMi)
-\col@sep=\dimen178
+\col@sep=\dimen185
 \ar@mcellbox=\box58
-\extrarowheight=\dimen179
+\extrarowheight=\dimen186
 \NC@list=\toks26
 \extratabsurround=\skip58
 \backup@length=\skip59
 \ar@cellbox=\box59
 ) (/Users/yiruichen/Library/TinyTeX/texmf-dist/tex/latex/tools/calc.sty
 Package: calc 2017/05/25 v4.3 Infix arithmetic (KKT,FJ)
-\calc@Acount=\count295
-\calc@Bcount=\count296
-\calc@Adimen=\dimen180
-\calc@Bdimen=\dimen181
+\calc@Acount=\count297
+\calc@Bcount=\count298
+\calc@Adimen=\dimen187
+\calc@Bdimen=\dimen188
 \calc@Askip=\skip60
 \calc@Bskip=\skip61
 LaTeX Info: Redefining \setlength on input line 80.
 LaTeX Info: Redefining \addtolength on input line 81.
-\calc@Ccount=\count297
+\calc@Ccount=\count299
 \calc@Cskip=\skip62
 ) (/Users/yiruichen/Library/TinyTeX/texmf-dist/tex/latex/etoolbox/etoolbox.sty
 Package: etoolbox 2020/10/05 v2.5k e-TeX tools for LaTeX (JAW)
-\etb@tempcnta=\count298
+\etb@tempcnta=\count300
 ) (/Users/yiruichen/Library/TinyTeX/texmf-dist/tex/latex/mdwtools/footnote.sty
 Package: footnote 1997/01/28 1.13 Save footnotes around boxes
 \fn@notes=\box60
-\fn@width=\dimen182
+\fn@width=\dimen189
 ) (/Users/yiruichen/Library/TinyTeX/texmf-dist/tex/latex/graphics/graphicx.sty
 Package: graphicx 2021/09/16 v1.2d Enhanced LaTeX Graphics (DPC,SPQR)
  (/Users/yiruichen/Library/TinyTeX/texmf-dist/tex/latex/graphics/graphics.sty
@@ -369,8 +385,8 @@ File: graphics.cfg 2016/06/04 v1.11 sample graphics configuration
 )
 Package graphics Info: Driver file: pdftex.def on input line 107.
 )
-\Gin@req@height=\dimen183
-\Gin@req@width=\dimen184
+\Gin@req@height=\dimen190
+\Gin@req@width=\dimen191
 ) (/Users/yiruichen/Library/TinyTeX/texmf-dist/tex/latex/amscls/amsthm.sty
 Package: amsthm 2020/05/29 v2.20.6
 \thm@style=\toks27
@@ -382,26 +398,7 @@ Package: amsthm 2020/05/29 v2.20.6
 \thm@postskip=\skip64
 \thm@headsep=\skip65
 \dth@everypar=\toks32
-) (/Users/yiruichen/Library/TinyTeX/texmf-dist/tex/latex/caption/caption.sty
-Package: caption 2020/10/26 v3.5g Customizing captions (AR)
- (/Users/yiruichen/Library/TinyTeX/texmf-dist/tex/latex/caption/caption3.sty
-Package: caption3 2020/10/21 v2.2e caption3 kernel (AR)
-\captionmargin=\dimen185
-\captionmargin@=\dimen186
-\captionwidth=\dimen187
-\caption@tempdima=\dimen188
-\caption@indent=\dimen189
-\caption@parindent=\dimen190
-\caption@hangindent=\dimen191
-Package caption Info: Standard document class detected.
-)
-\c@caption@flags=\count299
-\c@continuedfloat=\count300
-Package caption Info: hyperref package is loaded.
-Package caption Info: longtable package is loaded.
- (/Users/yiruichen/Library/TinyTeX/texmf-dist/tex/latex/caption/ltcaption.sty
-Package: ltcaption 2020/05/30 v1.4b longtable captions (AR)
-)) (/Users/yiruichen/Library/TinyTeX/texmf-dist/tex/latex/natbib/natbib.sty
+) (/Users/yiruichen/Library/TinyTeX/texmf-dist/tex/latex/natbib/natbib.sty
 Package: natbib 2010/09/13 8.31b (PWD, AO)
 \bibhang=\skip66
 \bibsep=\skip67
@@ -414,31 +411,38 @@ File: l3backend-pdftex.def 2021-10-18 L3 backend support: PDF output (pdfTeX)
 ) (./CellDepot.aux)
 \openout1 = `CellDepot.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 130.
-LaTeX Font Info:    ... okay on input line 130.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 130.
-LaTeX Font Info:    ... okay on input line 130.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 130.
-LaTeX Font Info:    ... okay on input line 130.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 130.
-LaTeX Font Info:    ... okay on input line 130.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 130.
-LaTeX Font Info:    ... okay on input line 130.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 130.
-LaTeX Font Info:    ... okay on input line 130.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 130.
-LaTeX Font Info:    ... okay on input line 130.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 130.
-LaTeX Font Info:    ... okay on input line 130.
-LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 130.
-LaTeX Font Info:    ... okay on input line 130.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 132.
+LaTeX Font Info:    ... okay on input line 132.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 132.
+LaTeX Font Info:    ... okay on input line 132.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 132.
+LaTeX Font Info:    ... okay on input line 132.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 132.
+LaTeX Font Info:    ... okay on input line 132.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 132.
+LaTeX Font Info:    ... okay on input line 132.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 132.
+LaTeX Font Info:    ... okay on input line 132.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 132.
+LaTeX Font Info:    ... okay on input line 132.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 132.
+LaTeX Font Info:    ... okay on input line 132.
+LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 132.
+LaTeX Font Info:    ... okay on input line 132.
+Package caption Info: Begin \AtBeginDocument code.
+Package caption Info: hyperref package is loaded.
+Package caption Info: longtable package is loaded.
+ (/Users/yiruichen/Library/TinyTeX/texmf-dist/tex/latex/caption/ltcaption.sty
+Package: ltcaption 2020/05/30 v1.4b longtable captions (AR)
+)
+Package caption Info: End \AtBeginDocument code.
  (/Users/yiruichen/Library/TinyTeX/texmf-dist/tex/latex/epstopdf-pkg/epstopdf-base.sty
 Package: epstopdf-base 2020-01-24 v2.11 Base part for package epstopdf
 Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 485.
  (/Users/yiruichen/Library/TinyTeX/texmf-dist/tex/latex/latexconfig/epstopdf-sys.cfg
 File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Live
 ))
-Package hyperref Info: Link coloring OFF on input line 130.
+Package hyperref Info: Link coloring OFF on input line 132.
  (/Users/yiruichen/Library/TinyTeX/texmf-dist/tex/latex/hyperref/nameref.sty
 Package: nameref 2021-04-02 v2.47 Cross-referencing by name of section
  (/Users/yiruichen/Library/TinyTeX/texmf-dist/tex/latex/refcount/refcount.sty
@@ -448,9 +452,9 @@ Package: gettitlestring 2019/12/15 v1.6 Cleanup title references (HO)
 )
 \c@section@level=\count303
 )
-LaTeX Info: Redefining \ref on input line 130.
-LaTeX Info: Redefining \pageref on input line 130.
-LaTeX Info: Redefining \nameref on input line 130.
+LaTeX Info: Redefining \ref on input line 132.
+LaTeX Info: Redefining \pageref on input line 132.
+LaTeX Info: Redefining \nameref on input line 132.
  (./CellDepot.out) (./CellDepot.out)
 \@outlinefile=\write4
 \openout4 = `CellDepot.out'.
@@ -490,41 +494,41 @@ LaTeX Info: Redefining \nameref on input line 130.
 * \@reversemarginfalse
 * (1in=72.27pt=25.4mm, 1cm=28.453pt)
 
-Package caption Info: Begin \AtBeginDocument code.
-Package caption Info: End \AtBeginDocument code.
-LaTeX Font Info:    Trying to load font information for OT1+lmr on input line 132.
+LaTeX Font Info:    Trying to load font information for OT1+lmr on input line 134.
 (/Users/yiruichen/Library/TinyTeX/texmf-dist/tex/latex/lm/ot1lmr.fd
 File: ot1lmr.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 )
-LaTeX Font Info:    Trying to load font information for OML+lmm on input line 132.
+LaTeX Font Info:    Trying to load font information for OML+lmm on input line 134.
  (/Users/yiruichen/Library/TinyTeX/texmf-dist/tex/latex/lm/omllmm.fd
 File: omllmm.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 )
-LaTeX Font Info:    Trying to load font information for OMS+lmsy on input line 132.
+LaTeX Font Info:    Trying to load font information for OMS+lmsy on input line 134.
  (/Users/yiruichen/Library/TinyTeX/texmf-dist/tex/latex/lm/omslmsy.fd
 File: omslmsy.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 )
-LaTeX Font Info:    Trying to load font information for OMX+lmex on input line 132.
+LaTeX Font Info:    Trying to load font information for OMX+lmex on input line 134.
  (/Users/yiruichen/Library/TinyTeX/texmf-dist/tex/latex/lm/omxlmex.fd
 File: omxlmex.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 )
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <12> on input line 132.
+(Font)              <12> on input line 134.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <8> on input line 132.
+(Font)              <8> on input line 134.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <6> on input line 132.
-LaTeX Font Info:    Trying to load font information for U+msa on input line 132.
+(Font)              <6> on input line 134.
+LaTeX Font Info:    Trying to load font information for U+msa on input line 134.
  (/Users/yiruichen/Library/TinyTeX/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Trying to load font information for U+msb on input line 132.
+LaTeX Font Info:    Trying to load font information for U+msb on input line 134.
  (/Users/yiruichen/Library/TinyTeX/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 ) [1
 
 
-{/Users/yiruichen/Library/TinyTeX/texmf-var/fonts/map/pdftex/updmap/pdftex.map}] (./CellDepot.toc
+{/Users/yiruichen/Library/TinyTeX/texmf-var/fonts/map/pdftex/updmap/pdftex.map}] [2
+
+] (./CellDepot.toc
 LaTeX Font Info:    External font `lmex10' loaded for size
 (Font)              <10> on input line 3.
 LaTeX Font Info:    External font `lmex10' loaded for size
@@ -535,204 +539,119 @@ LaTeX Font Info:    External font `lmex10' loaded for size
 \tf@toc=\write5
 \openout5 = `CellDepot.toc'.
 
- [2
+ [3] [4
 
 ]
 Chapter 1.
-[3
+[5] [6
 
 ]
 Chapter 2.
-<figures/table_s1.jpg, id=152, 544.6749pt x 767.38695pt>
-File: figures/table_s1.jpg Graphic file (type jpg)
-<use figures/table_s1.jpg>
-Package pdftex.def Info: figures/table_s1.jpg  used on input line 152.
-(pdftex.def)             Requested size: 483.4709pt x 681.15729pt.
+<figures/S3.jpg, id=118, 542.025pt x 304.88907pt>
+File: figures/S3.jpg Graphic file (type jpg)
+<use figures/S3.jpg>
+Package pdftex.def Info: figures/S3.jpg  used on input line 159.
+(pdftex.def)             Requested size: 500.50513pt x 281.53413pt.
 
-Underfull \vbox (badness 10000) has occurred while \output is active []
+Overfull \hbox (36.65485pt too wide) in paragraph at lines 171--172
+\T1/lmr/m/n/10 The pre-pared h5ad files are re-quired to copy to a folder de-fined in the con-fig-u-ra-tion file, e.g., /data/celldepot/all_h5ad_files/.
+ []
 
- [4
-
-]
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
- [5 <./figures/table_s1.jpg>] [6]
+[7] [8 <./figures/S3.jpg>]
 Chapter 3.
-<figures/S1.jpg, id=181, 3731.9425pt x 2161.07375pt>
-File: figures/S1.jpg Graphic file (type jpg)
-<use figures/S1.jpg>
-Package pdftex.def Info: figures/S1.jpg  used on input line 261.
-(pdftex.def)             Requested size: 500.43077pt x 289.78682pt.
-<figures/S2.jpg, id=182, 3590.41376pt x 2154.0475pt>
-File: figures/S2.jpg Graphic file (type jpg)
-<use figures/S2.jpg>
-Package pdftex.def Info: figures/S2.jpg  used on input line 267.
-(pdftex.def)             Requested size: 500.4631pt x 300.24988pt.
-<figures/S3.jpg, id=183, 3619.5225pt x 2154.0475pt>
-File: figures/S3.jpg Graphic file (type jpg)
-<use figures/S3.jpg>
-Package pdftex.def Info: figures/S3.jpg  used on input line 273.
-(pdftex.def)             Requested size: 500.43355pt x 297.81763pt.
-[7
+[9
 
- <./figures/S1.jpg>] [8 <./figures/S2.jpg>] [9 <./figures/S3.jpg>]
+] [10]
 Chapter 4.
+<figures/S4.png, id=170, 541.27219pt x 249.18094pt>
+File: figures/S4.png Graphic file (type png)
+<use figures/S4.png>
+Package pdftex.def Info: figures/S4.png  used on input line 345.
+(pdftex.def)             Requested size: 500.49548pt x 230.40889pt.
+[11
+
+ <./figures/S4.png>]
+<figures/S6.png, id=181, 541.27219pt x 276.28218pt>
+File: figures/S6.png Graphic file (type png)
+<use figures/S6.png>
+Package pdftex.def Info: figures/S6.png  used on input line 361.
+(pdftex.def)             Requested size: 500.49548pt x 255.46848pt.
+<figures/S1.jpg, id=182, 506.8755pt x 231.264pt>
 File: figures/S1.jpg Graphic file (type jpg)
 <use figures/S1.jpg>
-Package pdftex.def Info: figures/S1.jpg  used on input line 282.
-(pdftex.def)             Requested size: 500.43077pt x 289.78682pt.
-[10
+Package pdftex.def Info: figures/S1.jpg  used on input line 372.
+(pdftex.def)             Requested size: 500.50894pt x 228.35922pt.
+<figures/s7.png, id=183, 433.62pt x 666.23906pt>
+File: figures/s7.png Graphic file (type png)
+<use figures/s7.png>
+Package pdftex.def Info: figures/s7.png  used on input line 383.
+(pdftex.def)             Requested size: 433.63878pt x 666.26791pt.
 
-]
+
+LaTeX Warning: Float too large for page by 19.10893pt on input line 385.
+
+<figures/S8.png, id=185, 541.27219pt x 270.25969pt>
+File: figures/S8.png Graphic file (type png)
+<use figures/S8.png>
+Package pdftex.def Info: figures/S8.png  used on input line 396.
+(pdftex.def)             Requested size: 500.49548pt x 249.89969pt.
+<figures/S9.png, id=186, 541.27219pt x 302.63063pt>
+File: figures/S9.png Graphic file (type png)
+<use figures/S9.png>
+Package pdftex.def Info: figures/S9.png  used on input line 410.
+(pdftex.def)             Requested size: 500.49548pt x 279.83197pt.
+<figures/s10.png, id=187, 541.27219pt x 279.29344pt>
+File: figures/s10.png Graphic file (type png)
+<use figures/s10.png>
+Package pdftex.def Info: figures/s10.png  used on input line 421.
+(pdftex.def)             Requested size: 500.49548pt x 258.25288pt.
+[12 <./figures/S6.png>]
+<figures/S11.png, id=205, 541.27219pt x 293.59688pt>
+File: figures/S11.png Graphic file (type png)
+<use figures/S11.png>
+Package pdftex.def Info: figures/S11.png  used on input line 432.
+(pdftex.def)             Requested size: 500.49548pt x 271.47876pt.
+<figures/S2.jpg, id=206, 541.27219pt x 304.88907pt>
 File: figures/S2.jpg Graphic file (type jpg)
 <use figures/S2.jpg>
-Package pdftex.def Info: figures/S2.jpg  used on input line 293.
-(pdftex.def)             Requested size: 500.4631pt x 300.24988pt.
-
-Underfull \hbox (badness 10000) in paragraph at lines 293--295
-[][][][]
- []
-
-File: figures/S3.jpg Graphic file (type jpg)
-<use figures/S3.jpg>
-Package pdftex.def Info: figures/S3.jpg  used on input line 301.
-(pdftex.def)             Requested size: 500.43355pt x 297.81763pt.
-
-Underfull \hbox (badness 10000) in paragraph at lines 301--303
-[][][][]
- []
-
-
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
- [11]
-<figures/S4.jpg, id=218, 3182.89125pt x 2161.07375pt>
-File: figures/S4.jpg Graphic file (type jpg)
-<use figures/S4.jpg>
-Package pdftex.def Info: figures/S4.jpg  used on input line 309.
-(pdftex.def)             Requested size: 500.48239pt x 339.81033pt.
-
-Underfull \hbox (badness 10000) in paragraph at lines 309--311
-[][][][]
- []
-
-
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
- [12]
-<figures/S5.jpg, id=225, 3648.63126pt x 2166.0925pt>
-File: figures/S5.jpg Graphic file (type jpg)
-<use figures/S5.jpg>
-Package pdftex.def Info: figures/S5.jpg  used on input line 320.
-(pdftex.def)             Requested size: 500.44962pt x 297.10324pt.
-
-Underfull \hbox (badness 10000) in paragraph at lines 320--322
-[][][][]
- []
-
-
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
- [13 <./figures/S4.jpg>]
-<figures/S6.jpg, id=236, 3573.35pt x 2148.025pt>
-File: figures/S6.jpg Graphic file (type jpg)
-<use figures/S6.jpg>
-Package pdftex.def Info: figures/S6.jpg  used on input line 328.
-(pdftex.def)             Requested size: 500.4837pt x 300.85255pt.
-
-Underfull \hbox (badness 10000) in paragraph at lines 328--330
-[][][][]
- []
-
-
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
- [14 <./figures/S5.jpg>]
-<figures/S7.jpg, id=244, 2441.12pt x 1883.035pt>
-File: figures/S7.jpg Graphic file (type jpg)
-<use figures/S7.jpg>
-Package pdftex.def Info: figures/S7.jpg  used on input line 338.
-(pdftex.def)             Requested size: 500.4701pt x 386.0534pt.
-
-Underfull \hbox (badness 10000) in paragraph at lines 338--340
-[][][][]
- []
-
-
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
- [15 <./figures/S6.jpg>]
-<figures/S8.jpg, id=252, 3841.35126pt x 2158.0625pt>
-File: figures/S8.jpg Graphic file (type jpg)
-<use figures/S8.jpg>
-Package pdftex.def Info: figures/S8.jpg  used on input line 346.
-(pdftex.def)             Requested size: 500.44826pt x 281.1507pt.
-
-Underfull \hbox (badness 10000) in paragraph at lines 346--348
-[][][][]
- []
-
-
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
- [16 <./figures/S7.jpg>]
-<figures/S9.jpg, id=259, 1872.9975pt x 1941.2525pt>
-File: figures/S9.jpg Graphic file (type jpg)
-<use figures/S9.jpg>
-Package pdftex.def Info: figures/S9.jpg  used on input line 354.
-(pdftex.def)             Requested size: 500.48602pt x 518.72453pt.
-
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
- [17 <./figures/S8.jpg>] [18 <./figures/S9.jpg>]
-<figures/S10.jpg, id=273, 2511.3825pt x 1927.2pt>
-File: figures/S10.jpg Graphic file (type jpg)
-<use figures/S10.jpg>
-Package pdftex.def Info: figures/S10.jpg  used on input line 363.
-(pdftex.def)             Requested size: 500.46655pt x 384.05106pt.
-
-Underfull \hbox (badness 10000) in paragraph at lines 363--365
-[][][][]
- []
-
-<figures/S11.jpg, id=275, 3845.36626pt x 2160.07pt>
-File: figures/S11.jpg Graphic file (type jpg)
-<use figures/S11.jpg>
-Package pdftex.def Info: figures/S11.jpg  used on input line 376.
-(pdftex.def)             Requested size: 500.44325pt x 281.1156pt.
-
-Underfull \vbox (badness 7099) has occurred while \output is active []
-
- [19 <./figures/S10.jpg>] [20 <./figures/S11.jpg>]
-Chapter 5.
-[21
-
-]
-LaTeX Font Info:    Trying to load font information for T1+lmtt on input line 402.
+Package pdftex.def Info: figures/S2.jpg  used on input line 445.
+(pdftex.def)             Requested size: 500.49548pt x 281.92027pt.
+<figures/S12.png, id=207, 541.27219pt x 283.0575pt>
+File: figures/S12.png Graphic file (type png)
+<use figures/S12.png>
+Package pdftex.def Info: figures/S12.png  used on input line 456.
+(pdftex.def)             Requested size: 500.49548pt x 261.73337pt.
+ [13 <./figures/S1.jpg>] [14 <./figures/s7.png>] [15 <./figures/S8.png> <./figures/S9.png>] [16 <./figures/s10.png> <./figures/S11.png>] [17 <./figures/S2.jpg> <./figures/S12.png>]
+<figures/S5.png, id=251, 541.27219pt x 304.88907pt>
+File: figures/S5.png Graphic file (type png)
+<use figures/S5.png>
+Package pdftex.def Info: figures/S5.png  used on input line 468.
+(pdftex.def)             Requested size: 500.49548pt x 281.92027pt.
+LaTeX Font Info:    Trying to load font information for T1+lmtt on input line 478.
  (/Users/yiruichen/Library/TinyTeX/texmf-dist/tex/latex/lm/t1lmtt.fd
 File: t1lmtt.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 )
 LaTeX Font Info:    Font shape `T1/lmtt/bx/n' in size <10> not available
-(Font)              Font shape `T1/lmtt/b/n' tried instead on input line 403.
+(Font)              Font shape `T1/lmtt/b/n' tried instead on input line 479.
 
 No file CellDepot.bbl.
-[22] (./CellDepot.aux)
+[18 <./figures/S5.png>] (./CellDepot.aux)
 Package rerunfilecheck Info: File `CellDepot.out' has not changed.
-(rerunfilecheck)             Checksum: 055108CB2A8B1825CCF3403F398FB4FE;4513.
+(rerunfilecheck)             Checksum: B52D132B1079CAFA80A11CD8488489E9;2690.
  ) 
 Here is how much of TeX's memory you used:
- 13655 strings out of 480313
- 217848 string characters out of 5896367
- 517516 words of memory out of 5000000
- 31206 multiletter control sequences out of 15000+600000
+ 13646 strings out of 480313
+ 217832 string characters out of 5896366
+ 535893 words of memory out of 5000000
+ 31193 multiletter control sequences out of 15000+600000
  464403 words of font info for 72 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
- 60i,9n,63p,1136b,356s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 60i,9n,63p,1121b,360s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/Users/yiruichen/Library/TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-ec.enc}</Users/yiruichen/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmbx10.pfb></Users/yiruichen/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmbx12.pfb></Users/yiruichen/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmr10.pfb></Users/yiruichen/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmr12.pfb></Users/yiruichen/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmr17.pfb></Users/yiruichen/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmro10.pfb></Users/yiruichen/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmtk10.pfb></Users/yiruichen/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmtt10.pfb>
-Output written on CellDepot.pdf (22 pages, 13596351 bytes).
+Output written on CellDepot.pdf (18 pages, 1407188 bytes).
 PDF statistics:
- 386 PDF objects out of 1000 (max. 8388607)
- 330 compressed objects within 4 object streams
- 86 named destinations out of 1000 (max. 500000)
- 253 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 319 PDF objects out of 1000 (max. 8388607)
+ 259 compressed objects within 3 object streams
+ 90 named destinations out of 1000 (max. 500000)
+ 181 words of extra memory for PDF output out of 10000 (max. 10000000)
 

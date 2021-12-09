@@ -1,28 +1,23 @@
-\contentsline {chapter}{\numberline {1}Preface}{3}{chapter.1}%
-\contentsline {chapter}{\numberline {2}Supplemental Tables}{4}{chapter.2}%
-\contentsline {section}{\href {https://github.com/interactivereport/CellDepot/blob/gh-pages/bookdown/S1.csv}{Table S1} - Comparison matrix of web portal tools}{4}{section*.2}%
-\contentsline {section}{\href {https://github.com/interactivereport/CellDepot/blob/gh-pages/bookdown/S2.csv}{Table S2} - Criterion for query search}{6}{section*.3}%
-\contentsline {section}{\href {https://github.com/interactivereport/CellDepot/blob/gh-pages/bookdown/S3.csv}{Table S3} - Criterion for data analysis explorer}{6}{section*.5}%
-\contentsline {section}{\href {https://github.com/interactivereport/CellDepot/blob/gh-pages/bookdown/S4.csv}{Table S4} - Project metadata captured in CellDepot}{6}{section*.7}%
-\contentsline {chapter}{\numberline {3}Supplemental Figures}{7}{chapter.3}%
-\contentsline {chapter}{\numberline {4}Supplemental Tutorial}{10}{chapter.4}%
-\contentsline {section}{\numberline {4.1}Browse Projects}{10}{section.4.1}%
-\contentsline {section}{\numberline {4.2}Search Projects}{11}{section.4.2}%
-\contentsline {section}{\numberline {4.3}Project Filters}{12}{section.4.3}%
-\contentsline {section}{\numberline {4.4}Visualize Datasets}{13}{section.4.4}%
-\contentsline {subsection}{\numberline {4.4.1}View Details}{13}{subsection.4.4.1}%
-\contentsline {subsection}{\numberline {4.4.2}Data Visualization and Analysis by cellxgene VIP}{14}{subsection.4.4.2}%
-\contentsline {subsection}{\numberline {4.4.3}Case Study 1}{15}{subsection.4.4.3}%
-\contentsline {section}{\numberline {4.5}Search Genes}{16}{section.4.5}%
-\contentsline {subsection}{\numberline {4.5.1}Case Study 2}{17}{subsection.4.5.1}%
-\contentsline {section}{\numberline {4.6}Import Projects}{18}{section.4.6}%
-\contentsline {section}{\numberline {4.7}Create Project}{19}{section.4.7}%
-\contentsline {section}{\numberline {4.8}Update a Project}{19}{section.4.8}%
-\contentsline {chapter}{\numberline {5}Getting start with CellDepot}{21}{chapter.5}%
-\contentsline {section}{\numberline {5.1}Sources of annotation and metadata}{21}{section.5.1}%
-\contentsline {section}{\numberline {5.2}Data format, availability, and preparation}{21}{section.5.2}%
-\contentsline {section}{\numberline {5.3}CellDepot platform and installation}{21}{section.5.3}%
-\contentsline {section}{\numberline {5.4}How to set up cron job?}{21}{section.5.4}%
-\contentsline {section}{\numberline {5.5}CellDepot API (Application Programming Interface)}{22}{section.5.5}%
-\contentsline {section}{\numberline {5.6}Code availability}{22}{section.5.6}%
-\contentsline {section}{\numberline {5.7}Online tutorials}{22}{section.5.7}%
+\contentsline {chapter}{\numberline {1}Preface}{5}{chapter.1}%
+\contentsline {chapter}{\numberline {2}Getting start with CellDepot}{7}{chapter.2}%
+\contentsline {section}{\numberline {2.1}Sources of annotation and metadata}{7}{section.2.1}%
+\contentsline {section}{\numberline {2.2}Data format, availability and preparation}{7}{section.2.2}%
+\contentsline {section}{\numberline {2.3}CellDepot platform and installation}{7}{section.2.3}%
+\contentsline {section}{\numberline {2.4}Data import on user's server}{7}{section.2.4}%
+\contentsline {section}{\numberline {2.5}CellDepot API (Application Programming Interface)}{8}{section.2.5}%
+\contentsline {section}{\numberline {2.6}Code availability}{8}{section.2.6}%
+\contentsline {chapter}{\numberline {3}Supplemental Tables}{9}{chapter.3}%
+\contentsline {chapter}{\numberline {4}Supplemental Tutorial}{11}{chapter.4}%
+\contentsline {section}{\numberline {4.1}Browse Projects}{11}{section.4.1}%
+\contentsline {subsection}{\numberline {4.1.1}Search Projects}{11}{subsection.4.1.1}%
+\contentsline {subsubsection}{\numberline {4.1.1.1}Case study 1}{12}{subsubsection.4.1.1.1}%
+\contentsline {subsubsection}{\numberline {4.1.1.2}Case Study 2}{12}{subsubsection.4.1.1.2}%
+\contentsline {subsection}{\numberline {4.1.2}Project Filters}{12}{subsection.4.1.2}%
+\contentsline {section}{\numberline {4.2}Visaulize Datasets}{12}{section.4.2}%
+\contentsline {subsection}{\numberline {4.2.1}View Details}{12}{subsection.4.2.1}%
+\contentsline {subsection}{\numberline {4.2.2}Update}{13}{subsection.4.2.2}%
+\contentsline {subsection}{\numberline {4.2.3}Data Visualization and Analysis}{13}{subsection.4.2.3}%
+\contentsline {subsubsection}{\numberline {4.2.3.1}Case study 1}{13}{subsubsection.4.2.3.1}%
+\contentsline {section}{\numberline {4.3}Search Genes}{13}{section.4.3}%
+\contentsline {section}{\numberline {4.4}Upload Projects}{18}{section.4.4}%
+\contentsline {section}{\numberline {4.5}How to set up cron job?}{18}{section.4.5}%

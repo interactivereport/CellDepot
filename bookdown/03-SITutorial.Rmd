@@ -42,9 +42,8 @@ Figure S5. How to view details of a dataset. Steps are outlined by red circled n
 ### Data Visualization and Analysis by cellxgene VIP {#figures6}
 CellDepot is not only a database management system, but also a web portal for visualizing and analyzing scRNA-seq datasets through embedded cellxgene VIP tool. By clicking 'cellxgene VIP' to access functional modules on the menu, users can perform advanced data visualization and analysis. To learn how to use cellxgene VIP, please go to https://interactivereport.github.io/cellxgene_VIP/tutorial/docs/how-to-use-cellxgene-vip.html.
 
-[![(#s6)Figure S6](figures/S6.jpg)](figures/S6.jpg)
+[![Figure S6](figures/S6.jpg)](figures/S6.jpg)
 Figure S6. Visualization and analysis of a scRNA-seq dataset by cellxgene VIP.
-
 
 ### Case Study 1
 
@@ -66,7 +65,7 @@ Figure S8. Steps to find gene expression level of a gene in projects under 'Sear
 
 Cross-project comparison of skeletal muscle marker genes PAX3, PAX7, PITX2, MYF5, MYF6, MYOD1, MYOG, NEB, and MYH3 among the datasets whose species is human and cell type is myogenic.  
 
-[![Figure S9](figures/S9.jpg)](figures/S9.jpg)
+[![Figure S9](figures/s9.jpg)](figures/s9.jpg)
 Figure S9. Workflow of conducting the cross-project comparison of a list of genes among the selected datasets.
 
 
@@ -83,4 +82,4 @@ Besides batch uploading under "Import Projects" tab, admin user can use the onli
 ## Update a Project
 Project information including launch mode can be modified by admin users by clicking on 'Update' link of a project under 'Actions' column in the table.
 
-[![Figure S11](figures/S11.jpg)](figures/S11.jpg)
+[![Figure S11](figures/s11.jpg)](figures/s11.jpg)
