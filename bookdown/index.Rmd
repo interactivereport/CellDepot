@@ -22,6 +22,7 @@ author:
   - name: Kejie Li
     email: kejie.li@biogen.com
     affiliation: Biogen
+    footnote: Corresponding Author
   - name: Baohong Zhang
     email: baohong.zhang@biogen.com
     affiliation: Biogen
@@ -34,6 +35,7 @@ address:
 date: "`r Sys.Date()`"
 site: bookdown::bookdown_site
 documentclass: book
+classoption: openany
 geometry: margin=2cm
 bibliography: [book.bib, packages.bib]
 biblio-style: apalike
@@ -42,7 +44,7 @@ github-repo: https://github.com/interactivereport/CellDepot
 output: radix::radix_article
 ---
 # Preface
-This is a **supplementary materials* written in Markdown, which provides the detailed guide for CellDepot web portal.
+This is a *supplementary materials* written in Markdown, which provides the detailed guide for CellDepot web portal.
 
 
 ```{r include=FALSE}
