@@ -5,7 +5,7 @@ output:
 ---
 # Supplemental Tables {#SITable}
 
-## [Table S1](https://github.com/interactivereport/CellDepot/blob/gh-pages/bookdown/S1.csv) - Comparsion matrix of web portal tools {-}
+## [Table S1](https://github.com/interactivereport/CellDepot/blob/gh-pages/bookdown/S1.csv) - Comparison matrix of web portal tools {-}
 Table link: https://github.com/interactivereport/CellDepot/blob/gh-pages/bookdown/S1.csv
 ```{r, echo=FALSE}
 library(kableExtra)
@@ -51,5 +51,4 @@ df %>%
   kable_classic(full_width = F, html_font = "Cambria") %>%
   scroll_box(width = "100%")
 ```
-
 

@@ -1,84 +1,85 @@
 # Supplemental Tutorial {#SITutorial}
 
-CellDepot is database management system integrated with management system, query searching and data visualization tools for scRNA-seq datasets, which can be accessed by the link http://celldepot.bxgenomics.com and Biogen internal link http://go.biogen.com/CellDepot. This is a supplemental tutorial providing a detailed guide.
+CellDepot is a scRNA-seq data portal consisting of a relational database management system, a graphical query builder, and data visualization tools, which can be accessed via the link, http://celldepot.bxgenomics.com for public datasets or a link to private installation, e.g., http://go.biogen.com/CellDepot for Biogen internal data collection. This is the supplemental tutorial providing detailed instructions. Clicking on a figure will bring up the enlarged view.
 
 
-![Figure S1. CellDepot website](figures/S1.jpg)
+[![Figure S1](figures/S1.jpg)](figures/S1.jpg)
 
-The interface contains multiple tabs, corresponding to import and/or select objects in CellDepot scRNA-seq database, that can be accessed on top panel of the webpage. Users can upload their own dataset or explore the existing datasets for visualization and analysis.
+Figure S1. CellDepot Homepage. Functions designated to different user roles are highlighted in red callout boxes.
+
+The interface contains multiple tabs at the top of the homepage, which correspond to major functionalities of CellDepot. All users can explore the existing datasets loaded in the public CellDepot for visualization and analysis while only admin users can upload datasets to a CellDepot instance, public or private.
 
 ## 	Browse Projects
-### Search Projects {#search}
-This function allows the user to search any targeted interests, which also can be accessed through search projects on the top panel of the webpage. Users is allowed to select the projects by 17 attributes: annotation groups, cell count, cellxgene VIP launch method, Custom accession, description, DOI, file name, file size, gene count, name, notes, PMC ID, Publication Title, PubMed ID, Species, URL, Year. These 17 fields can also be (partially) displayed on the webpage through ‘column setting’ on the webpage. Users can also search projects by the keywords via the search function on the right of the webpage. In addition, by ‘column setting’, users can set up the customized layout of targeted projects; thereby exporting to csv format.
+Users can customize columns to be displayed by clicking on the green 'Column Settings' button. In addition, all or selected entries could be exported in CSV format. A quick search box is provided on the top-right corner of the table while building a complex query is exemplified in Figure S3 (\@ref(search)).
 
-![Figure S3. Workflow of how to search query on ‘Browse Projects’ page.](figures/S6.png)
-
-#### Case study 1
-
-Six datasets are filtered when searching by ‘Species is Human’ and ‘Annotation Group contains Neuron’.
-
-![Figure S4. Data Filtering. Query search of ‘Species is Human’ and ‘Annotation Groups contains Neuron’ brings about nine datasets of interest.](figures/S1.jpg)
+[![Figure S2](figures/S2.jpg)](figures/S2.jpg)
+Figure S2. Browsing projects in a personalized view.
 
 
-#### Case Study 2
+## Search Projects {#search}
+This function allows users to search projects of interest, which can be accessed through the homepage as well. Users can search projects by 17 attributes in multiple logic conditions: annotation groups, cell count, cellxgene VIP launch method, Custom accession, description, DOI, file name, file size, gene count, name, notes, PMC ID, Publication Title, PubMed ID, Species, URL, and/or Year.
 
-Cross-project comparison of skeletal muscle marker genes PAX3, PAX7, PITX2, MYF5, MYF6, MYOD1, MYOG, NEB, and MYH3 among the datasets whose species is human and cell type is myogenic.  
+[![Figure S3](figures/S3.jpg)](figures/S3.jpg)
+Figure S3. Workflow of searching projects by using the graphical multi-logic, multi-condition query builder. Six datasets are identified when searching by 'Species is Human' and 'Annotation Group contains Neuron'.
 
-![Figure S5. Workflow of how to conduct the cross-project comparison of gene sets among the selected datasets.](figures/s7.png)
 
-For each project, users can view the datasets information, visualize data analysis, and conduct update through clicking on “View Details”, “cellxgene VIP”, and “Update” links, respectively. 
+## Project Filters
 
-### Project Filters
+This function lists the filtered datasets simply based on AND logic operation of checked items under various categories. It is a friendly feature for first-time users as they may not be familiar with the design of the database to construct more complex query.
 
-This page provides the matched datasets by simply clicking the categories. It is a first-time user-friendly functionality as users may not be familiar with the content of the database. The advance search function is the same as that on the ‘Browse Projects’ page (\@ref(search)).
+[![Figure S4](figures/S4.jpg)](figures/S4.jpg)
+Figure S4. The 'Project Filters' page. 29 records are identified by filtering criteria of 'Year' equaling 2021 and 'Species' being human.
 
-![Figure S6. The layout of ‘Project Filters’ page.](figures/S8.png)
-
-## Visaulize Datasets
+## Visualize Datasets
 ### View Details
 
-The datasets information consists of project summary and annotation groups. The project summary is provided by each user when uploading projects. The information of annotation groups is retrieved from uploaded .h5ad file.
+The dataset information consists of project summary and annotation groups. The project summary is provided by admin users when uploading projects while annotation groups are retrieved from uploaded h5ad files.
 
-![Figure S7. Visualization of details of datasets.](figures/S9.png)
+[![Figure S5](figures/S5.jpg)](figures/S5.jpg)
+Figure S5. How to view details of a dataset. Steps are outlined by red circled numbers.
 
-### Update
 
-Project summary information can be updated on ‘Browse Project’ page with ‘Preload in Memory’ cellxgene VIP launch method via click ‘Update’ hyperlink.
+### Data Visualization and Analysis by cellxgene VIP {#figures6}
+CellDepot is not only a database management system, but also a web portal for visualizing and analyzing scRNA-seq datasets through embedded cellxgene VIP tool. By clicking 'cellxgene VIP' to access functional modules on the menu, users can perform advanced data visualization and analysis. To learn how to use cellxgene VIP, please go to https://interactivereport.github.io/cellxgene_VIP/tutorial/docs/how-to-use-cellxgene-vip.html.
 
-![Figure S8. Update project on ‘Browse Project’ page.](figures/s10.png)
+[![Figure S6](figures/S6.jpg)](figures/S6.jpg)
+Figure S6. Visualization and analysis of a scRNA-seq dataset by cellxgene VIP.
 
-### Data Visualization and Analysis
-CellDepot is not only a database management system, but also a web portal to visualize the scRNA-seq dataset. Here, we embed cellxgene and cellxgene VIP in CellDepot.  By clicking ‘Cellxgene VIP’, data analysis results can be visualized. Detailed guides of cellxgene and cellxgene VIP, please go to https://interactivereport.github.io/cellxgene_VIP/tutorial/docs/.
+### Case Study 1
 
-![Figure S9. See visualization of selected datasets.](figures/S11.png)
+Exploration and visualization of differentially expressed genes (DEGs) between two types of cells.
 
-#### Case study 1
+As shown in Figure S7a, two types of cells, Astrocytes (1036 cells) and Oligodendrocytes (4417 cells) are selected. By running differential gene expression analysis with one of the built-in statistical methods such as Welch's t-test, we detected 1578 (DEGs), including 715 up-regulated and 853 down-regulated genes in astrocytes compared to oligodendrocytes (Figure S7a). The expression of the top four DEGs among the cell types indicates that gene MBP, ST18 and RNF220 are expressed explicitly in oligodendrocytes, while gene PITPNC3 is expressed mainly in astrocytes and endothelial cells (Figure S7b).
 
-Exploration and visualization of the expression of gene(s) across the cluster of cells under various conditions.
-
-As shown in Figure S10a, two cell groups from Astrocytes (1036 cells) and Oligodendrocytes (4417 cells) are selected. By running differential analysis with one of the built-in statistical methods such as Welch’s t-test, we detected 1578 differential expressed genes (DEGs), including 715 up-regulated and 853 down-regulated genes in astrocytes compared to oligodendrocytes (Figure S10a). The expression of the top four DEGs among the cell types indicates that gene MBP, ST18 and RNF220 are expressed explicitly in oligodendrocytes, while gene PITPNC3 is expressed mainly in astrocytes and endothelial cells (Figure S10b). In the future, we plan to add other multi-omics data modalities, which can be incorporated and integrated with scRNA-seq, such as spatial transcriptomics and scATAC-seq data. 
-
-![Figure S10. Exploration of differential expressed genes in dataset GSE140231 through cellxgene VIP. (a) Differential expressed genes in astrocytes and oligodendrocytes. (b) The expression of top four genes in different cell types.](figures/S2.jpg)
+[![Figure S7](figures/S7.jpg)](figures/S7.jpg)
+Figure S7. Exploration of differentially expressed genes in dataset GSE140231 through cellxgene VIP. (a) Identifying differentially expressed genes in astrocytes and oligodendrocytes. (b) The expression of top four genes in various cell types as shown in dot plot.
 
 ## Search Genes
 
-This tab allows searching on targeted genes with cell count cutoff and expression cutoff. The search outcome provides users every project contains the targeted genes.  Each project displays a link to project page and a figure plot if applicable. This plot can be either violin plot or dot plot shows the gene expression level in each annotation groups.
+This tab allows searching on genes of interest with the expression cutoff. The search outcome provides users a list of projects in which genes of interest are expressed above the cutoff.  Each project displays a link to project page and a plot if applicable. This plot can be either a violin plot or dot plot showing the gene expression level in a selected annotation group. Further, under "Advanced Options", users can define the range of expression color scale and the percentage represented by the largest dot to have expression data from various projects plotted in a unified manner. 
 
-![Figure S11. The layout of ‘Search Genes’](figures/S12.png)
+[![Figure S8](figures/S8.jpg)](figures/S8.jpg)
+Figure S8. Steps to find gene expression level of a gene in projects under 'Search Genes' tab. The final plot can be customized by available options listed in red callout boxes on the left side.
 
-## Upload Projects {#upload}
-To upload new projects in CellDepot database, two files are required: 1) .h5ad files and 2) project information in csv format. Detailed formatting guidance can be found by ‘Download Example File’ hyperlink on webpage. In addition, two cellxgene VIP launch methods are provided: standard and preload in memory. Standard mode is for the first-time imported datasets, while preload in memory should be chosen when users update the meta information of datasets. 
-After the projects are submitted, CellDepot will automatically analyze the datasets. To explore the detail of uploaded datasets, users can navigate to ‘browse projects’ page and then search the imported datasets by the customized accession number. 
+### Case Study 2
 
-![Figure S2. Workflow of how to import personal datasets.](figures/S5.png)
+Cross-project comparison of skeletal muscle marker genes PAX3, PAX7, PITX2, MYF5, MYF6, MYOD1, MYOG, NEB, and MYH3 among the datasets whose species is human and cell type is myogenic.  
 
-
-## How to set up cron job? {#cron}
-The following cron job entry is needed to convert h5ad file to CSC format on the background,
-```{bash, eval=FALSE}
-@hourly <user-name> cd /var/www/html/celldepot/app/core; php ./api_toCSCh5ad.php
-```
-
-Please make sure that the user has the permission to write in the data directory.
+[![Figure S9](figures/s9.jpg)](figures/s9.jpg)
+Figure S9. Workflow of conducting the cross-project comparison of a list of genes among the selected datasets.
 
 
+## Import Projects {#import}
+The functionality is limited to admin users. To upload new projects to CellDepot database in batch, two types of files are required: 1) .h5ad files and 2) project information file in CSV (Comma Separated Values) format. First, the prepared h5ad files are required to be copied to a folder defined in the configuration file, e.g., /data/celldepot/all_h5ad_files/. Afterwards, admin users navigate to the CellDepot home page, click ‘Import Projects’ at the top menu, then ‘Download Example File’ to fill in meta information of datasets into the downloaded template for submission. In addition, there are two cellxgene VIP launch modes to chosen from, 'Standard' and 'Preload in Memory'. 'Standard' mode is for infrequently used datasets while 'Preload in Memory' should be selected to speed up loading and responding time of frequently used large datasets.
+After the metadata file is uploaded, CellDepot will automatically convert the dataset to CSC format if needed through a cron job (\@ref(cron)). To explore the detail of imported datasets, users can enter ‘Browse Projects’ page and then search these datasets by user assigned 'Custom Accession' identifiers.
+
+[![Figure S10](figures/S10.jpg)](figures/S10.jpg)
+Figure S10. Workflow of how to import new datasets.
+
+## Create Project
+Besides batch uploading under "Import Projects" tab, admin user can use the online form under this tab to submit information of a project.
+
+## Update a Project
+Project information including launch mode can be modified by admin users by clicking on 'Update' link of a project under 'Actions' column in the table.
+
+[![Figure S11](figures/s11.jpg)](figures/s11.jpg)

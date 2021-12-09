@@ -1,5 +1,5 @@
---- 
-title: "Supplemental Tutorial - CellDepot: A unified repository for scRNAseq data and visual exploration "
+---
+title: "Supplementary Materials - CellDepot: A unified repository for scRNAseq data and visual exploration "
 author:
   - name: Dongdong Lin
     email: lindongdo@gmail.com
@@ -42,7 +42,7 @@ github-repo: https://github.com/interactivereport/CellDepot
 output: radix::radix_article
 ---
 # Preface
-This is a **supplemental tutorial** written in Markdown, which provides the detailed guide for CellDepot web portal. 
+This is a **supplementary materials* written in Markdown, which provides the detailed guide for CellDepot web portal.
 
 
 ```{r include=FALSE}
