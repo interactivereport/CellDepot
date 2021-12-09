@@ -15,8 +15,10 @@ df %>%
   kable_classic(full_width = F, html_font = "Cambria") %>%
   scroll_box(width = "100%")
 ```
-[![Table table_s1](figures/table_s1.jpg)](figures/table_s1.jpg)
 Note: The criteria for query search and data analysis explorer please see Table S2 and S3.
+
+#### Table S1 in one picture (click on the picture to zoom in) {-}
+[![Table table_s1](figures/table_s1.jpg)](figures/table_s1.jpg)
 
 ## [Table S2](https://github.com/interactivereport/CellDepot/blob/gh-pages/bookdown/S2.csv) - Criterion for query search {-}
 Table link: https://github.com/interactivereport/CellDepot/blob/gh-pages/bookdown/S2.csv
