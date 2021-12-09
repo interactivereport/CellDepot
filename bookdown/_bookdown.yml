@@ -1,6 +1,6 @@
 output_dir: docs
 book_filename: "CellDepot"
-rmd_files: ["index.Rmd", "04-Method.Rmd", "01-SITable.Rmd", "03-SITutorial.Rmd"]
+rmd_files: ["index.Rmd", "01-SITable.Rmd", "02-SIFigures.Rmd", "03-SITutorial.Rmd", '04-Method.Rmd']
 language:
   ui:
     chapter_name: "Chapter "

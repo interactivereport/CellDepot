@@ -34,6 +34,7 @@ address:
 date: "`r Sys.Date()`"
 site: bookdown::bookdown_site
 documentclass: book
+classoption: openany
 geometry: margin=2cm
 bibliography: [book.bib, packages.bib]
 biblio-style: apalike
