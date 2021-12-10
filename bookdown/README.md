@@ -4,4 +4,7 @@
 
 This is a supplemental tutorial written in Markdown, which provides the detailed guide for **CellDepot web portal**. Please see the HTML format tutorial at https://interactivereport.github.io/CellDepot/bookdown/docs/. You can also make a local copy of the supplemental tutorial by using **makebook.sh**. 
 
-
+## Check out repo of the Bookdown
+```
+git pull https://interactivereport@github.com/interactivereport/CellDepot gh-pages
+```
