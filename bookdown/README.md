@@ -1,4 +1,4 @@
-[![CellDepot tutorial](https://img.shields.io/badge/CellDepot-Tutorial-salmon.svg)](https://github.com/interactivereport/CellDepot/tree/gh-pages/bookdown)
+[![CellDepot tutorial](https://img.shields.io/badge/CellDepot-Tutorial-salmon.svg)](https://interactivereport.github.io/CellDepot/bookdown/docs/)
 
 **CellDepot** is database management system integrated with management system, query searching and data visualization tools for scRNA-seq datasets, which can be accessed by the link http://celldepot.bxgenomics.com and Biogen internal link http://go.biogen.com/CellDepot. 
 
