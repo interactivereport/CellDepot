@@ -2,3 +2,6 @@
 
 [Interactive Figure 3](https://interactivereport.github.io/CellDepot/Figure3.html)
 
+[Online Tutorial](https://interactivereport.github.io/CellDepot/bookdown/docs)
+
+[How to make the tutorial in HTML](https://interactivereport.github.io/CellDepot/bookdown)
