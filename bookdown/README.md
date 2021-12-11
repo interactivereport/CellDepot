@@ -8,3 +8,7 @@ This is a supplemental tutorial written in Markdown, which provides the detailed
 ```
 git pull https://interactivereport@github.com/interactivereport/CellDepot gh-pages
 ```
+## Use full URLs to refer to figures to avoid checking duplicated figures in GitHub and separate figure modification from text edit.
+```
+[![Figure S1](https://interactivereport.github.io/CellDepot/bookdown/figures/S1.jpg)](https://interactivereport.github.io/CellDepot/bookdown/figures/S1.jpg)
+```
