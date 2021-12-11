@@ -24,8 +24,6 @@ Note: The criteria for query search and data analysis explorer please see Table 
 Table link: https://github.com/interactivereport/CellDepot/blob/gh-pages/bookdown/S2.csv
 ```{r, echo=FALSE}
 library(kableExtra)
-
-
 df <- read.csv("S2.csv")
 df %>%
   kbl() %>%

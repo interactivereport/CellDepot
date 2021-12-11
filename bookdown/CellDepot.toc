@@ -1,0 +1,27 @@
+\contentsline {chapter}{\numberline {1}Preface}{3}{chapter.1}%
+\contentsline {chapter}{\numberline {2}Getting start with CellDepot}{4}{chapter.2}%
+\contentsline {section}{\numberline {2.1}Sources of annotation and metadata}{4}{section.2.1}%
+\contentsline {section}{\numberline {2.2}Data format, availability, and preparation}{4}{section.2.2}%
+\contentsline {section}{\numberline {2.3}CellDepot platform and installation}{4}{section.2.3}%
+\contentsline {section}{\numberline {2.4}How to set up cron job?}{4}{section.2.4}%
+\contentsline {section}{\numberline {2.5}CellDepot API (Application Programming Interface)}{5}{section.2.5}%
+\contentsline {section}{\numberline {2.6}Code availability}{5}{section.2.6}%
+\contentsline {section}{\numberline {2.7}Online tutorials}{5}{section.2.7}%
+\contentsline {chapter}{\numberline {3}Supplemental Tables}{6}{chapter.3}%
+\contentsline {section}{\href {https://github.com/interactivereport/CellDepot/blob/gh-pages/bookdown/S1.csv}{Table S1} - Comparison matrix of web portal tools}{6}{section*.2}%
+\contentsline {section}{\href {https://github.com/interactivereport/CellDepot/blob/gh-pages/bookdown/S2.csv}{Table S2} - Criterion for query search}{8}{section*.3}%
+\contentsline {section}{\href {https://github.com/interactivereport/CellDepot/blob/gh-pages/bookdown/S3.csv}{Table S3} - Criterion for data analysis explorer}{8}{section*.4}%
+\contentsline {section}{\href {https://github.com/interactivereport/CellDepot/blob/gh-pages/bookdown/S4.csv}{Table S4} - Project metadata captured in CellDepot}{8}{section*.5}%
+\contentsline {chapter}{\numberline {4}Supplemental Tutorial}{9}{chapter.4}%
+\contentsline {section}{\numberline {4.1}Browse Projects}{9}{section.4.1}%
+\contentsline {section}{\numberline {4.2}Search Projects}{10}{section.4.2}%
+\contentsline {section}{\numberline {4.3}Project Filters}{11}{section.4.3}%
+\contentsline {section}{\numberline {4.4}Visualize Datasets}{12}{section.4.4}%
+\contentsline {subsection}{\numberline {4.4.1}View Details}{12}{subsection.4.4.1}%
+\contentsline {subsection}{\numberline {4.4.2}Data Visualization and Analysis by cellxgene VIP}{13}{subsection.4.4.2}%
+\contentsline {subsection}{\numberline {4.4.3}Case Study 1}{14}{subsection.4.4.3}%
+\contentsline {section}{\numberline {4.5}Search Genes}{15}{section.4.5}%
+\contentsline {subsection}{\numberline {4.5.1}Case Study 2}{16}{subsection.4.5.1}%
+\contentsline {section}{\numberline {4.6}Import Projects}{17}{section.4.6}%
+\contentsline {section}{\numberline {4.7}Create Project}{18}{section.4.7}%
+\contentsline {section}{\numberline {4.8}Update a Project}{18}{section.4.8}%
