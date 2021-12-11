@@ -17,12 +17,12 @@ https://celldepot.bxgenomics.com/celldepot_manual
 https://interactivereport.github.io/CellDepot/bookdown/docs/SITutorial.html
 
 ### cellxgene VIP Tutorial
-https://interactivereport.github.io/cellxgene_VIP/tutorial/docs
+https://interactivereport.github.io/cellxgene_VIP/tutorial/docs/how-to-use-cellxgene-vip.html
 
 ### CellDepot portal overview
 ![alt text](https://github.com/interactivereport/CellDepot/blob/main/Figures/Figure1.svg)
 
-### Data visualization and analysis by [cellxgene VIP](https://interactivereport.github.io/cellxgene_VIP/tutorial/docs/) in CellDepot
+### Data visualization and analysis by [cellxgene VIP](https://interactivereport.github.io/cellxgene_VIP/tutorial/docs/how-to-use-cellxgene-vip.html) in CellDepot
 ![alt text](https://github.com/interactivereport/CellDepot/blob/main/Figures/Figure2.svg)
 
 ### Comparison among other web-based scRNAseq datasets exploration tools
