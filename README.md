@@ -4,4 +4,6 @@
 
 [Online Tutorial](https://interactivereport.github.io/CellDepot/bookdown/docs)
 
+[Tutorial PDF](https://interactivereport.github.io/CellDepot/bookdown/CellDepot.pdf)
+
 [How to make the tutorial in HTML](https://interactivereport.github.io/CellDepot/bookdown)
