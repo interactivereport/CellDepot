@@ -10,9 +10,6 @@ https://celldepot.bxgenomics.com
 ### Pre-print
 https://www.biorxiv.org/content/10.1101/2021.09.30.462602v1
 
-### Installation Guide
-https://celldepot.bxgenomics.com/celldepot_manual
-
 ### CellDepot Tutorial
 https://interactivereport.github.io/CellDepot/bookdown/docs/SITutorial.html
 
@@ -20,11 +17,15 @@ https://interactivereport.github.io/CellDepot/bookdown/docs/SITutorial.html
 https://interactivereport.github.io/cellxgene_VIP/tutorial/docs/how-to-use-cellxgene-vip.html
 
 ### CellDepot portal overview
-![alt text](https://interactivereport.github.io/CellDepot/Figure1.jpg)
+![Figure1](https://interactivereport.github.io/CellDepot/Figure1.jpg)
 
 ### Data visualization and analysis by [cellxgene VIP](https://interactivereport.github.io/cellxgene_VIP/tutorial/docs/how-to-use-cellxgene-vip.html) in CellDepot
-![alt text](https://interactivereport.github.io/CellDepot/Figure2.jpg)
+![Figure2](https://interactivereport.github.io/CellDepot/Figure2.jpg) 
 
 ###  Comparison matrix of scRNA-seq data portal tools
 [![Table S1](https://interactivereport.github.io/CellDepot/bookdown/figures/table_s1.jpg)](https://interactivereport.github.io/CellDepot/bookdown/figures/table_s1.jpg)
+
+### Installation Guide
+https://celldepot.bxgenomics.com/celldepot_manual
+
 
