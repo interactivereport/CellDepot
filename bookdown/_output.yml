@@ -19,5 +19,4 @@ bookdown::pdf_book:
   citation_package: natbib
   keep_tex: yes
   output: rticles::jss_article
-bookdown::epub_book: default
 bookdown::bs4_book: default
