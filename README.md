@@ -19,7 +19,7 @@ https://interactivereport.github.io/cellxgene_VIP/tutorial/docs/how-to-use-cellx
 ### CellDepot portal overview
 ![Figure1](https://interactivereport.github.io/CellDepot/Figure1.jpg)
 
-### Data visualization and analysis by [cellxgene VIP](https://interactivereport.github.io/cellxgene_VIP/tutorial/docs/how-to-use-cellxgene-vip.html) in CellDepot
+### Data visualization and analysis by [cellxgene VIP](https://interactivereport.github.io/cellxgene_VIP/tutorial/docs/how-to-use-cellxgene-vip.html) in CellDepot [Interactive Figure](https://interactivereport.github.io/CellDepot/Figure2.html)
 ![Figure2](https://interactivereport.github.io/CellDepot/Figure2.jpg) 
 
 ###  Comparison matrix of scRNA-seq data portal tools
