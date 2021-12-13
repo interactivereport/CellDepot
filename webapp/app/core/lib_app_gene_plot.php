@@ -88,22 +88,61 @@ function getGenePlot($projectID = 0, $h5ad_file = '', $genes = array(), $plotTyp
 	
 	$cmd = implode(' ', $cmd);
 	
-	
-	$cacheKey = __FUNCTION__ . '::' . md5($cmd . '::' . $version);
-	
-	$resultsFromCache = getRedisCache($cacheKey);
-	
+	$cmdChecksum = md5($cmd . '::' . $version);
 	$results = array();
 	$results['command'] = $cmd;
+
+
+	//Try to get it from Memory	
+	if (true){
+		$cacheKey = __FUNCTION__ . '::' . $cmdChecksum;
+		$resultsFromMemory = getRedisCache($cacheKey);
+		
+		if (($resultsFromMemory !== false) && ($resultsFromMemory !== NULL)){
+			$results = $resultsFromMemory;
+			$results['source'] 	= 'cache';
+			
+			
+			return $results;
+		}
+	}
+	
+	//Try to get it from SQL database	
+	if (true){
+		
+		$SQL = "SELECT `Results` FROM `{$APP_CONFIG['TABLES']['PROJECT_GENE_PLOT']}` WHERE `Command_Checksum` = '{$cmdChecksum}' LIMIT 1";
+		
+		$resultsFromSQL = getSQL_Data($SQL, 'GetOne');
+		
+		if (($resultsFromSQL !== false) && ($resultsFromSQL !== NULL)){
+			$results = array();
+			$results['command'] = $cmd;
+			$results['source'] 	= 'database';
+			$results['plot'] 	= $resultsFromSQL;
+			if (($resultsFromSQL == '') || (strpos($resultsFromSQL, '</script>') === false)){
+				$cmd_results = '';
+				$results['result'] = 0;	
+			} else {
+				$results['result'] = 1;	
+			}
+			
+			//Store the results to memory
+			if (($resultsFromMemory == false) || ($resultsFromMemory == NULL)){
+				putRedisCache(array($cacheKey => $results), 1);
+			}
+			
+			
+			
+			return $results;
+			
+		}
+	}
 	
 	
-	
-	if (($resultsFromCache !== false) && ($resultsFromCache !== NULL)){
-		$results = $resultsFromCache;
-		$results['source'] 	= 'cache';
-	} else {
+	//Run the command		
+	if (true){
 		$cmd_results = trim(shell_exec($cmd));
-		$results['source'] 	= 'executed command';
+		$results['source'] 	= 'command';
 
 		
 		if (($cmd_results == '') || (strpos($cmd_results, '</script>') === false)){
@@ -117,38 +156,38 @@ function getGenePlot($projectID = 0, $h5ad_file = '', $genes = array(), $plotTyp
 		
 		
 		
-		if (true){
-			putRedisCache(array($cacheKey => $results));
+		//Store the results to memory
+		if (($resultsFromMemory == false) || ($resultsFromMemory == NULL)){
+			putRedisCache(array($cacheKey => $results), 1);
 		}
 		
+		//Store the results to database
+		if (($resultsFromSQL == false) || ($resultsFromSQL == NULL)){
+			$dataArray = array();
+			$dataArray['Project_ID'] 			= $projectID;
+			$dataArray['plotH5ad_version'] 		= $version;
+			$dataArray['File'] 					= $h5ad_file;
+			$dataArray['Genes'] 				= implode(',', $genes);
+			$dataArray['Plot_Type'] 			= $plotType;
+			$dataArray['Annotation_Group'] 		= $annotation_group;
+			$dataArray['SubSampling'] 			= $subSampling;
+			$dataArray['g'] 					= $g;
+			$dataArray['Command'] 				= $cmd;
+			$dataArray['Command_Checksum'] 		= $cmdChecksum;
+			$dataArray['Parameters_Checksum'] 	= getGenePlotParameterChecksum($genes, $annotation_group, $use_default_annotation_group, $subSampling, $g, $e_min, $e_max, $p, $l);
+			
+			$dataArray['Results'] 				= $results['plot'];
+			$dataArray['Result_Status'] 		= $results['result'];
+			
+			$SQL = getReplaceSQLQuery($APP_CONFIG['TABLES']['PROJECT_GENE_PLOT'], $dataArray);
+			executeSQL($SQL);
+		}
 		
-		$dataArray = array();
-		$dataArray['Project_ID'] 			= $projectID;
-		$dataArray['plotH5ad_version'] 		= $version;
-		$dataArray['File'] 					= $h5ad_file;
-		$dataArray['Genes'] 				= implode(',', $genes);
-		$dataArray['Plot_Type'] 			= $plotType;
-		$dataArray['Annotation_Group'] 		= $annotation_group;
-		$dataArray['SubSampling'] 			= $subSampling;
-		$dataArray['g'] 					= $g;
-		$dataArray['Command'] 				= $cmd;
-		$dataArray['Command_Checksum'] 		= md5($cmd . '::' . $version);
-		$dataArray['Parameters_Checksum'] 	= getGenePlotParameterChecksum($genes, $annotation_group, $use_default_annotation_group, $subSampling, $g, $e_min, $e_max, $p, $l);
+		return $results;
 		
-		$dataArray['Results'] 				= $results['plot'];
-		$dataArray['Result_Status'] 		= $results['result'];
-		
-		$SQL = getReplaceSQLQuery($APP_CONFIG['TABLES']['PROJECT_GENE_PLOT'], $dataArray);
-		
-		
-		executeSQL($SQL);
 	}
 	
 	
-
-
-	
-	return $results;
 	
 }
 

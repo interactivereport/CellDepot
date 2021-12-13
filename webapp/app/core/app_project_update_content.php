@@ -41,7 +41,6 @@ echo "<form id='form_application' action='javascript:void(0);' method='post' rol
 							echo "<input type='hidden' name='ID' value='{$ID}'/>";
 						}
 						
-						
 						echo "<button id='submitButton' class='btn btn-primary' type='submit'>" . printFontAwesomeIcon('far fa-save') . " Save</button>";
 						echo "&nbsp;<span id='busySection' class='startHidden'>" . printFontAwesomeIcon('fas fa-spinner fa-spin'). "</span>";
 					echo "</div>";

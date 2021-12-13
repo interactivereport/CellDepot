@@ -75,6 +75,7 @@ echo "<form id='form_application' action='javascript:void(0);' method='post' rol
 							
 							echo "<td>";
 								echo "<button id='submitButton' type='submit' class='btn btn-primary xmb-2'>Search</button>";
+								echo "&nbsp;<span id='busySection' class='startHidden'>" . printFontAwesomeIcon('fas fa-spinner fa-spin'). "</span>";
 							echo "</td>";
 						echo "</tr>";
 					}

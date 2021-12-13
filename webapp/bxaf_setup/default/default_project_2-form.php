@@ -11,7 +11,8 @@ if (true){
 		'Name',
 		'Description', 
 		'Accession',
-		'Species_Raw',  
+		'Species_Raw', 
+		'Diseases_Raw', 
 		'URL',
 		'Notes', 
 		'Title', 
@@ -29,6 +30,7 @@ if (true){
 		'Description',
 		'Accession',
 		'Species_Raw',
+		'Diseases_Raw',
 		'URL',
 		'Notes', 
 		'Title',
@@ -44,7 +46,7 @@ if (true){
 		
 		'User_Name', 'Date',
 		
-		'Accession', 'Name', 'Species',  'Description', 
+		'Accession', 'Name', 'Species', 'Diseases', 'Description', 
 		
 		 'URL', 'Cell_Count', 'Gene_Count', 'Project_Groups', 'Notes',  
 		 'Title', 'Year', 'DOI', 'PMCID', 'PMID',

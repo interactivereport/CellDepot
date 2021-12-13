@@ -18,7 +18,7 @@ $currentTable = $APP_CONFIG['TABLES']['PROJECT'];
 			echo "<dl class='row'>";
 	
 				foreach($BXAF_CONFIG['Project_Layout']['Review']['Columns'] as $tempKey => $currentColumn){
-					$displayTitle	= $APP_CONFIG['DICTIONARY'][$currentTable][$currentColumn]['Title'];
+					$displayTitle	= getHeaderDisplayName($currentTable, $currentColumn, 0);
 					$displayValue	= $dataArray[$currentColumn];
 					
 					if ($displayValue == '') $displayValue = '-';

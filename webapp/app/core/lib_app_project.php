@@ -18,6 +18,10 @@ function createProject($inputArray = array()){
 		$inputArray['Species'] = $inputArray['Species_Raw'];
 	}
 	
+	if (isset($inputArray['Diseases_Raw']) && !isset($inputArray['Diseases'])){
+		$inputArray['Diseases'] = $inputArray['Diseases_Raw'];
+	}
+	
 	
 	if ($inputArray['API']){
 		$dataArray['User_ID'] 			= 0;
@@ -29,6 +33,7 @@ function createProject($inputArray = array()){
 		$dataArray['Accession'] 		= $inputArray['Accession'];
 		$dataArray['Name'] 				= $inputArray['Name'];
 		$dataArray['Species'] 			= implode(', ', splitCategories($inputArray['Species'], 0));
+		$dataArray['Diseases'] 			= implode(', ', splitCategories($inputArray['Diseases'], 0));
 		$dataArray['Year'] 				= $inputArray['Year'];
 		$dataArray['Description'] 		= $inputArray['Description'];
 		$dataArray['DOI'] 				= $inputArray['DOI'];
@@ -78,6 +83,7 @@ function createProject($inputArray = array()){
 	$projectID	= getLastInsertID();
 	
 	createColumnIndex($APP_CONFIG['TABLES']['PROJECT'], $APP_CONFIG['CONSTANTS']['TABLES']['Project'], $projectID, 'Species', $APP_CONFIG['CONSTANTS']['COLUMNS']['Project::Species'], $inputArray['Species'], 0);
+	createColumnIndex($APP_CONFIG['TABLES']['PROJECT'], $APP_CONFIG['CONSTANTS']['TABLES']['Project'], $projectID, 'Diseases', $APP_CONFIG['CONSTANTS']['COLUMNS']['Project::Diseases'], $inputArray['Species'], 0);
 	
 	return $projectID;
 
@@ -103,6 +109,10 @@ function updateProject($inputArray = NULL, $ID = 0){
 		$inputArray['Species'] = $inputArray['Species_Raw'];
 	}
 	
+	if (isset($inputArray['Diseases_Raw']) && !isset($inputArray['Diseases'])){
+		$inputArray['Diseases'] = $inputArray['Diseases_Raw'];
+	}
+	
 	$dataArray = array();
 	
 	if (true){
@@ -110,6 +120,7 @@ function updateProject($inputArray = NULL, $ID = 0){
 		$dataArray['Accession'] 		= $inputArray['Accession'];
 		$dataArray['Name'] 				= $inputArray['Name'];
 		$dataArray['Species'] 			= implode(', ', splitCategories($inputArray['Species'], 0));
+		$dataArray['Diseases'] 			= implode(', ', splitCategories($inputArray['Diseases'], 0));
 		$dataArray['Year'] 				= $inputArray['Year'];
 		$dataArray['Description'] 		= $inputArray['Description'];
 		$dataArray['DOI'] 				= $inputArray['DOI'];
@@ -137,6 +148,7 @@ function updateProject($inputArray = NULL, $ID = 0){
 
 	deleteColumnIndexByRecordID($APP_CONFIG['CONSTANTS']['TABLES']['Project'], $ID);
 	createColumnIndex($APP_CONFIG['TABLES']['PROJECT'], $APP_CONFIG['CONSTANTS']['TABLES']['Project'], $ID, 'Species', $APP_CONFIG['CONSTANTS']['COLUMNS']['Project::Species'], $inputArray['Species'], 0);
+	createColumnIndex($APP_CONFIG['TABLES']['PROJECT'], $APP_CONFIG['CONSTANTS']['TABLES']['Project'], $ID, 'Diseases', $APP_CONFIG['CONSTANTS']['COLUMNS']['Project::Diseases'], $inputArray['Diseases'], 0);
 	
 
 	return true;
@@ -183,6 +195,7 @@ function processProjectRecord($recordID = 0, $dataArray = NULL, $type = 0){
 		$dataArray['Launch_Method_Raw'] 	= $dataArray['Launch_Method'];
 		$dataArray['Project_Groups_Raw'] 	= $dataArray['Project_Groups'];
 		$dataArray['Species_Raw']			= splitCategories($dataArray['Species'], 0);
+		$dataArray['Diseases_Raw']			= splitCategories($dataArray['Diseases'], 0);
 		
 		if ($type == 0){
 			//Export
@@ -469,23 +482,24 @@ function guessProjectColumn($input = '', $headerKey = 0){
 	$input = trim($input);
 	
 	if ($input == '') return false;
+
 	
 	$input_lower 			= strtolower($input);
-	$input_lower_stripped 	= str_replace('_', '', $input_lower);
+	$input_lower_stripped 	= str_replace(array('_', '.'), '', $input_lower);
 	
 	foreach($BXAF_CONFIG['MESSAGE'][($APP_CONFIG['TABLES']['PROJECT'])]['Column'] as $column => $columnInfo){
 		
-		if ($APP_CONFIG['DICTIONARY'][($APP_CONFIG['TABLES']['PROJECT'])][$column]['Import_Disable']) continue;
+		if ($APP_CONFIG['DICTIONARY'][($APP_CONFIG['TABLES']['PROJECT'])]['Column'][$column]['Import_Disable']) continue;
 		
 		$display_lower 			= trim(strtolower($columnInfo['Title']));
 		$column_lower			= trim(strtolower($column));
-		$column_lower_stripped = str_replace('_', '', $column_lower);
+		$column_lower_stripped 	= str_replace(array('_', '.'), '', $column_lower);
 		
 		if ($input_lower == $display_lower) return $column;
 		if ($input_lower == $column_lower) return $column;
 		if ($input_lower == $column_lower_stripped) return $column;
-		
 		if ($input_lower_stripped == $column_lower_stripped) return $column;
+		
 		
 		
 		if (array_size($columnInfo['Nicknames']) > 0){

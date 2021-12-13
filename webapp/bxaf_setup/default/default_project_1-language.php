@@ -112,6 +112,10 @@ if (true){
 	
 	$BXAF_CONFIG_CUSTOM['MESSAGE'][$currentTable]['Column']['Species_Raw']['Title'] 	= 'Species';
 	
+	$BXAF_CONFIG_CUSTOM['MESSAGE'][$currentTable]['Column']['Diseases']['Title'] 		= 'Diseases';
+	
+	$BXAF_CONFIG_CUSTOM['MESSAGE'][$currentTable]['Column']['Diseases_Raw']['Title'] 	= 'Diseases';
+	
 	$BXAF_CONFIG_CUSTOM['MESSAGE'][$currentTable]['Column']['Year']['Title']			= 'Year';
 			
 	$BXAF_CONFIG_CUSTOM['MESSAGE'][$currentTable]['Column']['Description']['Title']		= 'Description';

@@ -11,8 +11,9 @@ if (true){
 
 //Constant
 if (true){
-	$APP_CONFIG['CONSTANTS']['TABLES']['Project']			= 1;
-	$APP_CONFIG['CONSTANTS']['COLUMNS']['Project::Species']	= 101;
+	$APP_CONFIG['CONSTANTS']['TABLES']['Project']				= 1;
+	$APP_CONFIG['CONSTANTS']['COLUMNS']['Project::Species']		= 101;
+	$APP_CONFIG['CONSTANTS']['COLUMNS']['Project::Diseases']	= 102;
 }
 
 //Version
@@ -113,7 +114,8 @@ if (true){
 
 //Other Settings
 if (true){
-	$APP_CONFIG['APP']['Cache_Expiration_Length'] = 86400;
+	$APP_CONFIG['APP']['Cache_Expiration_Length'] = 3600*6; // 6 hours
+	$APP_CONFIG['APP']['Cache_Expiration_Length_getSQL_Data'] = 3600*6;
 	
 	$APP_CONFIG['APP']['Search']['Operator']['String'][1]	= 'Contains';
 	$APP_CONFIG['APP']['Search']['Operator']['String'][2]	= 'Is';
