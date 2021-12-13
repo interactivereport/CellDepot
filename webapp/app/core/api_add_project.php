@@ -73,8 +73,6 @@ if ($results['Status'] == falsE){
 	$results['Input'] = $inputArray;	
 }
 
-echo printrExpress($results);
-
 
 header('Content-Type: application/json; charset=utf-8');
 echo json_encode($results);
