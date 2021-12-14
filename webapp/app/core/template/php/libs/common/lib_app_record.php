@@ -19,7 +19,6 @@ function translate_key_value($table = '', $column = '', $value = ''){
 			}
 		}
 	}
-	
 
 	if (isset($reference[$value])){
 		return $reference[$value];
@@ -36,9 +35,7 @@ function auto_translate($table = '', $column = '', $value = ''){
 	global $APP_CONFIG;
 	
 	$type = strtolower($APP_CONFIG['DICTIONARY'][$table][$column]['Type']);
-	
-	
-	
+
 	if ($type == 'date'){
 		if (isEmptyDate($value)){
 			$value = '';	
@@ -49,13 +46,30 @@ function auto_translate($table = '', $column = '', $value = ''){
 		$value = nl2br($value);	
 	}
 	
-	
-	
 	return $value;
-	
-	
 }
 
+
+function auto_format_html($table = '', $column = '', $value = ''){
+	
+	global $APP_CONFIG;
+	
+	$type = strtolower($APP_CONFIG['DICTIONARY'][$table][$column]['Type']);
+
+	if ($type == 'paragraph'){
+		$value = displayLongText($value);
+	} elseif ($type == 'url'){
+		if ($value != ''){
+			$value = "<a href='{$value}' target='_blank'>{$value}</a>";	
+		}
+	} elseif ($type == 'email'){
+		if ($value != ''){
+			$value = "<a href='mailto:{$value}' target='_blank'>{$value}</a>";	
+		}
+	}
+	
+	return $value;
+}
 
 function checkIfValueIsUnique($table = '', $column = '', $value = '', $ID = 0){
 	

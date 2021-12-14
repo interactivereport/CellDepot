@@ -15,6 +15,8 @@ function getRedisCache($key = ''){
 	$redisKey = getRedisKey($key);
 	
 	$results = $APP_CONFIG['REDIS_CONN']->get($redisKey);
+	
+	$results = uncompressRedisValue($redisKey, $results);
 
 	return $results;
 	
@@ -25,10 +27,35 @@ function getRedisKey($key = ''){
 	global $APP_CONFIG, $BXAF_CONFIG;
 	
 	$key = str_replace(' ', '_', "{$BXAF_CONFIG['REDIS_PREFIX']}::{$key}");
-
+	
+	if (extension_loaded('snappy')){
+		$key = "{$key}::C1";
+	} else {
+		$key = "{$key}::C0";
+	}
+	
 	return $key;
 	
 }
+
+function compressRedisValue($value = NULL){
+	
+	if (extension_loaded('snappy')){
+		return snappy_compress(serialize($value));
+	} else {
+		return $value;	
+	}
+}
+
+function uncompressRedisValue($key = NULL, $value = NULL){
+
+	if (endsWith($key, '::C1') && extension_loaded('snappy')){
+		return unserialize(snappy_uncompress($value));
+	} else {
+		return $value;	
+	}
+}
+
 
 function putRedisCache($dataArray = array(), $expire = 0){
 	
@@ -46,19 +73,21 @@ function putRedisCache($dataArray = array(), $expire = 0){
 	
 	if (array_size($dataArray) <= 0) return false;
 	
+	$candidates = array();
+	
 	foreach($dataArray as $key => $value){
 		$key = trim($key);
 		if ($key == '') continue;
 		if ($value == FALSE) continue;
 	
 		$redisKey = getRedisKey($key);
-		$candidates[$redisKey] = $value;
+		$candidates[$redisKey] = compressRedisValue($value);
 	}
 	
 	if (array_size($candidates) > 0){
 		
 		if ($expire == 0){
-			return $APP_CONFIG['REDIS_CONN']->mset($candidates);
+			$APP_CONFIG['REDIS_CONN']->mset($candidates);
 		} else {
 			foreach($candidates as $key => $value){
 				$APP_CONFIG['REDIS_CONN']->set($key, $value);
@@ -82,8 +111,11 @@ function clearCache(){
 	
 	if (!$APP_CONFIG['REDIS_ENABLE']) return false;
 
+	//Version 3
 	$cmd = "redis-cli KEYS '{$BXAF_CONFIG['REDIS_PREFIX']}::*' | xargs redis-cli DEL";
-
+	
+	//Version 6
+	//$cmd = "redis-cli --scan --pattern '{$BXAF_CONFIG['REDIS_PREFIX']}::*' | xargs redis-cli unlink";
 	
 	shell_exec($cmd);
 	

@@ -35,7 +35,7 @@ function createProject($inputArray = array()){
 		$dataArray['Species'] 			= implode(', ', splitCategories($inputArray['Species'], 0));
 		$dataArray['Diseases'] 			= implode(', ', splitCategories($inputArray['Diseases'], 0));
 		$dataArray['Year'] 				= $inputArray['Year'];
-		$dataArray['Description'] 		= $inputArray['Description'];
+		$dataArray['Description'] 		= fixMicrosoftCharacters($inputArray['Description'], 1);
 		$dataArray['DOI'] 				= $inputArray['DOI'];
 		
 		if ($inputArray['Project_link'] != ''){
@@ -44,7 +44,7 @@ function createProject($inputArray = array()){
 			$dataArray['URL'] 			= $inputArray['URL'];
 		}
 		
-		$dataArray['Notes'] 			= $inputArray['Notes'];
+		$dataArray['Notes'] 			= fixMicrosoftCharacters($inputArray['Notes'], 1);
 		$dataArray['PMCID'] 			= $inputArray['PMCID'];
 		$dataArray['PMID'] 				= $inputArray['PMID'];
 		$dataArray['Title'] 			= $inputArray['Title'];
@@ -104,38 +104,74 @@ function updateProject($inputArray = NULL, $ID = 0){
 
 	$SQL = "SELECT * FROM {$SQL_TABLE} WHERE `ID` = '{$ID}'";
 	$beforeArray = getSQL_Data($SQL, 'GetRow');
-
-	if (isset($inputArray['Species_Raw']) && !isset($inputArray['Species'])){
-		$inputArray['Species'] = $inputArray['Species_Raw'];
-	}
-	
-	if (isset($inputArray['Diseases_Raw']) && !isset($inputArray['Diseases'])){
-		$inputArray['Diseases'] = $inputArray['Diseases_Raw'];
-	}
 	
 	$dataArray = array();
 	
 	if (true){
 		
-		$dataArray['Accession'] 		= $inputArray['Accession'];
-		$dataArray['Name'] 				= $inputArray['Name'];
-		$dataArray['Species'] 			= implode(', ', splitCategories($inputArray['Species'], 0));
-		$dataArray['Diseases'] 			= implode(', ', splitCategories($inputArray['Diseases'], 0));
-		$dataArray['Year'] 				= $inputArray['Year'];
-		$dataArray['Description'] 		= $inputArray['Description'];
-		$dataArray['DOI'] 				= $inputArray['DOI'];
-		$dataArray['URL'] 				= $inputArray['URL'];
-		$dataArray['Notes'] 			= $inputArray['Notes'];
-		$dataArray['PMCID'] 			= $inputArray['PMCID'];
-		$dataArray['PMID'] 				= $inputArray['PMID'];
-		$dataArray['Title'] 			= $inputArray['Title'];
+		if (isset($inputArray['Species_Raw']) && !isset($inputArray['Species'])){
+			$inputArray['Species'] = $inputArray['Species_Raw'];
+		}
 		
+		if (isset($inputArray['Diseases_Raw']) && !isset($inputArray['Diseases'])){
+			$inputArray['Diseases'] = $inputArray['Diseases_Raw'];
+		}
 		
+		if (isset($inputArray['Accession'])){
+			$dataArray['Accession'] 		= $inputArray['Accession'];
+		}
+		
+		if (isset($inputArray['Name'])){
+			$dataArray['Name'] 				= $inputArray['Name'];
+		}
+		
+		if (isset($inputArray['Species'])){
+			$dataArray['Species'] 			= implode(', ', splitCategories($inputArray['Species'], 0));
+		}
+		
+		if (isset($inputArray['Diseases'])){
+			$dataArray['Diseases'] 			= implode(', ', splitCategories($inputArray['Diseases'], 0));
+		}
+		
+		if (isset($inputArray['Year'])){
+			$dataArray['Year'] 				= $inputArray['Year'];
+		}
+		
+		if (isset($inputArray['Description'])){
+			$dataArray['Description'] 		= fixMicrosoftCharacters($inputArray['Description'], 1);
+		}
+		
+		if (isset($inputArray['DOI'])){
+			$dataArray['DOI'] 				= $inputArray['DOI'];
+		}
+		
+		if (isset($inputArray['URL'])){
+			$dataArray['URL'] 				= $inputArray['URL'];
+		}
+		
+		if (isset($inputArray['Notes'])){
+			$dataArray['Notes'] 			= fixMicrosoftCharacters($inputArray['Notes'], 1);
+		}
+		
+		if (isset($inputArray['PMCID'])){
+			$dataArray['PMCID'] 			= $inputArray['PMCID'];
+		}
+		
+		if (isset($inputArray['PMID'])){
+			$dataArray['PMID'] 				= $inputArray['PMID'];
+		}
+		
+		if (isset($inputArray['Title'])){
+			$dataArray['Title'] 			= $inputArray['Title'];
+		}
+		
+		if (isset($inputArray['Launch_Method'])){
+			$dataArray['Launch_Method'] 	= $inputArray['Launch_Method'];
+		}
 	}
 	
-	
-	if (isset($inputArray['Launch_Method'])){
-		$dataArray['Launch_Method'] 	= $inputArray['Launch_Method'];
+	if (array_size($dataArray) <= 0){
+		return $ID;
 	}
 	
 	$dataArray['ID'] = $ID;
@@ -146,9 +182,15 @@ function updateProject($inputArray = NULL, $ID = 0){
 	addAuditTrail($APP_CONFIG['TABLES']['PROJECT'], $ID, $beforeArray, $dataArray);
 	
 
-	deleteColumnIndexByRecordID($APP_CONFIG['CONSTANTS']['TABLES']['Project'], $ID);
-	createColumnIndex($APP_CONFIG['TABLES']['PROJECT'], $APP_CONFIG['CONSTANTS']['TABLES']['Project'], $ID, 'Species', $APP_CONFIG['CONSTANTS']['COLUMNS']['Project::Species'], $inputArray['Species'], 0);
-	createColumnIndex($APP_CONFIG['TABLES']['PROJECT'], $APP_CONFIG['CONSTANTS']['TABLES']['Project'], $ID, 'Diseases', $APP_CONFIG['CONSTANTS']['COLUMNS']['Project::Diseases'], $inputArray['Diseases'], 0);
+	if (isset($inputArray['Species'])){
+		deleteColumnIndexByRecordID($APP_CONFIG['CONSTANTS']['TABLES']['Project'], $ID, $APP_CONFIG['CONSTANTS']['COLUMNS']['Project::Species']);
+		createColumnIndex($APP_CONFIG['TABLES']['PROJECT'], $APP_CONFIG['CONSTANTS']['TABLES']['Project'], $ID, 'Species', $APP_CONFIG['CONSTANTS']['COLUMNS']['Project::Species'], $inputArray['Species'], 0);
+	}
+	
+	if (isset($inputArray['Diseases'])){
+		deleteColumnIndexByRecordID($APP_CONFIG['CONSTANTS']['TABLES']['Project'], $ID, $APP_CONFIG['CONSTANTS']['COLUMNS']['Project::Diseases']);
+		createColumnIndex($APP_CONFIG['TABLES']['PROJECT'], $APP_CONFIG['CONSTANTS']['TABLES']['Project'], $ID, 'Diseases', $APP_CONFIG['CONSTANTS']['COLUMNS']['Project::Diseases'], $inputArray['Diseases'], 0);
+	}
 	
 
 	return true;
@@ -472,6 +514,22 @@ function getProjectByID($ID = 0){
 	
 }
 
+
+function getProjectIDByFileName($FileName = ''){
+	
+	global $APP_CONFIG;
+	
+	$FileName = addslashes(trim($FileName));
+	
+	if ($FileName == '') return 0;
+	
+	$SQL_TABLE = $APP_CONFIG['TABLES']['PROJECT'];
+	$SQL = "SELECT `ID` FROM {$SQL_TABLE} WHERE `File_Name` = '{$FileName}' ORDER BY `ID` DESC LIMIT 1";
+	$results = getSQL_Data($SQL, 'GetOne');
+
+	return $results;
+	
+}
 
 
 

@@ -68,6 +68,22 @@ echo "<form id='form_application' action='javascript:void(0);' method='post' rol
 	}
 	
 	
+	if (isAdminUser){
+		echo "<div class='row'>";
+		echo "<div class='col-xl-12 col-lg-12 col-md-12'>";
+			echo "<div class='form-group row'>";
+			echo "<div class='form-check' style='padding-left:30px;'>";
+				echo "<input class='form-check-input' type='checkbox' id='update_based_on_filename' name='update_based_on_filename' value='1'>";
+				echo "<label class='form-check-label' for='update_based_on_filename'>";
+					echo "&nbsp;Update project records based on dataset file name";
+				echo "</label>";
+			echo "</div>";
+			echo "</div>";
+		echo "</div>";
+		echo "</div>";
+	}
+	
+	
 	
 	if (true){
 		
@@ -106,11 +122,6 @@ $(document).ready(function(){
 		beforeSubmit: beforeSubmit,
         success: showResponse
     });
-	
-	$(".select2_KeyValue_Large").select2({
-		width: '100%',
-//		minimumInputLength: 3,
-	});
 	
 });
 

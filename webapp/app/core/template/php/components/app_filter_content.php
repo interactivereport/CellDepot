@@ -108,7 +108,8 @@ echo "<div class='row'>";
 												$currentCategoryDisplay = 'Blank / No Value';	
 											}
 											
-											$currentCategory = htmlentities($currentCategory);
+											
+											$currentCategory = htmlentities($currentCategory, ENT_QUOTES);
 		
 		
 											

@@ -208,7 +208,9 @@ function titleCase($string = NULL){
 	return $tempValue;
 }
 
-
+//output:
+//0: HTML, e.g., &#8216;
+//1: Printable, e.g., '
 function fixMicrosoftCharacters($string = '', $output = 0){
 	$search = array(
                     chr(212),
@@ -436,7 +438,7 @@ function splitCategories($string = '', $useNA = 1){
 			$string = array();
 		} else {
 			$string = str_replace(array(';', ',', '/', ' and '), '__BXAF_SEPERATOR__', $string);
-			$string = str_replace('  ', ' ', $string);
+			$string = preg_replace('/\ {2,}/', ' ', $string);
 			$string = trim($string);
 			$string = explode('__BXAF_SEPERATOR__', $string);
 		}
@@ -459,7 +461,7 @@ function splitCategories($string = '', $useNA = 1){
 
 function isNA($string = ''){
 	
-	$NA = array('NA', 'N/A', 'N.A', 'N.A.');
+	$NA = array('NA', 'N/A', 'N.A', 'N.A.', 'NOT AVAILABLE', 'N_A');
 	
 	if (in_arrayi($string, $NA)){
 		return true;

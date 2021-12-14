@@ -254,6 +254,8 @@ class HTML_Form {
 		
 		$results = '';
 		
+		
+		
 		if ($currentFunction == 'printInput'){
 			$results = $this->printInput();	
 		} elseif ($currentFunction == 'printReadOnly_Text'){
@@ -299,7 +301,7 @@ class HTML_Form {
 		} elseif ($currentFunction == 'printTag'){
 			$results = $this->printTag();
 		} elseif ($currentFunction == 'printTagKeyValue'){
-			$results = $this->printTag_KeyValue();
+			$results = $this->printTagKeyValue();
 		} elseif ($currentFunction == 'printSlider'){
 			$results = $this->printSlider();
 		} else {
@@ -1120,7 +1122,9 @@ class HTML_Form {
 					$selected = '';	
 				}
 				
-				$results .= "<option value='{$currentDisplay}' {$selected}>{$currentDisplay}</option>";
+				$currentDisplayEscaped = htmlentities($currentDisplay, ENT_QUOTES);
+				
+				$results .= "<option value='{$currentDisplayEscaped}' {$selected}>{$currentDisplay}</option>";
 			}
 		
 			$results .= "</select>";
@@ -1135,7 +1139,7 @@ class HTML_Form {
 			
 	}
 	
-	public function printTag_KeyValue(){
+	public function printTagKeyValue(){
 		//Require Select2
 		
 		global $APP_CONFIG;
@@ -1190,6 +1194,9 @@ class HTML_Form {
 				} else {
 					$selected = '';	
 				}
+				
+				$currentDisplay = htmlentities($currentDisplay, ENT_QUOTES);
+				$currentKey = htmlentities($currentKey, ENT_QUOTES);
 				
 				$results .= "<option value='{$currentKey}' {$selected}>{$currentDisplay}</option>";
 			}

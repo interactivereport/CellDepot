@@ -210,7 +210,12 @@ function getSQL_Data($SQL = '', $type = '', $cache = 0){
 	$APP_CACHE[__FUNCTION__][$cacheKey] = $results;
 	
 	if ($results !== NULL){
-		putRedisCache(array($cacheKey => $results));
+		
+		if ($APP_CONFIG['APP']['Cache_Expiration_Length_getSQL_Data'] > 0){
+			putRedisCache(array($cacheKey => $results), $APP_CONFIG['APP']['Cache_Expiration_Length_getSQL_Data']);
+		} else {
+			putRedisCache(array($cacheKey => $results));
+		}
 	}
 	
 	return $results;

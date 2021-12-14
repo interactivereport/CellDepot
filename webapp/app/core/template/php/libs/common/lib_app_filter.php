@@ -50,9 +50,11 @@ function get_filter_column_info($currentTable = NULL, $filter_columns = array(),
 		} else {
 			//$sortBy = Value
 			if ($sortDirection == 'ASC'){
-				asort($results[$currentColumn]);
+//				asort($results[$currentColumn]);
+				array_multisort(array_values($results[$currentColumn]), SORT_ASC, array_keys($results[$currentColumn]), SORT_ASC, $results[$currentColumn]);
 			} else {
-				arsort($results[$currentColumn]);	
+//				arsort($results[$currentColumn]);	
+				array_multisort(array_values($results[$currentColumn]), SORT_DESC, array_keys($results[$currentColumn]), SORT_ASC, $results[$currentColumn]);
 			}
 			
 			

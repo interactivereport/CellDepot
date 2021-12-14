@@ -29,21 +29,33 @@ function createColumnIndex($Table_Name = NULL, $Table_ID = 0, $Record_ID = 0, $C
 
 }
 
-function deleteColumnIndexByRecordID($Table = NULL, $Record_IDs = 0){
+function deleteColumnIndexByRecordID($Table = NULL, $Record_IDs = 0, $Column = NULL){
 	
 	global $APP_CONFIG;
 	
 	$Record_IDs = id_sanitizer($Record_IDs, 0, 1, 0, 2);
-	$Table_ID = intval($Table);
+	$Table_ID 	= intval($Table);
+	$Column_ID 	= intval($Column);
 	
 	if ($Record_IDs == ''){
 		return false;	
 	}
 	
 	if ($Table_ID > 0){
-		$SQL = "DELETE FROM `{$APP_CONFIG['TABLES']['COLUMN_INDEX']}` WHERE `Table_ID` = '{$Table_ID}' AND (`Record_ID` IN ({$Record_IDs}))";
+	
+		if ($Column_ID > 0){
+			$SQL = "DELETE FROM `{$APP_CONFIG['TABLES']['COLUMN_INDEX']}` WHERE `Table_ID` = '{$Table_ID}' AND (`Record_ID` IN ({$Record_IDs})) AND (`Column_ID` = '{$Column_ID}')";		
+		} else {
+			$SQL = "DELETE FROM `{$APP_CONFIG['TABLES']['COLUMN_INDEX']}` WHERE `Table_ID` = '{$Table_ID}' AND (`Record_ID` IN ({$Record_IDs}))";
+		}
+		
 	} elseif ($Table != ''){
-		$SQL = "DELETE FROM `{$APP_CONFIG['TABLES']['COLUMN_INDEX']}` WHERE `Table_Name` = '{$Table}' AND (`Record_ID` IN ({$Record_IDs}))";
+		
+		if ($Column != ''){
+			$SQL = "DELETE FROM `{$APP_CONFIG['TABLES']['COLUMN_INDEX']}` WHERE `Table_Name` = '{$Table}' AND (`Record_ID` IN ({$Record_IDs})) AND (`Column_Name` = '{$Column}')";	
+		} else {
+			$SQL = "DELETE FROM `{$APP_CONFIG['TABLES']['COLUMN_INDEX']}` WHERE `Table_Name` = '{$Table}' AND (`Record_ID` IN ({$Record_IDs}))";
+		}
 	} else {
 		return false;
 	}

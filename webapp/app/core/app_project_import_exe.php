@@ -100,11 +100,13 @@ if (0 && array_size($missingFiles) > 0){
 
 
 if (0){
+	echo printrExpress($_POST);
 	echo printrExpress($inputArray);
 	exit();	
 }
 
-
+$IDs = array();
+$updated = $inserted = 0;
 if (array_size($inputArray['Body']) > 0){
 	
 	clearCache();
@@ -134,33 +136,68 @@ if (array_size($inputArray['Body']) > 0){
 		
 		$dataArray['File_Server_ID'] 	= $serverID;
 		$dataArray['File_Name'] 		= $currentInput['file'];
-
-		$projectID = createProject($dataArray);
 		
-		if ($projectID > 0){
-			$inserted++;
+
+		if ($_POST['update_based_on_filename']){
+			$projectID = getProjectIDByFileName($dataArray['File_Name']);
+			
+			if ($projectID <= 0){
+				$projectID = createProject($dataArray);	
+				if ($projectID > 0){
+					$IDs[] = $projectID;
+					$inserted++;
+				}
+			} else {
+				$IDs[] = $projectID;
+				updateProject($dataArray, $projectID);	
+				$updated++;
+			}
+			
+			
+		} else {
+			$projectID = createProject($dataArray);
+			if ($projectID > 0){
+				$IDs[] = $projectID;
+				$inserted++;
+			}
 		}
+		
+		
 
 	}
-	
-	
-	
 	
 }
 
 
-
-$inserted = number_format($inserted);
-echo "Record Imported: {$inserted}" . "\n\n";
-
-
-$afterCount = getTableCount($APP_CONFIG['TABLES']['MEASUREMENT']);
-
-echo "<p># of {$BXAF_CONFIG['MESSAGE'][$currentTable]['General']['Measurements']}</p>";
-echo "<ul>";
-echo "<li>Inserted: {$inserted}</li>";
-echo "</ul>";
+if (true){
+	$cacheKey = 'IDs_' . id_sanitizer($IDs, 0, 1, 0, 3);
+	putRedisCache(array($cacheKey => $IDs));
 	
+	$URL = "app_project_search.php?recordIDs={$cacheKey}";
+}
 
+
+
+
+if (($inserted == 0) && ($updated == 0)){
+	$message = "<p>" . printFontAwesomeIcon('fas fa-exclamation-triangle text-danger') . " The system did not import any data.</p>";
+	echo getAlerts($message, 'danger');
+	exit();
+}
+
+if (($inserted > 0) && ($updated <= 0)){
+	$inserted = number_format($inserted);
+	$message = "<p>" . printFontAwesomeIcon('fas fa-exclamation-triangle text-success') . " The system has added {$inserted} records. Please click <a href='{$URL}'>here</a> to review the records.</p>";
+	echo getAlerts($message, 'success');
+} elseif (($inserted <= 0) && ($updated > 0)){
+	$updated = number_format($updated);
+	$message = "<p>" . printFontAwesomeIcon('fas fa-exclamation-triangle text-success') . " The system has updated {$updated} records. Please click <a href='{$URL}'>here</a> to review the records.</p>";
+	echo getAlerts($message, 'success');
+} elseif (($inserted > 0) && ($updated > 0)){
+	$inserted = number_format($inserted);
+	$updated = number_format($updated);
+	$message = "<p>" . printFontAwesomeIcon('fas fa-exclamation-triangle text-success') . " The system has inserted {$inserted} and updated {$updated} records. Please click <a href='{$URL}'>here</a> to review the records.</p>";
+	echo getAlerts($message, 'success');
+}
 
 ?>
