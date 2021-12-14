@@ -28,7 +28,7 @@ Followings are some tricks to format PDF by editing .tex file.
   ```
   Note: \footnote{} can be used for cooresponding author and/or co-author.
   
-2. Webpage URL for inserted figures
+2. Webpage URL for inserting figures
    #### *Option 1*: adding \write18{} before \includegraphics for each figure located on the website. 
     ```
     \write18{wget http://www.some-site.com/path/to/image.png}
