@@ -23,6 +23,7 @@ Note: If LaTex is able to compile .tex, you will find a .pdf copy in **/bookdown
 
 Followings are some tricks to format PDF by editing .tex file.
 1. Authorship: 
+
   \author{Author 1 \and Author 2\and Author 3 \and Author 4 \footnote{Cooresponding author, email: author4@xxx.com}}
   Note: \footnote{} can be used for cooresponding author and/or co-author.
 2. Webpage URL for inserted figures
