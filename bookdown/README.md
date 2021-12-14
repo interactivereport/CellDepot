@@ -49,7 +49,7 @@ Followings are some tricks to format PDF by editing .tex file.
  3. Adjust the table to fit on page by adding \resizebox before \begin{tabular}
     ```
     \begin{table}
-    \resizebox{\textwidth}{!}{%
+    \resizebox{\textwidth}{!}{
       \begin{tabular}
       ... table contents...
       \end{tabular}
