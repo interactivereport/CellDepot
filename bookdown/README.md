@@ -80,7 +80,9 @@ Followings are some tricks to format PDF by editing .tex file.
         pdflatex X.tex
         ```
      3. If any trivial '.sty' not found, please use "Enter" to skip. 
-     4. If the 'sty' is critical, Go to https://www.ctan.org/pkg, download the package and install it in the system by following the INSTALL file in each downloaded package under your latex path (e.g. /usr/share/texlive/texmf-dist/tex/latex/)
+     4. If not found '.sty' is critical, Go to https://www.ctan.org/pkg, download the package and install it in the system by following the INSTALL file in each downloaded package under your latex path (e.g. /usr/share/texlive/texmf-dist/tex/latex/) 
+     
+     Note: This step is also applicable for 'complie PDF' in Rstudio.
         
      
      
