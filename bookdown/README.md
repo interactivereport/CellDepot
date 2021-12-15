@@ -71,6 +71,8 @@ Followings are some tricks to format PDF by editing .tex file.
      
      For example:
      
+     <img src="https://github.com/interactivereport/CellDepot/blob/gh-pages/bookdown/Rstudio-latex2pdf.png" width="50%" height="50%">
+     
      #### *Option 2*: In Linux, Mac or Windows 
      1. Install latex software: https://www.latex-project.org/get/
      2. Go to termial:
