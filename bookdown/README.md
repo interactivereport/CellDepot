@@ -69,7 +69,7 @@ Followings are some tricks to format PDF by editing .tex file.
      
      For example:
      
-     <img src="https://github.com/interactivereport/CellDepot/bookdown/Rstudio-latex2pdf.png" width="50%" height="50%">
+     <img src="https://interactivereport.github.io/CellDepot/bookdown/Rstudio-latex2pdf.png" width="50%" height="50%">
      
      #### *Option 2*: Using "pandoc" from Rstudio from command line
     
