@@ -73,7 +73,13 @@ Followings are some tricks to format PDF by editing .tex file.
      
      <img src="https://github.com/interactivereport/CellDepot/blob/gh-pages/bookdown/Rstudio-latex2pdf.png" width="50%" height="50%">
      
-     #### *Option 2*: In Linux, Mac or Windows 
+     #### *Option 2*: Using "pandoc" from Rstudio from command line
+    
+     ( /usr/local/bin/pandoc -> /Applications/RStudio.app/Contents/MacOS/pandoc/pandoc )
+     ```
+     pandoc CellDepot.tex -o CellDepot.pdf
+     ```
+     #### *Option 3*: In Linux, Mac or Windows 
      1. Install latex software: https://www.latex-project.org/get/
      2. Go to termial:
         ```
