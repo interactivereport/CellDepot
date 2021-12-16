@@ -29,23 +29,17 @@ Followings are some tricks to format PDF by editing .tex file.
   Note: \footnote{} can be used for cooresponding author and/or co-author.
   
 2. Webpage URL for inserting figures
-   #### *Option 1*: adding \write18{} before \includegraphics for each figure located on the website. 
+       
+   #### *Option 1 (recommanded)*:
+    ```
+    \href{https://interactivereport.github.io/CellDepot/bookdown/figures/table_s1.jpg}{\includegraphics{figures/table_s1.jpg}}
+    ```
+   #### *Option 2*: adding \write18{} before \includegraphics for each figure located on the website. 
     ```
     \write18{wget http://www.some-site.com/path/to/image.png}
     \includegraphics{image.png}
     ```
-    
-   #### *Option 2 (recommanded)*:
-    Make the copy of figures in local directory. 
-    
-    Change
-    ```
-    [![Figure S1](https://interactivereport.github.io/CellDepot/bookdown/figures/S1.jpg)](https://interactivereport.github.io/CellDepot/bookdown/figures/S1.jpg)
-    ```
-    to 
-    ```
-    [![Figure S1](local_path/S1.jpg)](local_path/S1/S1.jpg)
-    ```
+
  3. Adjust the table to fit on page by adding \resizebox before \begin{tabular}
     ```
     \begin{table}
@@ -66,15 +60,16 @@ Followings are some tricks to format PDF by editing .tex file.
      ```
      For more details, please see https://www.overleaf.com/learn/latex/Positioning_of_Figures
   5. Covert .tex to .pdf   
+     #### Get pdflatex command
      ```
-     brew install basictex
+     brew install basictex (for Mac, Linux and Windows are different, see https://www.latex-project.org/get/)
      ```
      #### *Option 1*: In Rstudio
      If you are using Rstudio, you can direct click 'Compile PDF' button for the .tex file (You need open .tex file in Rstudio). 
      
      For example:
      
-     <img src="https://github.com/interactivereport/CellDepot/blob/gh-pages/bookdown/Rstudio-latex2pdf.png" width="50%" height="50%">
+     <img src="https://github.com/interactivereport/CellDepot/bookdown/Rstudio-latex2pdf.png" width="50%" height="50%">
      
      #### *Option 2*: Using "pandoc" from Rstudio from command line
     
@@ -83,13 +78,13 @@ Followings are some tricks to format PDF by editing .tex file.
      pandoc CellDepot.tex -o CellDepot.pdf
      ```
      #### *Option 3*: In Linux, Mac or Windows 
-     1. Install latex software: https://www.latex-project.org/get/
-     2. Go to termial:
+     
+     1. Go to termial:
         ```
-        pdflatex X.tex
+        pdflatex -jobname=CellDepot CellDepot.tex
         ```
-     3. If any trivial '.sty' not found, please use "Enter" to skip. 
-     4. If not found '.sty' is critical, Go to https://www.ctan.org/pkg, download the package and install it in the system by following the INSTALL file in each downloaded package under your latex path (e.g. /usr/share/texlive/texmf-dist/tex/latex/) 
+     2. If any trivial '.sty' not found, please use "Enter" to skip. 
+     3. If not found '.sty' is critical, Go to https://www.ctan.org/pkg, download the package and install it in the system by following the INSTALL file in each downloaded package under your latex path (e.g. /usr/share/texlive/texmf-dist/tex/latex/) 
      
         Note: This step is also applicable for 'complie PDF' in Rstudio.
         
