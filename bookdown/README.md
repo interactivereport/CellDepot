@@ -60,9 +60,9 @@ Followings are some tricks to format PDF by editing .tex file.
      ```
      For more details, please see https://www.overleaf.com/learn/latex/Positioning_of_Figures
   5. Covert .tex to .pdf   
-     #### Get pdflatex command
+     #### Get pdflatex command, https://www.latex-project.org/get/
      ```
-     brew install basictex (for Mac, Linux and Windows are different, see https://www.latex-project.org/get/)
+     brew install basictex (Mac)
      ```
      #### *Option 1*: In Rstudio
      If you are using Rstudio, you can direct click 'Compile PDF' button for the .tex file (You need open .tex file in Rstudio). 
