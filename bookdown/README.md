@@ -65,7 +65,10 @@ Followings are some tricks to format PDF by editing .tex file.
      \end{figure}
      ```
      For more details, please see https://www.overleaf.com/learn/latex/Positioning_of_Figures
-  5. Covert .tex to .pdf 
+  5. Covert .tex to .pdf   
+     ```
+     brew install basictex
+     ```
      #### *Option 1*: In Rstudio
      If you are using Rstudio, you can direct click 'Compile PDF' button for the .tex file (You need open .tex file in Rstudio). 
      
