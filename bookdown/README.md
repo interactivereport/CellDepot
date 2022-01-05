@@ -30,7 +30,7 @@ Followings are some tricks to format PDF by editing .tex file.
   
 2. Webpage URL for inserting figures
        
-   #### *Option 1 (recommanded)*:
+   #### *Option 1 (recommanded, please note that local files are used in \includegraphics by removing URL prefix)*:
     ```
     \href{https://interactivereport.github.io/CellDepot/bookdown/figures/table_s1.jpg}{\includegraphics{figures/table_s1.jpg}}
     ```
