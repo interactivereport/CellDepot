@@ -24,16 +24,16 @@ if ($BXAF_CONFIG['API_Key'] == ''){
 	$results['Error_Message'] 	= 'The API key is empty. Please make sure that the API_Key is not empty in the config file.';
 } elseif ($_GET['api_key'] != $BXAF_CONFIG['API_Key']){
 	$results['Status'] = false;
-	$results['Error_Message'] 	= 'Missing api_key. Please visit the API documentation for details: https://demo.bxgenomics.com/rshinyapps_manual/api_add_project.php';
+	$results['Error_Message'] 	= 'Missing api_key. Please visit the API documentation for details: https://celldepot.bxgenomics.com/celldepot_manual/api_add_project.php';
 } elseif (array_size($_POST) <= 0){
 	$results['Status'] = false;
-	$results['Error_Message'] 	= 'Missing input. Please visit the API documentation for details: https://demo.bxgenomics.com/rshinyapps_manual/api_add_project.php';
+	$results['Error_Message'] 	= 'Missing input. Please visit the API documentation for details: https://celldepot.bxgenomics.com/celldepot_manual/api_add_project.php';
 } elseif ($inputArray['Name'] == ''){
 	$results['Status'] = false;
-	$results['Error_Message'] 	= 'Missing Name. Please visit the API documentation for details: https://demo.bxgenomics.com/rshinyapps_manual/api_add_project.php';
+	$results['Error_Message'] 	= 'Missing Name. Please visit the API documentation for details: https://celldepot.bxgenomics.com/celldepot_manual/api_add_project.php';
 } elseif ($inputArray['File_Name'] == ''){
 	$results['Status'] = false;
-	$results['Error_Message'] 	= 'Missing File_Name. Please visit the API documentation for details: https://demo.bxgenomics.com/rshinyapps_manual/api_add_project.php';
+	$results['Error_Message'] 	= 'Missing File_Name. Please visit the API documentation for details: https://celldepot.bxgenomics.com/celldepot_manual/api_add_project.php';
 } else {
 	
 	
@@ -44,10 +44,10 @@ if ($BXAF_CONFIG['API_Key'] == ''){
 	
 	if (!file_exists("{$inputArray['File_Directory']}/{$inputArray['File_Name']}")){
 		$results['Status'] = false;
-		$results['Error_Message'] 	= "The input file ({$inputArray['File_Directory']}/{$inputArray['File_Name']}) does not exist. Please visit the API documentation for details: https://demo.bxgenomics.com/rshinyapps_manual/api_add_project.php";
+		$results['Error_Message'] 	= "The input file ({$inputArray['File_Directory']}/{$inputArray['File_Name']}) does not exist. Please visit the API documentation for details: https://celldepot.bxgenomics.com/celldepot_manual/api_add_project.php";
 	} elseif ($inputArray['File_h5ad_filesize'] <= 0){
 		$results['Status'] = false;
-		$results['Error_Message'] 	= "The input file ({$inputArray['File_Directory']}/{$inputArray['File_Name']}) is empty. Please visit the API documentation for details: https://demo.bxgenomics.com/rshinyapps_manual/api_add_project.php";
+		$results['Error_Message'] 	= "The input file ({$inputArray['File_Directory']}/{$inputArray['File_Name']}) is empty. Please visit the API documentation for details: https://celldepot.bxgenomics.com/celldepot_manual/api_add_project.php";
 	} else {
 			
 		$inputArray['API'] = 1;
@@ -69,7 +69,7 @@ if ($BXAF_CONFIG['API_Key'] == ''){
 
 }
 
-if ($results['Status'] == falsE){
+if ($results['Status'] == false){
 	$results['Input'] = $inputArray;	
 }
 

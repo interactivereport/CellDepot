@@ -83,13 +83,11 @@ function createProject($inputArray = array()){
 	$projectID	= getLastInsertID();
 	
 	createColumnIndex($APP_CONFIG['TABLES']['PROJECT'], $APP_CONFIG['CONSTANTS']['TABLES']['Project'], $projectID, 'Species', $APP_CONFIG['CONSTANTS']['COLUMNS']['Project::Species'], $inputArray['Species'], 0);
-	createColumnIndex($APP_CONFIG['TABLES']['PROJECT'], $APP_CONFIG['CONSTANTS']['TABLES']['Project'], $projectID, 'Diseases', $APP_CONFIG['CONSTANTS']['COLUMNS']['Project::Diseases'], $inputArray['Species'], 0);
+	createColumnIndex($APP_CONFIG['TABLES']['PROJECT'], $APP_CONFIG['CONSTANTS']['TABLES']['Project'], $projectID, 'Diseases', $APP_CONFIG['CONSTANTS']['COLUMNS']['Project::Diseases'], $inputArray['Diseases'], 0);
 	
 	return $projectID;
 
 }
-
-
 
 
 function updateProject($inputArray = NULL, $ID = 0){

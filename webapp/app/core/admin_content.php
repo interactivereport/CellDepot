@@ -23,7 +23,7 @@ if (isAdminUser()){
 		
 		
 		$currentIndex++;
-		$tools[$currentGroup]['Items'][$currentIndex]['Title'] 	= 'Rebuild Project-Species Index';
+		$tools[$currentGroup]['Items'][$currentIndex]['Title'] 	= 'Rebuild Project-Species and Project-Disease Indexes';
 		$tools[$currentGroup]['Items'][$currentIndex]['URL'] 	= 'admin_rebuild_project_species_index.php';
 		$tools[$currentGroup]['Items'][$currentIndex]['target'] = '_blank';
 	}

@@ -18,6 +18,17 @@ if ($_POST['Name'] == ''){
 }
 
 
+
+if (!isset($_POST['Species_Raw'])){
+	$_POST['Species_Raw'] = array();
+}
+	
+if (!isset($_POST['Diseases_Raw'])){
+	$_POST['Diseases_Raw'] = array();
+}
+
+
+
 updateProject($_POST, $_POST['ID']);
 
 

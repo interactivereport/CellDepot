@@ -30,6 +30,15 @@ if (true){
 	$APP_CONFIG['DICTIONARY'][$currentTable][$currentColumn]['Type']					= 'text';
 	$APP_CONFIG['DICTIONARY'][$currentTable][$currentColumn]['AuditTrail_Disable']		= true;
 	
+	
+	$currentColumn = 'Lock_DateTime';
+	$APP_CONFIG['DICTIONARY'][$currentTable][$currentColumn]['Title'] 					= $BXAF_CONFIG['MESSAGE'][$currentTable]['Column'][$currentColumn]['Title'];
+	$APP_CONFIG['DICTIONARY'][$currentTable][$currentColumn]['Search']					= false;
+	$APP_CONFIG['DICTIONARY'][$currentTable][$currentColumn]['Browse']					= false;
+	$APP_CONFIG['DICTIONARY'][$currentTable][$currentColumn]['Type']					= 'text';
+	$APP_CONFIG['DICTIONARY'][$currentTable][$currentColumn]['AuditTrail_Disable']		= true;
+	
+	
 
 	
 	$currentColumn = 'Actions';
