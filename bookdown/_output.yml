@@ -6,7 +6,6 @@ bookdown::gitbook:
         <li><a href="./">CellDepot</a></li>
       after: |
         <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
-    edit: https://github.com/rstudio/bookdown-demo/edit/master/%s
     download: ["pdf"]
     pandoc_args:
       - '--lua-filter=scholarly-metadata.lua'
