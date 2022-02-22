@@ -45,8 +45,9 @@ $BXAF_CONFIG['BXAF_PAGE_CSS_LEFT_FIXED_WIDTH']	= '';
 $BXAF_CONFIG['BXAF_PAGE_CSS_RIGHT']				= 'col-md-12 col-lg-9 col-xl-10 d-flex align-content-between flex-wrap';
 $BXAF_CONFIG['BXAF_PAGE_CSS_RIGHT_CONTENT']		= 'w-100 p-2';
 
+$BXAF_CONFIG['BXAF_PAGE_LOGIN_NAME_WELCOME_MESSAGE']	= 'Sign in your account';
 $BXAF_CONFIG['BXAF_PAGE_LOGIN_NAME_TITLE']				= 'Your Email or Login Name';
-$BXAF_CONFIG['BXAF_PAGE_LOGIN_NAME_PLACEHOLDER']		= 'E-mail, e.g., test@test.edu';
+$BXAF_CONFIG['BXAF_PAGE_LOGIN_NAME_PLACEHOLDER']		= 'E-mail, e.g., name@example.com';
 $BXAF_CONFIG['BXAF_PAGE_LOGIN_PASSWORD_PLACEHOLDER'] 	= 'Password is case sensitive.';
 
 // Example of Fixed Left width

@@ -294,12 +294,12 @@ else if (isset($_POST['Login_Name']) && (isset($_POST['Password']) || isset($_PO
 				var Email = $('#Login_Name').val();
 
 				if (Email == '' || ! bxaf_validate_email(Email)){
-					var alert = bootbox.alert("<h4 class='my-3'><i class='fas fa-exclamation-triangle text-danger'></i> Please enter a valid account e-mail address!</h4>");
-				}
-				else {
-
+					var alert = bootbox.alert("<h4 class='my-3'><i class='fas fa-exclamation-triangle text-danger'></i> Please enter a valid account email and try again.</h4>");
+				} else {
 					bootbox.confirm("<h4 class='my-3 w-100'><i class='fas fa-exclamation-triangle text-danger'></i> Please confirm!</h4><p>This request is to reset your password.</p> <p class='text-danger'>Are you sure you want to reset your password? </p>", function(result){
-						if(result) window.location = '<?php echo $_SERVER['PHP_SELF']; ?>?action=request_to_reset&Email=' + encodeURIComponent(Email);
+						if (result){
+							window.location = '<?php echo $_SERVER['PHP_SELF']; ?>?action=request_to_reset&Email=' + encodeURIComponent(Email);
+						}
 					});
 
 				}
@@ -323,7 +323,7 @@ else if (isset($_POST['Login_Name']) && (isset($_POST['Password']) || isset($_PO
 
 				<?php if (isset($_GET['action']) && $_GET['action'] == 'out') echo "<h5 class='text-warning my-5'>You have signed out successfully.</h5>"; ?>
 
-				<h2>Sign in your account</h2>
+				<h2><?php echo $BXAF_CONFIG['BXAF_PAGE_LOGIN_NAME_WELCOME_MESSAGE']; ?></h2>
 
 					<form action='<?php echo $_SERVER['PHP_SELF']; ?>' method='post' role='form'>
 
