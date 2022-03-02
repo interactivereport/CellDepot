@@ -1,0 +1,26 @@
+cff-version: 1.2.0
+message: "If you use this package, please cite it as below."
+preferred-citation:
+  type: article
+  authors:
+  - family-names: "Lin"
+    given-names: "Dongdong"
+  - family-names: "Chen"
+    given-names: "Yirui"
+  - family-names: "Negi"
+    given-names: "Soumya"
+  - family-names: "Cheng"
+    given-names: "Derrick"
+  - family-names: "Zhengyu"
+    given-names: "Ouyang"
+  - family-names: "Sexton"
+    given-names: "David"
+  - family-names: "Li"
+    given-names: "Kejie"
+  - family-names: "Zhang"
+    given-names: "Baohong"
+  title: "CellDepot: A unified repository for scRNA-seq data and visual exploration"
+  doi: "10.1016/j.jmb.2021.167425"
+  journal: "J Mol Biol."
+  year: 2021
+  url: "https://www.sciencedirect.com/science/article/pii/S0022283621006665?via%3Dihub"
